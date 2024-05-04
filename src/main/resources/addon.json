@@ -1,6 +1,10 @@
 {
-  "name": "Example Addon",
+  "name": "LabyCheck",
   "uuid": "%uuid%",
-  "mainClass": "com.example.addon.ExampleAddon",
-  "transformerClass": "com.example.addon.ExampleAddonTransformer"
+  "mainClass": "com.labycheck.addon.LabyMod",
+  "transformerClass": "com.labycheck.addon.LabyModTransformer",
+  "description": "An auxiliary mod for the convenience of checking players",
+  "version": 1.0,
+  "author": "https://github.com/Gr0wMan",
+  "icon": "https://imgur.com/a/3ZuM5B6"
 }

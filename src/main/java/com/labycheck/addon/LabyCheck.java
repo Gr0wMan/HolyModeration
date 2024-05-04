@@ -1,4 +1,4 @@
-package com.example.addon;
+package com.labycheck.addon;
 
 import java.util.List;
 import net.labymod.api.LabyModAddon;
@@ -7,7 +7,7 @@ import net.labymod.settings.elements.ControlElement.IconData;
 import net.labymod.settings.elements.SettingsElement;
 import net.labymod.utils.Material;
 
-public class ExampleAddon extends LabyModAddon {
+public class LabyCheck extends LabyModAddon {
 
   @Override
   public void onEnable() {

@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "com.example.addon.mixin",
+  "package": "com.labycheck.addon.mixin",
   "compatibilityLevel": "JAVA_8",
   "refmap": "example.refmap.json",
   "verbose": false,
@@ -8,6 +8,6 @@
     "defaultRequire": 1
   },
   "client": [
-    "ExampleMixin"
+    "LabyCheckMixin"
   ]
 }
