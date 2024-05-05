@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "com.labycheck.addon.mixin",
+  "package": "com.holymoderation.addon.mixin",
   "compatibilityLevel": "JAVA_8",
   "refmap": "example.refmap.json",
   "verbose": false,
@@ -8,6 +8,6 @@
     "defaultRequire": 1
   },
   "client": [
-    "LabyCheckMixin"
+    "HolyModerationMixin"
   ]
 }

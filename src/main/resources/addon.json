@@ -1,8 +1,8 @@
 {
-  "name": "LabyCheck",
+  "name": "HolyModeration",
   "uuid": "%uuid%",
-  "mainClass": "com.labycheck.addon.LabyCheck",
-  "description": "An auxiliary mod for the convenience of checking players | powered by dezc",
+  "mainClass": "com.labycheck.addon.HolyModeration",
+  "description": "An auxiliary mod for the convenience of checking players",
   "version": 1.0,
   "author": "https://github.com/Gr0wMan",
   "icon": "https://imgur.com/a/3ZuM5B6"
