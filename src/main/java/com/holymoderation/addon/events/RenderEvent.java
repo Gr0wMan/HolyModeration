@@ -24,7 +24,8 @@ public class RenderEvent {
         if (onCheck) {
             DrawString(event, "Current check:", xCoords, yCoords, rainbow(300));
             DrawString(event, player + " | " + stopWatch.getTime(TimeUnit.MINUTES) + ":"
-                    + stopWatch.getTime(TimeUnit.SECONDS), (xCoords + 10), (yCoords + 10), rainbow(300));
+                    + (stopWatch.getTime(TimeUnit.SECONDS) - stopWatch.getTime(TimeUnit.MINUTES)*60),
+                    (xCoords + 10), (yCoords + 10), rainbow(300));
         }
     }
 

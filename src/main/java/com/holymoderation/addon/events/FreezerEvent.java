@@ -27,7 +27,6 @@ public class FreezerEvent {
             HolyModeration.SendMessage("/freezing " + player);
             HolyModeration.SendMessage("/checkmute " + player);
             HolyModeration.SendMessage("/prova");
-            HolyModeration.SendMessage("/afk");
             RenderEvent.StopWatchStart();
             if (dupeIpEnabled)
                 HolyModeration.SendMessage("/dupeip " + player);
@@ -43,7 +42,6 @@ public class FreezerEvent {
             event.setCancelled(true);
             HolyModeration.SendMessage("/freezing " + message.split(" ")[1]);
             HolyModeration.SendMessage("/prova");
-            HolyModeration.SendMessage("/afk");
             RenderEvent.setPlayer("");
             RenderEvent.setOnCheck(false);
             HolyModeration.ClientMessage("Successfully unfreezed");
