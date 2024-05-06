@@ -13,7 +13,7 @@ public class HMSettings {
         if (message.matches("/hmtextlist")) {
             event.setCancelled(true);
             HolyModeration.ClientMessage("list of your texts:");
-            if (FreezerEvent.GetSplitTexts() == null)
+            if (FreezerEvent.GetTexts() == null)
                 HolyModeration.ClientMessage("you don't have any texts");
             else
                 for (int i = 0; i < FreezerEvent.GetSplitTexts().length; i++)
@@ -49,11 +49,29 @@ public class HMSettings {
             FreezerEvent.AddText(value);
             HolyModeration.ClientMessage("You have added new text!");
         }
+
         else if (message.startsWith("/hmtextremove")) {
             event.setCancelled(true);
             String value = message.split(" ")[1];
             FreezerEvent.RemoveText(value);
             HolyModeration.ClientMessage("You have removed text number " + message.split(" ", 0)[1] + "!");
+        }
+
+        else if (message.startsWith("/hmtextedit")) {
+            event.setCancelled(true);
+            int number = Integer.parseInt(message.split(" ")[1]);
+            String text = message.split(" ", 3)[2];
+            FreezerEvent.EditText(number, text);
+            HolyModeration.ClientMessage("You have edited text number " + number);
+        }
+
+        else if (message.startsWith("/hmsetcords")) {
+            event.setCancelled(true);
+            String x = message.split(" ")[1];
+            String y = message.split(" ")[2];
+            RenderEvent.setxCoords(Integer.parseInt(x));
+            RenderEvent.setyCoords(Integer.parseInt(y));
+            HolyModeration.ClientMessage("Successfully applied!");
         }
     }
 }

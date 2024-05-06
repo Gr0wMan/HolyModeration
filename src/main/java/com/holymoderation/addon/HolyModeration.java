@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
 
+import com.mojang.datafixers.FunctionType;
 import jdk.nashorn.internal.runtime.regexp.joni.Config;
 import net.labymod.api.LabyModAddon;
 import net.labymod.api.event.Subscribe;
@@ -32,9 +33,11 @@ public class HolyModeration extends LabyModAddon {
 
   @Override
   public void loadConfig() {
+    RenderEvent.setxCoords(getConfig().has("X") ? getConfig().get("X").getAsInt() : 0);
+    RenderEvent.setyCoords(getConfig().has("Y") ? getConfig().get("Y").getAsInt() : 0);
     FreezerEvent.SetVkUrl(getConfig().has("vk_url") ? getConfig().get("vk_url").getAsString() : "");
     FreezerEvent.SetDupeIp(getConfig().has("enable_dupe_ip") ? getConfig().get("enable_dupe_ip").getAsBoolean() : false);
-    FreezerEvent.SetTexts(getConfig().has("texts_list") ? getConfig().get("texts_list").getAsString() : "");
+    FreezerEvent.SetTexts(getConfig().has("texts_list") ? getConfig().get("texts_list").getAsString() : null);
   }
 
   @Override
@@ -61,6 +64,8 @@ public class HolyModeration extends LabyModAddon {
     if (event.getMessage().matches("/hmsavecfg"))
     {
       event.setCancelled(true);
+      HolyModeration.this.getConfig().addProperty("X", RenderEvent.getxCoords());
+      HolyModeration.this.getConfig().addProperty("Y", RenderEvent.getyCoords());
       HolyModeration.this.getConfig().addProperty("vk_url", FreezerEvent.GetVkUrl());
       HolyModeration.this.getConfig().addProperty("enable_dupe_ip", FreezerEvent.GetDupeIp());
       HolyModeration.this.getConfig().addProperty("texts_list", FreezerEvent.GetTexts());

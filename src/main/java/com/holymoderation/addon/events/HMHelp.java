@@ -12,13 +12,17 @@ public class HMHelp {
             event.setCancelled(true);
             HolyModeration.ClientMessage("HM help:");
             HolyModeration.ClientMessage("/hmhelp or /hm will show this texts");
+            HolyModeration.ClientMessage("/freezing player or /frz player will freeze the player");
+            HolyModeration.ClientMessage("/unfreezing player or /unfrz player will unfreeze the player");
             HolyModeration.ClientMessage("/hmsavecfg - saves your cfg");
             HolyModeration.ClientMessage("/hmtextlist - shows your texts");
             HolyModeration.ClientMessage("/hmtextadd text - adds new text");
             HolyModeration.ClientMessage("/hmtextremove number - removes text by his number in list");
+            HolyModeration.ClientMessage("/hmtextedit number newtext - edits text by number and new text");
             HolyModeration.ClientMessage("/hmsetvk your vk - sets your vk for bans");
-            HolyModeration.ClientMessage("/hmgetvk your vk - shows your vk");
+            HolyModeration.ClientMessage("/hmgetvk - shows your vk");
             HolyModeration.ClientMessage("/hmdupeip - turn on/off auto dupeip when you freeze the player");
+            HolyModeration.ClientMessage("/hmsetcords x y - sets position of Timer");
         }
     }
 }

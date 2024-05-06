@@ -12,36 +12,41 @@ public class FreezerEvent {
 
     private static Boolean dupeIpEnabled = false;
     private static String vkUrl;
-    private static String texts = "";
+    private static String texts = null;
 
     @Subscribe
     public void OnUpdate(MessageSendEvent event) {
-        boolean defFrz = false;
-        boolean advFrz = false;
         String player;
         String message = event.getMessage();
 
-        if (message.startsWith("/freezing"))
-            defFrz = true;
-        else if (message.startsWith("/frz"))
-            advFrz = true;
-
-        if (defFrz || advFrz) {
+        if (message.startsWith("/freezing") || message.startsWith("/frz")) {
             event.setCancelled(true);
             player = event.getMessage().split(" ")[1];
-            if (advFrz)
-                HolyModeration.SendMessage("/freezing " + player);
+            RenderEvent.setPlayer(player);
+            RenderEvent.setOnCheck(true);
+            HolyModeration.SendMessage("/freezing " + player);
             HolyModeration.SendMessage("/checkmute " + player);
             HolyModeration.SendMessage("/prova");
             HolyModeration.SendMessage("/afk");
+            RenderEvent.StopWatchStart();
             if (dupeIpEnabled)
                 HolyModeration.SendMessage("/dupeip " + player);
-            for (String text : GetSplitTexts()){
-                if (texts != null)
-                    HolyModeration.SendMessage("/msg " + player + " " + text);
+            for (String text : GetSplitTexts()) {
+                if (GetTexts() == null)
+                    HolyModeration.ClientMessage("You don't have any texts to write!");
                 else
-                    HolyModeration.ClientMessage("You don't have any texts, so.. add them!");
+                    HolyModeration.SendMessage("/msg " + player + " " + text);
             }
+        }
+
+        else if (message.startsWith("/unfreezing") || message.startsWith("/unfrz")) {
+            event.setCancelled(true);
+            HolyModeration.SendMessage("/freezing " + message.split(" ")[1]);
+            HolyModeration.SendMessage("/prova");
+            HolyModeration.SendMessage("/afk");
+            RenderEvent.setPlayer("");
+            RenderEvent.setOnCheck(false);
+            HolyModeration.ClientMessage("Successfully unfreezed");
         }
     }
 
@@ -65,7 +70,7 @@ public class FreezerEvent {
         if (value == null)
             return;
 
-        if (texts == "")
+        if (texts == null)
             texts = value;
         else
             texts = texts + "%" + value;
@@ -74,12 +79,24 @@ public class FreezerEvent {
     public static void RemoveText(String value){
         ArrayList<String> textsarlist = new ArrayList<>(Arrays.asList(texts.split("%", 0)));
         textsarlist.remove(Integer.parseInt(value) - 1);
-        texts = "";
+        texts = null;
         for (int i = 0; i < textsarlist.size(); i++) {
-            if (texts == "")
+            if (texts == null)
                 texts = textsarlist.get(i);
             else
                 texts = texts + "%" + textsarlist.get(i);
+        }
+    }
+
+    public static void EditText(int index, String value) {
+        String[] textsList = texts.split("%");
+        textsList[index-1] = value;
+        texts = null;
+        for (String text : textsList) {
+            if (texts == null)
+                texts = text;
+            else
+                texts = texts + "%" + text;
         }
     }
 
@@ -92,7 +109,7 @@ public class FreezerEvent {
     }
 
     public static String[] GetSplitTexts() {
-        if (texts == "")
+        if (texts == null)
             return null;
         else
             return texts.split("%", 0);
