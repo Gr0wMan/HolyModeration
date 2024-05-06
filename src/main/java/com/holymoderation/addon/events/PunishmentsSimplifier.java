@@ -23,7 +23,7 @@ public class PunishmentsSimplifier {
             }
             String time = message.split(" ", 3)[1];
             String reason = message.split(" ", 3)[2];
-            HolyModeration.SendMessage("/banip " + player + " " + time + " 2.4 (" + reason + ") | Вопросы? " + vkUrl + " -s");
+            HolyModeration.SendMessage("/banip " + player + " " + time + " 2.4 (" + reason + ") | Questions? " + vkUrl + " -s");
             HolyModeration.SendMessage("/freezing " + player);
             HolyModeration.SendMessage("/prova");
             RenderEvent.setOnCheck(false);
