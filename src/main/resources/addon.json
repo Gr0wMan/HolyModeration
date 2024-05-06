@@ -1,8 +1,8 @@
 {
   "name": "HolyModeration",
   "uuid": "%uuid%",
-  "mainClass": "com.labycheck.addon.HolyModeration",
-  "description": "An auxiliary mod for the convenience of checking players",
+  "mainClass": "com.holymoderation.addon.HolyModeration",
+  "description": "An auxiliary mod for the convenience of checking players (on labymod 3)",
   "version": 1.0,
   "author": "https://github.com/Gr0wMan",
   "icon": "https://imgur.com/a/3ZuM5B6"

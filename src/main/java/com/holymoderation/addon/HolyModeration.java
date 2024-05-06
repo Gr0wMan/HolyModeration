@@ -1,15 +1,18 @@
 package com.holymoderation.addon;
 
 import com.holymoderation.addon.events.FreezerEvent;
-import com.holymoderation.addon.events.LBCHelp;
+import com.holymoderation.addon.events.HMHelp;
 import com.holymoderation.addon.events.RenderEvent;
-import com.holymoderation.addon.events.LBCSettings;
+import com.holymoderation.addon.events.HMSettings;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
 
+import jdk.nashorn.internal.runtime.regexp.joni.Config;
 import net.labymod.api.LabyModAddon;
+import net.labymod.api.event.Subscribe;
+import net.labymod.api.event.events.client.chat.MessageSendEvent;
 import net.labymod.core.LabyModCore;
 import net.labymod.settings.elements.*;
 import net.minecraft.client.Minecraft;
@@ -17,23 +20,21 @@ import net.minecraft.util.text.StringTextComponent;
 
 public class HolyModeration extends LabyModAddon {
 
-  private static Boolean dupeIpEnabled = false;
-  private static String vkUrl;
-  private static String texts = "";
 
   @Override
   public void onEnable() {
+    getApi().getEventService().registerListener(this);
     getApi().getEventService().registerListener(new FreezerEvent());
     getApi().getEventService().registerListener(new RenderEvent());
-    getApi().getEventService().registerListener(new LBCSettings());
-    getApi().getEventService().registerListener(new LBCHelp());
+    getApi().getEventService().registerListener(new HMSettings());
+    getApi().getEventService().registerListener(new HMHelp());
   }
 
   @Override
   public void loadConfig() {
-    vkUrl = getConfig().has("vk_url") ? getConfig().get("vk_url").getAsString() : "";
-    dupeIpEnabled = getConfig().has("enable_dupe_ip") ? getConfig().get("enable_dupe_ip").getAsBoolean() : false;
-    texts = getConfig().has("texts_list") ? getConfig().get("texts_list").getAsString() : "";
+    FreezerEvent.SetVkUrl(getConfig().has("vk_url") ? getConfig().get("vk_url").getAsString() : "");
+    FreezerEvent.SetDupeIp(getConfig().has("enable_dupe_ip") ? getConfig().get("enable_dupe_ip").getAsBoolean() : false);
+    FreezerEvent.SetTexts(getConfig().has("texts_list") ? getConfig().get("texts_list").getAsString() : "");
   }
 
   @Override
@@ -55,11 +56,17 @@ public class HolyModeration extends LabyModAddon {
     }));*/
   }
 
-  public void SaveCfg() {
-    HolyModeration.this.getConfig().addProperty("enable_dupe_ip", dupeIpEnabled);
-    HolyModeration.this.getConfig().addProperty("vk_url", vkUrl);
-    HolyModeration.this.getConfig().addProperty("texts_list", texts);
-    HolyModeration.this.saveConfig();
+  @Subscribe
+  public void SaveCfg(MessageSendEvent event) {
+    if (event.getMessage().matches("/hmsavecfg"))
+    {
+      event.setCancelled(true);
+      HolyModeration.this.getConfig().addProperty("vk_url", FreezerEvent.GetVkUrl());
+      HolyModeration.this.getConfig().addProperty("enable_dupe_ip", FreezerEvent.GetDupeIp());
+      HolyModeration.this.getConfig().addProperty("texts_list", FreezerEvent.GetTexts());
+      HolyModeration.this.saveConfig();
+      ClientMessage("Your cfg have been saved!");
+    }
   }
 
   public static void SendMessage(String message) {
@@ -68,50 +75,5 @@ public class HolyModeration extends LabyModAddon {
 
   public static void ClientMessage(String message) {
     Minecraft.getInstance().player.sendMessage(new StringTextComponent(message), null);
-  }
-
-  public static boolean IsDupeIpEnabled() {
-    return dupeIpEnabled;
-  }
-
-  public static String GetVkUrl() {
-    return vkUrl;
-  }
-
-  public static String[] GetTexts() {
-    if (texts == "")
-      return null;
-    else
-      return texts.split("%", 0);
-  }
-
-  public static void AddText(String value) {
-    if (value == null)
-      return;
-
-    if (texts == "")
-      texts = value;
-    else
-      texts = texts + "%" + value;
-  }
-
-  public static void RemoveText(String value){
-    ArrayList<String> textsarlist = new ArrayList<>(Arrays.asList(texts.split("%", 0)));
-    textsarlist.remove(Integer.parseInt(value) - 1);
-    texts = "";
-    for (int i = 0; i < textsarlist.size(); i++) {
-      if (texts == "")
-        texts = textsarlist.get(i);
-      else
-        texts = texts + "%" + textsarlist.get(i);
-    }
-  }
-
-  public static void SetVkUrl(String value) {
-    vkUrl = value;
-  }
-
-  public static void SetDupeIp(boolean value) {
-    dupeIpEnabled = value;
   }
 }
