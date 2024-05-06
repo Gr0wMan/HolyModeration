@@ -11,7 +11,6 @@ import java.util.Arrays;
 public class FreezerEvent {
 
     private static Boolean dupeIpEnabled = false;
-    private static String vkUrl;
     private static String texts = null;
 
     @Subscribe
@@ -24,6 +23,7 @@ public class FreezerEvent {
             player = event.getMessage().split(" ")[1];
             RenderEvent.setPlayer(player);
             RenderEvent.setOnCheck(true);
+            PunishmentsSimplifier.SetPlayer(player);
             HolyModeration.SendMessage("/freezing " + player);
             HolyModeration.SendMessage("/checkmute " + player);
             HolyModeration.SendMessage("/prova");
@@ -40,16 +40,14 @@ public class FreezerEvent {
 
         else if (message.startsWith("/unfreezing") || message.startsWith("/unfrz")) {
             event.setCancelled(true);
-            HolyModeration.SendMessage("/freezing " + message.split(" ")[1]);
+            player = message.split(" ")[1];
+            HolyModeration.SendMessage("/freezing " + player);
             HolyModeration.SendMessage("/prova");
-            RenderEvent.setPlayer("");
+            RenderEvent.setPlayer(null);
             RenderEvent.setOnCheck(false);
+            PunishmentsSimplifier.SetPlayer(player);
             HolyModeration.ClientMessage("Successfully unfreezed");
         }
-    }
-
-    public static String GetVkUrl() {
-        return vkUrl;
     }
 
     public static Boolean GetDupeIp() {
@@ -96,10 +94,6 @@ public class FreezerEvent {
             else
                 texts = texts + "%" + text;
         }
-    }
-
-    public static void SetVkUrl(String value) {
-        vkUrl = value;
     }
 
     public static void SetDupeIp(boolean value) {

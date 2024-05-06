@@ -1,9 +1,6 @@
 package com.holymoderation.addon;
 
-import com.holymoderation.addon.events.FreezerEvent;
-import com.holymoderation.addon.events.HMHelp;
-import com.holymoderation.addon.events.RenderEvent;
-import com.holymoderation.addon.events.HMSettings;
+import com.holymoderation.addon.events.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -29,13 +26,14 @@ public class HolyModeration extends LabyModAddon {
     getApi().getEventService().registerListener(new RenderEvent());
     getApi().getEventService().registerListener(new HMSettings());
     getApi().getEventService().registerListener(new HMHelp());
+    getApi().getEventService().registerListener(new PunishmentsSimplifier());
   }
 
   @Override
   public void loadConfig() {
     RenderEvent.setxCoords(getConfig().has("X") ? getConfig().get("X").getAsInt() : 0);
     RenderEvent.setyCoords(getConfig().has("Y") ? getConfig().get("Y").getAsInt() : 0);
-    FreezerEvent.SetVkUrl(getConfig().has("vk_url") ? getConfig().get("vk_url").getAsString() : "");
+    PunishmentsSimplifier.SetVkUrl(getConfig().has("vk_url") ? getConfig().get("vk_url").getAsString() : null);
     FreezerEvent.SetDupeIp(getConfig().has("enable_dupe_ip") ? getConfig().get("enable_dupe_ip").getAsBoolean() : false);
     FreezerEvent.SetTexts(getConfig().has("texts_list") ? getConfig().get("texts_list").getAsString() : null);
   }
@@ -60,13 +58,13 @@ public class HolyModeration extends LabyModAddon {
   }
 
   @Subscribe
-  public void SaveCfg(MessageSendEvent event) {
+  public void OnUpdate(MessageSendEvent event) {
     if (event.getMessage().matches("/hmsavecfg"))
     {
       event.setCancelled(true);
       HolyModeration.this.getConfig().addProperty("X", RenderEvent.getxCoords());
       HolyModeration.this.getConfig().addProperty("Y", RenderEvent.getyCoords());
-      HolyModeration.this.getConfig().addProperty("vk_url", FreezerEvent.GetVkUrl());
+      HolyModeration.this.getConfig().addProperty("vk_url", PunishmentsSimplifier.GetVkUrl());
       HolyModeration.this.getConfig().addProperty("enable_dupe_ip", FreezerEvent.GetDupeIp());
       HolyModeration.this.getConfig().addProperty("texts_list", FreezerEvent.GetTexts());
       HolyModeration.this.saveConfig();

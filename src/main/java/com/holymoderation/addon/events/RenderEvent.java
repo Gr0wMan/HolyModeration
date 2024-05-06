@@ -10,7 +10,7 @@ import net.labymod.core.LabyModCore;
 import org.apache.commons.lang3.time.StopWatch;
 
 public class RenderEvent {
-    private static String player = "";
+    private static String player = null;
 
     private static boolean onCheck = false;
 

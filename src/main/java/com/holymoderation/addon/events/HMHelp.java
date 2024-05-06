@@ -11,7 +11,7 @@ public class HMHelp {
         if (message.matches("/hmhelp") || message.matches("/hm")) {
             event.setCancelled(true);
             HolyModeration.ClientMessage("HM help:");
-            HolyModeration.ClientMessage("/hmhelp or /hm will show this texts");
+            HolyModeration.ClientMessage("/hmhelp or /hm will show this");
             HolyModeration.ClientMessage("/freezing player or /frz player will freeze the player");
             HolyModeration.ClientMessage("/unfreezing player or /unfrz player will unfreeze the player");
             HolyModeration.ClientMessage("/hmsavecfg - saves your cfg");
@@ -23,6 +23,7 @@ public class HMHelp {
             HolyModeration.ClientMessage("/hmgetvk - shows your vk");
             HolyModeration.ClientMessage("/hmdupeip - turn on/off auto dupeip when you freeze the player");
             HolyModeration.ClientMessage("/hmsetcords x y - sets position of Timer");
+            HolyModeration.ClientMessage("/sban time reason - bans the player who's on your check now");
         }
     }
 }

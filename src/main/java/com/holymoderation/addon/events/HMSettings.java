@@ -33,14 +33,14 @@ public class HMSettings {
 
         else if (message.matches("/hmgetvk")) {
             event.setCancelled(true);
-            HolyModeration.ClientMessage("your vk: " + FreezerEvent.GetVkUrl());
+            HolyModeration.ClientMessage("your vk: " + PunishmentsSimplifier.GetVkUrl());
         }
 
         else if (message.startsWith("/hmsetvk")) {
             event.setCancelled(true);
             String value = message.split(" ")[1];
-            FreezerEvent.SetVkUrl(value);
-            HolyModeration.ClientMessage("Now your vk is: " + FreezerEvent.GetVkUrl());
+            PunishmentsSimplifier.SetVkUrl(value);
+            HolyModeration.ClientMessage("Now your vk is: " + PunishmentsSimplifier.GetVkUrl());
         }
 
         else if (message.startsWith("/hmtextadd")) {
