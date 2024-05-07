@@ -14,7 +14,8 @@ public class Punishments {
     @Subscribe
     public void OnUpdate(MessageSendEvent event) {
         String message = event.getMessage();
-        if (message.startsWith("/sban")) {
+        String command = message.split(" ")[0];
+        if (command.equals("/sban")) {
             event.setCancelled(true);
             if (!onCheck) {
                 ChatManager.ClientMessage(Colors.RED + "Вы никого не проверяете!");
@@ -48,7 +49,7 @@ public class Punishments {
             RenderEvent.SetPlayer(player);
         }
 
-        else if (message.startsWith("/imute")) {
+        else if (command.equals("/imute")) {
             event.setCancelled(true);
             String nick = message.split(" ", 3)[1];
             if (onCheck && nick.equals(player)) {
@@ -60,7 +61,7 @@ public class Punishments {
             PunishmentsManager.Punish("/mute", nick, reason, false);
         }
 
-        else if (message.startsWith("/iban")) {
+        else if (command.equals("/iban")) {
             event.setCancelled(true);
             if (PunishmentsManager.GetVkUrl() == null) {
                 ChatManager.ClientMessage(Colors.RED + "У вас не установлена ссылка на вк!");
@@ -76,7 +77,7 @@ public class Punishments {
             PunishmentsManager.Punish("/ban", nick, reason, true);
         }
 
-        else if (message.startsWith("/ibanip")) {
+        else if (command.equals("/ibanip")) {
             event.setCancelled(true);
             if (PunishmentsManager.GetVkUrl() == null) {
                 ChatManager.ClientMessage(Colors.RED + "У вас не установлена ссылка на вк!");
@@ -92,7 +93,7 @@ public class Punishments {
             PunishmentsManager.Punish("/banip", nick, reason, true);
         }
 
-        else if (message.startsWith("/tmute")) {
+        else if (command.equals("/tmute")) {
             event.setCancelled(true);
             String nick = message.split(" ", 4)[1];
             if (onCheck && nick.equals(player)) {
@@ -109,7 +110,7 @@ public class Punishments {
             PunishmentsManager.Punish("/tempmute", nick, time, reason, false);
         }
 
-        else if (message.startsWith("/tban")) {
+        else if (command.equals("/tban")) {
             event.setCancelled(true);
             if (PunishmentsManager.GetVkUrl() == null) {
                 ChatManager.ClientMessage(Colors.RED + "У вас не установлена ссылка на вк!");
@@ -130,7 +131,7 @@ public class Punishments {
             PunishmentsManager.Punish("/tempban", nick, time, reason, true);
         }
 
-        else if (message.startsWith("/tbanip")) {
+        else if (command.equals("/tbanip")) {
             event.setCancelled(true);
             if (PunishmentsManager.GetVkUrl() == null) {
                 ChatManager.ClientMessage(Colors.RED + "У вас не установлена ссылка на вк!");
