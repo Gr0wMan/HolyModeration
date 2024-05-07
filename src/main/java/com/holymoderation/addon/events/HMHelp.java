@@ -1,5 +1,6 @@
 package com.holymoderation.addon.events;
 
+import com.labymedia.connect.api.chat.Chat;
 import net.labymod.api.event.Subscribe;
 import net.labymod.api.event.events.client.chat.MessageSendEvent;
 
@@ -64,6 +65,9 @@ public class HMHelp {
                     + " - бан на время");
             ChatManager.ClientMessage(Colors.GOLD + ".tbanip" + Colors.GREEN + " nick time reason" + Colors.RESET
                     + " - бан по айпи на время");
+            ChatManager.ClientMessage("");
+            ChatManager.ClientMessage(Colors.GREEN + "Инструкция к моду:");
+            ChatManager.ClientMessage("https://docs.google.com/document/d/1iSD-mqQ8dKcQBjmJ6LWHEwbOtN5JDV7fUo5wcID9VK4/edit?usp=sharing");
         }
     }
 }
