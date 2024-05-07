@@ -18,8 +18,9 @@ public class FreezerEvent {
     @Subscribe
     public void OnUpdate(MessageSendEvent event) {
         String message = event.getMessage();
+        String command = message.split(" ")[0];
 
-        if (message.startsWith("/hmfreezing") || message.startsWith("/hmfrz")) {
+        if (command.equals("/hmfreezing") || command.equals("/hmfrz")) {
             event.setCancelled(true);
             if (player != null) {
                 ChatManager.ClientMessage(Colors.RED + "Вы уже проверяете какого-то игрока! " +
@@ -49,7 +50,7 @@ public class FreezerEvent {
             }
         }
 
-        else if (message.equals("/unfreezing") || message.equals("/unfrz")) {
+        else if (command.equals("/unfreezing") || message.equals("/unfrz")) {
             event.setCancelled(true);
             if (player == null) {
                 ChatManager.ClientMessage(Colors.RED + "Вы никого не проверяете!");
@@ -64,7 +65,7 @@ public class FreezerEvent {
             Punishments.SetPlayer(player);
         }
 
-        else if (message.startsWith("/freezing") || message.startsWith("/frz")) {
+        else if (command.equals("/freezing") || command.equals("/frz")) {
             event.setCancelled(true);
             String unFrzPlayer = message.split(" ")[1];
             if (unFrzPlayer.equals(player)) {
