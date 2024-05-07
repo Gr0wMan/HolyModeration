@@ -6,7 +6,7 @@ import java.util.Arrays;
 import net.labymod.api.event.Subscribe;
 import net.labymod.api.event.events.client.chat.MessageSendEvent;
 
-import com.holymoderation.addon.ChatUtils.MessageManager;
+import com.holymoderation.addon.ChatUtils.ChatManager;
 import com.holymoderation.addon.ChatUtils.Colors;
 
 public class FreezerEvent {
@@ -22,7 +22,7 @@ public class FreezerEvent {
         if (message.startsWith("/hmfreezing") || message.startsWith("/hmfrz")) {
             event.setCancelled(true);
             if (player != null) {
-                MessageManager.ClientMessage(Colors.RED + "Вы уже проверяете какого-то игрока! " +
+                ChatManager.ClientMessage(Colors.RED + "Вы уже проверяете какого-то игрока! " +
                         Colors.RED + "Сначала закончите текущую проверку. --> " + Colors.GOLD + "/unfreezing"
                         + " или " + Colors.GOLD + "/unfrz");
                 return;
@@ -32,33 +32,33 @@ public class FreezerEvent {
             PunishmentsSimplifier.SetPlayer(player);
             RenderEvent.SetOnCheck(true);
             PunishmentsSimplifier.SetOnCheck(true);
-            MessageManager.SendMessage("/freezing " + player);
-            MessageManager.SendMessage("/checkmute " + player);
-            MessageManager.SendMessage("/prova");
+            ChatManager.SendMessage("/freezing " + player);
+            ChatManager.SendMessage("/checkmute " + player);
+            ChatManager.SendMessage("/prova");
             RenderEvent.StopWatchStart();
             if (dupeIpEnabled)
-                MessageManager.SendMessage("/dupeip " + player);
+                ChatManager.SendMessage("/dupeip " + player);
             if (texts == null) {
-                MessageManager.ClientMessage(Colors.RED + "У вас нет настроенных текстов для отправки! " +
+                ChatManager.ClientMessage(Colors.RED + "У вас нет настроенных текстов для отправки! " +
                         "Добавить тексты --> " + Colors.GOLD + "/hmaddtext");
-                MessageManager.ClientMessage(Colors.RED + "Просмотреть тексты --> " + Colors.GOLD + "/hmtextlist");
+                ChatManager.ClientMessage(Colors.RED + "Просмотреть тексты --> " + Colors.GOLD + "/hmtextlist");
             }
             else
                 for (String text : GetSplitTexts()) {
-                    MessageManager.SendMessage("/msg " + player + " " + text);
+                    ChatManager.SendMessage("/msg " + player + " " + text);
             }
         }
 
         else if (message.startsWith("/unfreezing") || message.startsWith("/unfrz")) {
             event.setCancelled(true);
             if (!message.split(" ")[1].equals(player)) {
-                MessageManager.ClientMessage(Colors.RED + "Этот игрок не находится на вашей проверке! " +
+                ChatManager.ClientMessage(Colors.RED + "Этот игрок не находится на вашей проверке! " +
                         Colors.RED + "Для его разморозки используйте" + Colors.GOLD + " /sfreezing" + Colors.RED
                         + " или " + Colors.GOLD + "/sfrz");
                 return;
             }
-            MessageManager.SendMessage("/freezing " + player);
-            MessageManager.SendMessage("/prova");
+            ChatManager.SendMessage("/freezing " + player);
+            ChatManager.SendMessage("/prova");
             player = null;
             RenderEvent.SetOnCheck(false);
             PunishmentsSimplifier.SetOnCheck(false);
@@ -70,12 +70,12 @@ public class FreezerEvent {
             event.setCancelled(true);
             String unFrzPlayer = message.split(" ")[1];
             if (unFrzPlayer.equals(player)) {
-                MessageManager.ClientMessage(Colors.RED + "Этот игрок находиться у вас на проверке! " +
+                ChatManager.ClientMessage(Colors.RED + "Этот игрок находиться у вас на проверке! " +
                         "Для его разморозки используйте" + Colors.GOLD + " /unfreezing" + Colors.RED
                         + " или " + Colors.GOLD + "/unfrz");
                 return;
             }
-            MessageManager.SendMessage("/freezing " + unFrzPlayer);
+            ChatManager.SendMessage("/freezing " + unFrzPlayer);
         }
     }
 
