@@ -33,7 +33,7 @@ public class PunishmentsSimplifier {
                 MessageManager.ClientMessage(Colors.RED + "Вы не указали причину бана!");
                 return;
             }
-            if ((message.split(" ", 3)[1] != "20d") && (message.split(" ", 3)[1] != "30d")) {
+            if (!(message.split(" ", 3)[1].equals("20d")) && !(message.split(" ", 3)[1].equals("30d"))) {
                 MessageManager.ClientMessage(Colors.RED + "Некорректное время бана! (Должно быть 20d или 30d)");
                 return;
             }
