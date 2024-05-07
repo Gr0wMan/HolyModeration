@@ -38,6 +38,7 @@ public class HMSettings {
             event.setCancelled(true);
             if (PunishmentsSimplifier.GetVkUrl() == null) {
                 MessageManager.ClientMessage(Colors.RED + "У вас не установлена ссылка на вк!");
+                return;
             }
             MessageManager.ClientMessage(Colors.AQUA + "Ваша ссылка на вк: " + PunishmentsSimplifier.GetVkUrl());
         }
