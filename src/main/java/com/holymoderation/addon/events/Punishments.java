@@ -58,7 +58,6 @@ public class Punishments {
             }
             String reason = message.split(" ", 3)[2];
             PunishmentsManager.Punish("/mute", nick, reason, false);
-            ChatManager.SendMessage("/mute " + nick + " " + reason + " -s");
         }
 
         else if (message.startsWith("/iban")) {
