@@ -85,11 +85,11 @@ public class HMSettings {
                 return;
             }
             String indexText = message.split(" ", 2)[1];
-            int index = Integer.parseInt(indexText) - 1;
             if (PunishmentsManager.CheckIncorrectInt(indexText)) {
                 ChatManager.ClientMessage(Colors.RED + "Некорректный номер текста!");
                 return;
             }
+            int index = Integer.parseInt(indexText) - 1;
             if (index >= FreezerEvent.GetSplitTexts().length || index < 0) {
                 ChatManager.ClientMessage(Colors.RED
                         + "Элемента с таким номером в списке ваших текстов не существует!");
