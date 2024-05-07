@@ -67,7 +67,7 @@ public class HMSettings {
 
         else if (message.startsWith("/hmtextedit")) {
             event.setCancelled(true);
-            if (message.split(" ").length < 2) {
+            if (message.split(" ").length < 3) {
                 MessageManager.ClientMessage(Colors.RED + "Вы не указали новый текст!");
                 return;
             }
@@ -91,7 +91,7 @@ public class HMSettings {
 
         else if (message.startsWith("/hmsetcords")) {
             event.setCancelled(true);
-            if (message.split(" ").length < 2) {
+            if (message.split(" ").length < 3) {
                 MessageManager.ClientMessage(Colors.RED + "Вы не указали y координаты!");
                 return;
             }

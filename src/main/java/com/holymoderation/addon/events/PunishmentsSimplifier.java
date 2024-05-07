@@ -25,7 +25,7 @@ public class PunishmentsSimplifier {
                 MessageManager.ClientMessage(Colors.RED + "Вы не установили ссылку на вк!");
                 return;
             }
-            if (message.split(" ").length < 2) {
+            if (message.split(" ").length < 3) {
                 MessageManager.ClientMessage(Colors.RED + "Вы не указали причину бана!");
                 return;
             }
