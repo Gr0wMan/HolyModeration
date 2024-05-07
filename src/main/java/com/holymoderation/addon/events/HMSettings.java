@@ -147,24 +147,22 @@ public class HMSettings {
             }
             boolean incorrectX;
             boolean incorrectY;
-            int x; {
+            int x = 0; {
                 try {
                     x = Integer.parseInt(message.split(" ", 3)[1]);
                     incorrectX = false;
                 }
                 catch (NumberFormatException e) {
                     incorrectX = true;
-                    return;
                 }
             }
-            int y; {
+            int y = 0; {
                 try {
                     y = Integer.parseInt(message.split(" ", 3)[2]);
                     incorrectY = false;
                 }
                 catch (NumberFormatException e) {
                     incorrectY = true;
-                    return;
                 }
             }
             if (incorrectX || incorrectY) {
