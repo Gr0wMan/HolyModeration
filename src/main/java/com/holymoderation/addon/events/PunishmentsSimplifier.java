@@ -25,12 +25,16 @@ public class PunishmentsSimplifier {
                 MessageManager.ClientMessage(Colors.RED + "Вы не установили ссылку на вк!");
                 return;
             }
-            if (message.split(" ").length == 1) {
+            if (message.split(" ", 3).length == 1) {
                 MessageManager.ClientMessage(Colors.RED + "Вы не указали время и причину бана!");
                 return;
             }
-            if (message.split(" ").length == 2) {
+            if (message.split(" ", 3).length == 2) {
                 MessageManager.ClientMessage(Colors.RED + "Вы не указали причину бана!");
+                return;
+            }
+            if ((message.split(" ", 3)[1] != "20d") && (message.split(" ", 3)[1] != "30d")) {
+                MessageManager.ClientMessage(Colors.RED + "Некорректное время бана! (Должно быть 20d или 30d)");
                 return;
             }
             String time = message.split(" ", 3)[1];

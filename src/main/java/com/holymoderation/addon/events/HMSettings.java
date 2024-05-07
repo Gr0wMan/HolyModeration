@@ -46,6 +46,7 @@ public class HMSettings {
             event.setCancelled(true);
             if (message.split(" ").length == 1) {
                 MessageManager.ClientMessage(Colors.RED + "Вы не указали ссылку на вк!");
+                return;
             }
             String value = message.split(" ", 2)[1];
             boolean hasSpaces = false;
@@ -53,8 +54,9 @@ public class HMSettings {
                 if (value.charAt(i) == ' ')
                     hasSpaces = true;
             if (hasSpaces) {
-                MessageManager.ClientMessage(Colors.RED + "В сообщении обнаружены пробелы, пожалуйста, " +
+                MessageManager.ClientMessage(Colors.RED + "В ссылке обнаружены пробелы, пожалуйста, " +
                         "указывайте ссылку на вк в формате 'vk.com/id'");
+                return;
             }
             PunishmentsSimplifier.SetVkUrl(value);
             MessageManager.ClientMessage(Colors.GREEN + "Теперь ваша ссылка на вк: " + PunishmentsSimplifier.GetVkUrl());
@@ -64,6 +66,7 @@ public class HMSettings {
             event.setCancelled(true);
             if (message.split(" ").length == 1) {
                 MessageManager.ClientMessage(Colors.RED + "Вы не указали текст!");
+                return;
             }
             String value = message.split(" ", 2)[1];
             FreezerEvent.AddText(value);
@@ -74,6 +77,7 @@ public class HMSettings {
             event.setCancelled(true);
             if (FreezerEvent.GetTexts() == null) {
                 MessageManager.ClientMessage(Colors.RED + "У вас нет настроенных текстов");
+                return;
             }
             int index; {
                 try {
@@ -86,6 +90,7 @@ public class HMSettings {
             }
             if (message.split(" ").length == 1) {
                 MessageManager.ClientMessage(Colors.RED + "Вы не указали номер текста!");
+                return;
             }
             if (index >= FreezerEvent.GetSplitTexts().length || index < 0) {
                 MessageManager.ClientMessage(Colors.RED
@@ -103,10 +108,6 @@ public class HMSettings {
                 MessageManager.ClientMessage(Colors.RED + "Вы не указали номер текста и новый текст!");
                 return;
             }
-            else if (message.split(" ").length == 2) {
-                MessageManager.ClientMessage(Colors.RED + "Вы не указали новый текст!");
-                return;
-            }
             int index; {
                 try {
                     index = Integer.parseInt(message.split(" ")[1]) - 1;
@@ -116,8 +117,13 @@ public class HMSettings {
                     return;
                 }
             }
+            if (message.split(" ").length == 2) {
+                MessageManager.ClientMessage(Colors.RED + "Вы не указали новый текст!");
+                return;
+            }
             if (FreezerEvent.GetTexts() == null) {
                 MessageManager.ClientMessage(Colors.RED + "У вас нет настроенных текстов");
+                return;
             }
             if (index >= FreezerEvent.GetSplitTexts().length || index < 0) {
                 MessageManager.ClientMessage(Colors.RED
@@ -167,11 +173,11 @@ public class HMSettings {
             }
             if (incorrectX || incorrectY) {
                 if (incorrectX && incorrectY)
-                    MessageManager.ClientMessage("Некорректные координаты X и Y!");
+                    MessageManager.ClientMessage(Colors.RED + "Некорректные координаты X и Y!");
                 else if (incorrectX && !incorrectY)
-                    MessageManager.ClientMessage("Некорректная координата X!");
+                    MessageManager.ClientMessage(Colors.RED + "Некорректная координата X!");
                 else if (!incorrectX && incorrectY)
-                    MessageManager.ClientMessage("Некорректная координата Y!");
+                    MessageManager.ClientMessage(Colors.RED + "Некорректная координата Y!");
                 return;
             }
             RenderEvent.setxCoords(x);
