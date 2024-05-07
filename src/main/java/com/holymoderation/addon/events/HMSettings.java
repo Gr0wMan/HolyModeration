@@ -35,7 +35,7 @@ public class HMSettings {
 
         else if (message.matches("/hmgetvk")) {
             event.setCancelled(true);
-            if (!PunishmentsHelper.CheckVk()) {
+            if (ChatManager.GetVkUrl() == null) {
                 ChatManager.ClientMessage(Colors.RED + "У вас не установлена ссылка на вк!");
                 return;
             }

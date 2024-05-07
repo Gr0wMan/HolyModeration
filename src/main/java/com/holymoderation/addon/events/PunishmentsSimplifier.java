@@ -20,7 +20,7 @@ public class PunishmentsSimplifier {
                 ChatManager.ClientMessage(Colors.RED + "Вы никого не проверяете!");
                 return;
             }
-            if (!PunishmentsHelper.CheckVk()) {
+            if (ChatManager.GetVkUrl() == null) {
                 ChatManager.ClientMessage(Colors.RED + "У вас не установлена ссылка на вк!");
                 return;
             }
@@ -62,7 +62,7 @@ public class PunishmentsSimplifier {
 
         else if (message.startsWith("/iban")) {
             event.setCancelled(true);
-            if (!PunishmentsHelper.CheckVk()) {
+            if (ChatManager.GetVkUrl() == null) {
                 ChatManager.ClientMessage(Colors.RED + "У вас не установлена ссылка на вк!");
                 return;
             }
@@ -78,7 +78,7 @@ public class PunishmentsSimplifier {
 
         else if (message.startsWith("/ibanip")) {
             event.setCancelled(true);
-            if (!PunishmentsHelper.CheckVk()) {
+            if (ChatManager.GetVkUrl() == null) {
                 ChatManager.ClientMessage(Colors.RED + "У вас не установлена ссылка на вк!");
                 return;
             }
@@ -111,7 +111,7 @@ public class PunishmentsSimplifier {
 
         else if (message.startsWith("/tban")) {
             event.setCancelled(true);
-            if (!PunishmentsHelper.CheckVk()) {
+            if (ChatManager.GetVkUrl() == null) {
                 ChatManager.ClientMessage(Colors.RED + "У вас не установлена ссылка на вк!");
                 return;
             }
@@ -132,7 +132,7 @@ public class PunishmentsSimplifier {
 
         else if (message.startsWith("/tbanip")) {
             event.setCancelled(true);
-            if (!PunishmentsHelper.CheckVk()) {
+            if (ChatManager.GetVkUrl() == null) {
                 ChatManager.ClientMessage(Colors.RED + "У вас не установлена ссылка на вк!");
                 return;
             }

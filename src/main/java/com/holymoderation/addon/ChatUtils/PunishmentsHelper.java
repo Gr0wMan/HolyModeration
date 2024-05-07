@@ -23,10 +23,4 @@ public class PunishmentsHelper {
         }
         return true;
     }
-
-    public static boolean CheckVk() {
-        if (ChatManager.GetVkUrl() == null)
-            return false;
-        return false;
-    }
 }
