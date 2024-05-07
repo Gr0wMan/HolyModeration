@@ -32,7 +32,7 @@ public class FreezerEvent {
                 HolyModeration.SendMessage("/dupeip " + player);
             for (String text : GetSplitTexts()) {
                 if (GetTexts() == null)
-                    HolyModeration.ClientMessage("You don't have any texts to write!");
+                    HolyModeration.ClientMessage("У вас нет настроенных текстов для отправки!");
                 else
                     HolyModeration.SendMessage("/msg " + player + " " + text);
             }
@@ -46,7 +46,12 @@ public class FreezerEvent {
             RenderEvent.setPlayer(null);
             RenderEvent.setOnCheck(false);
             PunishmentsSimplifier.SetPlayer(player);
-            HolyModeration.ClientMessage("Successfully unfreezed");
+        }
+
+        else if (message.startsWith("/sfreezing") || message.startsWith("/sfrz")) {
+            event.setCancelled(true);
+            player = message.split(" ")[1];
+            HolyModeration.SendMessage("/freezing " + player);
         }
     }
 

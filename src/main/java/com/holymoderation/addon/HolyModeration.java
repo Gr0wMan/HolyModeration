@@ -68,7 +68,7 @@ public class HolyModeration extends LabyModAddon {
       HolyModeration.this.getConfig().addProperty("enable_dupe_ip", FreezerEvent.GetDupeIp());
       HolyModeration.this.getConfig().addProperty("texts_list", FreezerEvent.GetTexts());
       HolyModeration.this.saveConfig();
-      ClientMessage("Your cfg have been saved!");
+      ClientMessage("Ваш конфиг был успешно сохранён!");
     }
   }
 

@@ -14,16 +14,16 @@ public class PunishmentsSimplifier {
         if (message.startsWith("/sban")) {
             event.setCancelled(true);
             if (player == null) {
-                HolyModeration.ClientMessage("You aren't checking anyone!");
+                HolyModeration.ClientMessage("Вы никого не проверяете!");
                 return;
             }
             if (vkUrl == null) {
-                HolyModeration.ClientMessage("You haven't set your vkUrl in settings!");
+                HolyModeration.ClientMessage("Вы не установили ссылку на вк!");
                 return;
             }
             String time = message.split(" ", 3)[1];
             String reason = message.split(" ", 3)[2];
-            HolyModeration.SendMessage("/banip " + player + " " + time + " 2.4 (" + reason + ") | Questions? " + vkUrl + " -s");
+            HolyModeration.SendMessage("/banip " + player + " " + time + " 2.4 (" + reason + ") | Вопросы? " + vkUrl + " -s");
             HolyModeration.SendMessage("/freezing " + player);
             HolyModeration.SendMessage("/prova");
             RenderEvent.setOnCheck(false);

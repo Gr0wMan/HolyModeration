@@ -10,20 +10,21 @@ public class HMHelp {
         String message = event.getMessage();
         if (message.matches("/hmhelp") || message.matches("/hm")) {
             event.setCancelled(true);
-            HolyModeration.ClientMessage("HM help:");
-            HolyModeration.ClientMessage("/hmhelp or /hm will show this");
-            HolyModeration.ClientMessage("/freezing player or /frz player will freeze the player");
-            HolyModeration.ClientMessage("/unfreezing player or /unfrz player will unfreeze the player");
-            HolyModeration.ClientMessage("/hmsavecfg - saves your cfg");
-            HolyModeration.ClientMessage("/hmtextlist - shows your texts");
-            HolyModeration.ClientMessage("/hmtextadd text - adds new text");
-            HolyModeration.ClientMessage("/hmtextremove number - removes text by his number in list");
-            HolyModeration.ClientMessage("/hmtextedit number newtext - edits text by number and new text");
-            HolyModeration.ClientMessage("/hmsetvk your vk - sets your vk for bans");
-            HolyModeration.ClientMessage("/hmgetvk - shows your vk");
-            HolyModeration.ClientMessage("/hmdupeip - turn on/off auto dupeip when you freeze the player");
-            HolyModeration.ClientMessage("/hmsetcords x y - sets position of Timer");
-            HolyModeration.ClientMessage("/sban time reason - bans the player who's on your check now");
+            HolyModeration.ClientMessage("HM Help:");
+            HolyModeration.ClientMessage("/hmhelp или /hm покажет это");
+            HolyModeration.ClientMessage("/freezing player или /frz player заморозит игрока и начнёт проверку");
+            HolyModeration.ClientMessage("/unfreezing player или /unfrz player разморозит игрока и закончит проверку");
+            HolyModeration.ClientMessage("/sfreezing или /sfrz player просто разморозит игрока (обычный /freeze)");
+            HolyModeration.ClientMessage("/hmsavecfg - сохранить конфиг");
+            HolyModeration.ClientMessage("/hmtextlist - показать настроенные тексты");
+            HolyModeration.ClientMessage("/hmtextadd text - добавить новый текст");
+            HolyModeration.ClientMessage("/hmtextremove number - удалить текст по его номеру");
+            HolyModeration.ClientMessage("/hmtextedit number newtext - изменить текст на новый");
+            HolyModeration.ClientMessage("/hmsetvk your vk - установить ссылку на вк (для банов)");
+            HolyModeration.ClientMessage("/hmgetvk - показать установленный вк");
+            HolyModeration.ClientMessage("/hmdupeip - включает/выключает автоматический /dupeip при проверке");
+            HolyModeration.ClientMessage("/hmsetcords x y - устанавливить позицию для таймера (считая от левого верхнего угла)");
+            HolyModeration.ClientMessage("/sban time reason - забанить игрока, который сейчас на вашей проверке");
         }
     }
 }
