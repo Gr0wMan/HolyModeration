@@ -168,9 +168,9 @@ public class HMSettings {
             if (incorrectX || incorrectY) {
                 if (incorrectX && incorrectY)
                     MessageManager.ClientMessage("Некорректные координаты X и Y!");
-                else if (!incorrectX && incorrectY)
-                    MessageManager.ClientMessage("Некорректная координата X!");
                 else if (incorrectX && !incorrectY)
+                    MessageManager.ClientMessage("Некорректная координата X!");
+                else if (!incorrectX && incorrectY)
                     MessageManager.ClientMessage("Некорректная координата Y!");
                 return;
             }
