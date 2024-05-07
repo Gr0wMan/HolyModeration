@@ -5,9 +5,9 @@ import net.labymod.api.event.events.client.chat.MessageSendEvent;
 
 import com.holymoderation.addon.ChatUtils.ChatManager;
 import com.holymoderation.addon.ChatUtils.Colors;
-import com.holymoderation.addon.ChatUtils.PunishmentsHelper;
+import com.holymoderation.addon.ChatUtils.PunishmentsManager;
 
-public class PunishmentsSimplifier {
+public class Punishments {
     private static Boolean onCheck = false;
     private static String player = null;
 
@@ -20,7 +20,7 @@ public class PunishmentsSimplifier {
                 ChatManager.ClientMessage(Colors.RED + "Вы никого не проверяете!");
                 return;
             }
-            if (ChatManager.GetVkUrl() == null) {
+            if (PunishmentsManager.GetVkUrl() == null) {
                 ChatManager.ClientMessage(Colors.RED + "У вас не установлена ссылка на вк!");
                 return;
             }
@@ -32,13 +32,13 @@ public class PunishmentsSimplifier {
                 ChatManager.ClientMessage(Colors.RED + "Вы не указали причину бана!");
                 return;
             }
-            if (!(message.split(" ", 3)[1].equals("20d")) && !(message.split(" ", 3)[1].equals("30d"))) {
-                ChatManager.ClientMessage(Colors.RED + "Некорректное время бана! (Должно быть 20d или 30d)");
+            String time = message.split(" ", 3)[1];
+            if (!(time.equals("20d")) && !(time.equals("20D")) && !(time.equals("30d")) && !(time.equals("30D"))){
+                ChatManager.ClientMessage(Colors.RED + "Некорректное время бана! (Должно быть 20d/20D или 30d/20D)");
                 return;
             }
-            String time = message.split(" ", 3)[1];
             String reason = message.split(" ", 3)[2];
-            ChatManager.SendMessage("/banip " + player + " " + time + " 2.4 (" + reason + ") | Вопросы? " + ChatManager.GetVkUrl() + " -s");
+            PunishmentsManager.Punish("/banip", player, time, reason);
             ChatManager.SendMessage("/freezing " + player);
             ChatManager.SendMessage("/prova");
             onCheck = false;
@@ -57,12 +57,13 @@ public class PunishmentsSimplifier {
                 return;
             }
             String reason = message.split(" ", 3)[2];
+            PunishmentsManager.Punish("/mute", nick, reason);
             ChatManager.SendMessage("/mute " + nick + " " + reason + " -s");
         }
 
         else if (message.startsWith("/iban")) {
             event.setCancelled(true);
-            if (ChatManager.GetVkUrl() == null) {
+            if (PunishmentsManager.GetVkUrl() == null) {
                 ChatManager.ClientMessage(Colors.RED + "У вас не установлена ссылка на вк!");
                 return;
             }
@@ -73,12 +74,12 @@ public class PunishmentsSimplifier {
                 return;
             }
             String reason = message.split(" ", 3)[2];
-            ChatManager.SendMessage("/ban " + nick + " " + reason + " | Вопросы? " + ChatManager.GetVkUrl() + " -s");
+            PunishmentsManager.Punish("/ban", nick, reason);
         }
 
         else if (message.startsWith("/ibanip")) {
             event.setCancelled(true);
-            if (ChatManager.GetVkUrl() == null) {
+            if (PunishmentsManager.GetVkUrl() == null) {
                 ChatManager.ClientMessage(Colors.RED + "У вас не установлена ссылка на вк!");
                 return;
             }
@@ -89,7 +90,7 @@ public class PunishmentsSimplifier {
                 return;
             }
             String reason = message.split(" ", 3)[2];
-            ChatManager.SendMessage("/banip " + nick + " " + reason + " | Вопросы? " + ChatManager.GetVkUrl() + " -s");
+            PunishmentsManager.Punish("/banip", nick, reason);
         }
 
         else if (message.startsWith("/tmute")) {
@@ -101,17 +102,17 @@ public class PunishmentsSimplifier {
                 return;
             }
             String time = message.split(" ", 4)[2];
-            if (!PunishmentsHelper.CheckTimeFormat(time)) {
+            if (!PunishmentsManager.CheckTimeFormat(time)) {
                 ChatManager.ClientMessage(Colors.RED + "Неверный формат времени! Должно быть *h, *H, *d или *D");
                 return;
             }
             String reason = message.split(" ", 4)[3];
-            ChatManager.SendMessage("/tempmute " + nick + " " + time + " " + reason + " -s");
+            PunishmentsManager.Punish("/tempmute", nick, time, reason);
         }
 
         else if (message.startsWith("/tban")) {
             event.setCancelled(true);
-            if (ChatManager.GetVkUrl() == null) {
+            if (PunishmentsManager.GetVkUrl() == null) {
                 ChatManager.ClientMessage(Colors.RED + "У вас не установлена ссылка на вк!");
                 return;
             }
@@ -122,28 +123,28 @@ public class PunishmentsSimplifier {
                 return;
             }
             String time = message.split(" ", 4)[2];
-            if (!PunishmentsHelper.CheckTimeFormat(time)) {
+            if (!PunishmentsManager.CheckTimeFormat(time)) {
                 ChatManager.ClientMessage(Colors.RED + "Неверный формат времени! Должно быть *h, *H, *d или *D");
                 return;
             }
             String reason = message.split(" ", 4)[3];
-            ChatManager.SendMessage("/tempban " + nick + " " + time + " " + reason + " | Вопросы? " + ChatManager.GetVkUrl() + " -s");
+            PunishmentsManager.Punish("/tempban", nick, time, reason);
         }
 
         else if (message.startsWith("/tbanip")) {
             event.setCancelled(true);
-            if (ChatManager.GetVkUrl() == null) {
+            if (PunishmentsManager.GetVkUrl() == null) {
                 ChatManager.ClientMessage(Colors.RED + "У вас не установлена ссылка на вк!");
                 return;
             }
             String nick = message.split(" ", 4)[1];
             String time = message.split(" ", 4)[2];
-            if (!PunishmentsHelper.CheckTimeFormat(time)) {
+            if (!PunishmentsManager.CheckTimeFormat(time)) {
                 ChatManager.ClientMessage(Colors.RED + "Неверный формат времени! Должно быть *h, *H, *d или *D");
                 return;
             }
             String reason = message.split(" ", 4)[3];
-            ChatManager.SendMessage("/banip " + nick + " " + time + " " + reason + " | Вопросы? " + ChatManager.GetVkUrl() + " -s");
+            PunishmentsManager.Punish("/banip", nick, time, reason);
             if (onCheck && nick.equals(player)) {
                 onCheck = false;
                 RenderEvent.SetOnCheck(onCheck);

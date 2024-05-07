@@ -2,8 +2,7 @@ package com.holymoderation.addon;
 
 import java.util.List;
 
-import com.holymoderation.addon.ChatUtils.PunishmentsHelper;
-import com.labymedia.connect.api.chat.Chat;
+import com.holymoderation.addon.ChatUtils.PunishmentsManager;
 import net.labymod.api.LabyModAddon;
 import net.labymod.api.event.Subscribe;
 import net.labymod.api.event.events.client.chat.MessageSendEvent;
@@ -23,14 +22,14 @@ public class HolyModeration extends LabyModAddon {
     getApi().getEventService().registerListener(new RenderEvent());
     getApi().getEventService().registerListener(new HMSettings());
     getApi().getEventService().registerListener(new HMHelp());
-    getApi().getEventService().registerListener(new PunishmentsSimplifier());
+    getApi().getEventService().registerListener(new Punishments());
   }
 
   @Override
   public void loadConfig() {
     RenderEvent.SetxCoords(getConfig().has("X") ? getConfig().get("X").getAsInt() : 0);
     RenderEvent.SetyCoords(getConfig().has("Y") ? getConfig().get("Y").getAsInt() : 0);
-    ChatManager.SetVkUrl(getConfig().has("vk_url") ? getConfig().get("vk_url").getAsString() : null);
+    PunishmentsManager.SetVkUrl(getConfig().has("vk_url") ? getConfig().get("vk_url").getAsString() : null);
     FreezerEvent.SetDupeIp(getConfig().has("enable_dupe_ip") ? getConfig().get("enable_dupe_ip").getAsBoolean() : false);
     FreezerEvent.SetTexts(getConfig().has("texts_list") ? getConfig().get("texts_list").getAsString() : null);
   }
@@ -46,7 +45,7 @@ public class HolyModeration extends LabyModAddon {
       event.setCancelled(true);
       HolyModeration.this.getConfig().addProperty("X", RenderEvent.GetxCoords());
       HolyModeration.this.getConfig().addProperty("Y", RenderEvent.GetyCoords());
-      HolyModeration.this.getConfig().addProperty("vk_url", ChatManager.GetVkUrl());
+      HolyModeration.this.getConfig().addProperty("vk_url", PunishmentsManager.GetVkUrl());
       HolyModeration.this.getConfig().addProperty("enable_dupe_ip", FreezerEvent.GetDupeIp());
       HolyModeration.this.getConfig().addProperty("texts_list", FreezerEvent.GetTexts());
       HolyModeration.this.saveConfig();

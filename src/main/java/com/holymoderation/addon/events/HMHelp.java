@@ -21,8 +21,8 @@ public class HMHelp {
             ChatManager.ClientMessage(Colors.GOLD + "/hmfreezing" + Colors.GREEN + " player" + Colors.RESET
                     + " или " + Colors.GOLD + "/hmrz" + Colors.GREEN + " player" + Colors.RESET
                     + " - замораживает игрока и начинает проверку");
-            ChatManager.ClientMessage(Colors.GOLD + "/unfreezing" + Colors.GREEN + " player" + Colors.RESET
-                    + " или " + Colors.GOLD + "/unfrz" + Colors.GREEN + " player" + Colors.RESET
+            ChatManager.ClientMessage(Colors.GOLD + "/unfreezing" + Colors.RESET
+                    + " или " + Colors.GOLD + "/unfrz" + Colors.RESET
                     + " - размораживает игрока и заканчивает проверку");
             ChatManager.ClientMessage(Colors.GOLD + "/sban" + Colors.GREEN + " time reason" + Colors.RESET
                     + " - банит игрока, который сейчас на вашей проверке");

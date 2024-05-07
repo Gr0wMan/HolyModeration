@@ -29,9 +29,9 @@ public class FreezerEvent {
             }
             player = event.getMessage().split(" ")[1];
             RenderEvent.SetPlayer(player);
-            PunishmentsSimplifier.SetPlayer(player);
+            Punishments.SetPlayer(player);
             RenderEvent.SetOnCheck(true);
-            PunishmentsSimplifier.SetOnCheck(true);
+            Punishments.SetOnCheck(true);
             ChatManager.SendMessage("/freezing " + player);
             ChatManager.SendMessage("/checkmute " + player);
             ChatManager.SendMessage("/prova");
@@ -49,21 +49,19 @@ public class FreezerEvent {
             }
         }
 
-        else if (message.startsWith("/unfreezing") || message.startsWith("/unfrz")) {
+        else if (message.equals("/unfreezing") || message.equals("/unfrz")) {
             event.setCancelled(true);
-            if (!message.split(" ")[1].equals(player)) {
-                ChatManager.ClientMessage(Colors.RED + "Этот игрок не находится на вашей проверке! " +
-                        Colors.RED + "Для его разморозки используйте" + Colors.GOLD + " /sfreezing" + Colors.RED
-                        + " или " + Colors.GOLD + "/sfrz");
+            if (player == null) {
+                ChatManager.ClientMessage(Colors.RED + "Вы никого не проверяете!");
                 return;
             }
             ChatManager.SendMessage("/freezing " + player);
             ChatManager.SendMessage("/prova");
             player = null;
             RenderEvent.SetOnCheck(false);
-            PunishmentsSimplifier.SetOnCheck(false);
+            Punishments.SetOnCheck(false);
             RenderEvent.SetPlayer(player);
-            PunishmentsSimplifier.SetPlayer(player);
+            Punishments.SetPlayer(player);
         }
 
         else if (message.startsWith("/freezing") || message.startsWith("/frz")) {

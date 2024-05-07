@@ -5,7 +5,7 @@ import net.labymod.api.event.events.client.chat.MessageSendEvent;
 
 import com.holymoderation.addon.ChatUtils.ChatManager;
 import com.holymoderation.addon.ChatUtils.Colors;
-import com.holymoderation.addon.ChatUtils.PunishmentsHelper;
+import com.holymoderation.addon.ChatUtils.PunishmentsManager;
 
 public class HMSettings {
 
@@ -35,11 +35,11 @@ public class HMSettings {
 
         else if (message.matches("/hmgetvk")) {
             event.setCancelled(true);
-            if (ChatManager.GetVkUrl() == null) {
+            if (PunishmentsManager.GetVkUrl() == null) {
                 ChatManager.ClientMessage(Colors.RED + "У вас не установлена ссылка на вк!");
                 return;
             }
-            ChatManager.ClientMessage(Colors.AQUA + "Ваша ссылка на вк: " + ChatManager.GetVkUrl());
+            ChatManager.ClientMessage(Colors.AQUA + "Ваша ссылка на вк: " + PunishmentsManager.GetVkUrl());
         }
 
         else if (message.startsWith("/hmsetvk")) {
@@ -58,8 +58,8 @@ public class HMSettings {
                         "указывайте ссылку на вк в формате 'vk.com/id'");
                 return;
             }
-            ChatManager.SetVkUrl(value);
-            ChatManager.ClientMessage(Colors.GREEN + "Теперь ваша ссылка на вк: " + ChatManager.GetVkUrl());
+            PunishmentsManager.SetVkUrl(value);
+            ChatManager.ClientMessage(Colors.GREEN + "Теперь ваша ссылка на вк: " + PunishmentsManager.GetVkUrl());
         }
 
         else if (message.startsWith("/hmtextadd")) {
@@ -85,7 +85,7 @@ public class HMSettings {
             }
             String indexText = message.split(" ", 2)[1];
             int index = Integer.parseInt(indexText) - 1;
-            if (PunishmentsHelper.CheckIncorrectInt(indexText)) {
+            if (PunishmentsManager.CheckIncorrectInt(indexText)) {
                 ChatManager.ClientMessage(Colors.RED + "Некорректный номер текста!");
                 return;
             }
@@ -110,7 +110,7 @@ public class HMSettings {
                 return;
             }
             String indexText = message.split(" ")[1];
-            if (PunishmentsHelper.CheckIncorrectInt(indexText)) {
+            if (PunishmentsManager.CheckIncorrectInt(indexText)) {
                 ChatManager.ClientMessage(Colors.RED + "Некорректный номер текста!");
                 return;
             }
@@ -147,8 +147,8 @@ public class HMSettings {
             }
             String xText = message.split(" ", 3)[1];
             String yText = message.split(" ", 3)[2];
-            boolean incorrectX = PunishmentsHelper.CheckIncorrectInt(xText);
-            boolean incorrectY = PunishmentsHelper.CheckIncorrectInt(yText);
+            boolean incorrectX = PunishmentsManager.CheckIncorrectInt(xText);
+            boolean incorrectY = PunishmentsManager.CheckIncorrectInt(yText);
 
             if (incorrectX || incorrectY) {
                 if (incorrectX && incorrectY)
