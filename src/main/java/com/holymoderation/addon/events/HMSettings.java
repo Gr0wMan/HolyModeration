@@ -6,6 +6,8 @@ import net.labymod.api.event.events.client.chat.MessageSendEvent;
 import com.holymoderation.addon.ChatUtils.MessageManager;
 import com.holymoderation.addon.ChatUtils.Colors;
 
+
+
 public class HMSettings {
 
     @Subscribe
@@ -45,7 +47,15 @@ public class HMSettings {
             if (message.split(" ").length == 1) {
                 MessageManager.ClientMessage(Colors.RED + "Вы не указали ссылку на вк!");
             }
-            String value = message.split(" ")[1];
+            String value = message.split(" ", 2)[1];
+            boolean hasSpaces = false;
+            for (int i = 0; i < value.length(); i++)
+                if (value.charAt(i) == ' ')
+                    hasSpaces = true;
+            if (hasSpaces) {
+                MessageManager.ClientMessage(Colors.RED + "В сообщении обнаружены пробелы, пожалуйста, " +
+                        "указывайте ссылку на вк в формате 'vk.com/id'");
+            }
             PunishmentsSimplifier.SetVkUrl(value);
             MessageManager.ClientMessage(Colors.GREEN + "Теперь ваша ссылка на вк: " + PunishmentsSimplifier.GetVkUrl());
         }
@@ -62,9 +72,17 @@ public class HMSettings {
 
         else if (message.startsWith("/hmtextremove")) {
             event.setCancelled(true);
-            int index = Integer.parseInt(message.split(" ")[1]) - 1;
             if (FreezerEvent.GetTexts() == null) {
                 MessageManager.ClientMessage(Colors.RED + "У вас нет настроенных текстов");
+            }
+            int index; {
+                try {
+                    index = Integer.parseInt(message.split(" ", 2)[1]) - 1;
+                }
+                catch (NumberFormatException e) {
+                    MessageManager.ClientMessage(Colors.RED + "Некорректный номер текста!");
+                    return;
+                }
             }
             if (message.split(" ").length == 1) {
                 MessageManager.ClientMessage(Colors.RED + "Вы не указали номер текста!");
@@ -89,19 +107,26 @@ public class HMSettings {
                 MessageManager.ClientMessage(Colors.RED + "Вы не указали новый текст!");
                 return;
             }
-            int number = Integer.parseInt(message.split(" ")[1]);
-            int index = number - 1;
+            int index; {
+                try {
+                    index = Integer.parseInt(message.split(" ")[1]) - 1;
+                }
+                catch (NumberFormatException e) {
+                    MessageManager.ClientMessage(Colors.RED + "Некорректный номер текста!");
+                    return;
+                }
+            }
             if (FreezerEvent.GetTexts() == null) {
                 MessageManager.ClientMessage(Colors.RED + "У вас нет настроенных текстов");
             }
-            if (index >= FreezerEvent.GetSplitTexts().length || number < 0) {
+            if (index >= FreezerEvent.GetSplitTexts().length || index < 0) {
                 MessageManager.ClientMessage(Colors.RED
                         + "Элемента с таким номером в списке ваших текстов не существует!");
                 return;
             }
             String text = message.split(" ", 3)[2];
             FreezerEvent.EditText(index, text);
-            MessageManager.ClientMessage(Colors.YELLOW + "Вы изменили текст номер " + Colors.GREEN + number);
+            MessageManager.ClientMessage(Colors.YELLOW + "Вы изменили текст номер " + Colors.GREEN + (index + 1));
         }
 
         else if (message.equals("/hmtextclear")) {
@@ -120,10 +145,39 @@ public class HMSettings {
                 MessageManager.ClientMessage(Colors.RED + "Вы не указали y координаты!");
                 return;
             }
-            String x = message.split(" ")[1];
-            String y = message.split(" ")[2];
-            RenderEvent.setxCoords(Integer.parseInt(x));
-            RenderEvent.setyCoords(Integer.parseInt(y));
+            boolean incorrectX;
+            boolean incorrectY;
+            int x; {
+                try {
+                    x = Integer.parseInt(message.split(" ", 3)[1]);
+                    incorrectX = false;
+                }
+                catch (NumberFormatException e) {
+                    incorrectX = true;
+                    return;
+                }
+            }
+            int y; {
+                try {
+                    y = Integer.parseInt(message.split(" ", 3)[2]);
+                    incorrectY = false;
+                }
+                catch (NumberFormatException e) {
+                    incorrectY = true;
+                    return;
+                }
+            }
+            if (incorrectX || incorrectY) {
+                if (incorrectX && incorrectY)
+                    MessageManager.ClientMessage("Некорректные координаты X и Y!");
+                else if (!incorrectX && incorrectY)
+                    MessageManager.ClientMessage("Некорректная координата X!");
+                else if (incorrectX && !incorrectY)
+                    MessageManager.ClientMessage("Некорректная координата Y!");
+                return;
+            }
+            RenderEvent.setxCoords(x);
+            RenderEvent.setyCoords(y);
             MessageManager.ClientMessage(Colors.GREEN + "Успешно применено!");
         }
     }
