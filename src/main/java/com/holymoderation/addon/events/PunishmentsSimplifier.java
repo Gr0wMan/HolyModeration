@@ -1,10 +1,13 @@
 package com.holymoderation.addon.events;
 
-import com.holymoderation.addon.HolyModeration;
 import net.labymod.api.event.Subscribe;
 import net.labymod.api.event.events.client.chat.MessageSendEvent;
 
+import com.holymoderation.addon.ChatUtils.MessageManager;
+import com.holymoderation.addon.ChatUtils.Colors;
+
 public class PunishmentsSimplifier {
+    private static Boolean onCheck = false;
     private static String player = null;
     private static String vkUrl = null;
 
@@ -13,21 +16,26 @@ public class PunishmentsSimplifier {
         String message = event.getMessage();
         if (message.startsWith("/sban")) {
             event.setCancelled(true);
-            if (player == null) {
-                HolyModeration.ClientMessage("Вы никого не проверяете!");
+            if (!onCheck) {
+                MessageManager.ClientMessage(Colors.RED + "Вы никого не проверяете!");
                 return;
             }
             if (vkUrl == null) {
-                HolyModeration.ClientMessage("Вы не установили ссылку на вк!");
+                MessageManager.ClientMessage(Colors.RED + "Вы не установили ссылку на вк!");
                 return;
+            }
+            if (message.split(" ").length < 2) {
+                MessageManager.ClientMessage(Colors.RED + "Вы не указали причину бана!");
             }
             String time = message.split(" ", 3)[1];
             String reason = message.split(" ", 3)[2];
-            HolyModeration.SendMessage("/banip " + player + " " + time + " 2.4 (" + reason + ") | Вопросы? " + vkUrl + " -s");
-            HolyModeration.SendMessage("/freezing " + player);
-            HolyModeration.SendMessage("/prova");
-            RenderEvent.setOnCheck(false);
-            player = vkUrl = null;
+            MessageManager.SendMessage("/banip " + player + " " + time + " 2.4 (" + reason + ") | Вопросы? " + vkUrl + " -s");
+            MessageManager.SendMessage("/freezing " + player);
+            MessageManager.SendMessage("/prova");
+            onCheck = false;
+            player = null;
+            RenderEvent.setOnCheck(onCheck);
+            FreezerEvent.SetPlayer(player);
             RenderEvent.setPlayer(player);
         }
     }
@@ -42,5 +50,9 @@ public class PunishmentsSimplifier {
 
     public static void SetPlayer(String value) {
         player = value;
+    }
+
+    public static void SetOnCheck(Boolean value) {
+        onCheck = value;
     }
 }

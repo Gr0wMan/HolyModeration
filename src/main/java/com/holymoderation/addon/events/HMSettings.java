@@ -1,9 +1,10 @@
 package com.holymoderation.addon.events;
 
-import com.holymoderation.addon.HolyModeration;
-
 import net.labymod.api.event.Subscribe;
 import net.labymod.api.event.events.client.chat.MessageSendEvent;
+
+import com.holymoderation.addon.ChatUtils.MessageManager;
+import com.holymoderation.addon.ChatUtils.Colors;
 
 public class HMSettings {
 
@@ -12,13 +13,13 @@ public class HMSettings {
         String message = event.getMessage();
         if (message.matches("/hmtextlist")) {
             event.setCancelled(true);
-            HolyModeration.ClientMessage("Список ваших текстов:");
+            MessageManager.ClientMessage(Colors.AQUA + "Список ваших текстов:");
             if (FreezerEvent.GetTexts() == null)
-                HolyModeration.ClientMessage("У вас нет настроенных текстов");
+                MessageManager.ClientMessage(Colors.RED + "У вас нет настроенных текстов");
             else
                 for (int i = 0; i < FreezerEvent.GetSplitTexts().length; i++)
                 {
-                    HolyModeration.ClientMessage((i+1) + ". " + FreezerEvent.GetSplitTexts()[i]);
+                    MessageManager.ClientMessage((i+1) + ". " + FreezerEvent.GetSplitTexts()[i]);
                 }
         }
 
@@ -26,43 +27,62 @@ public class HMSettings {
             event.setCancelled(true);
             FreezerEvent.SetDupeIp(!FreezerEvent.GetDupeIp());
             if (FreezerEvent.GetDupeIp())
-                HolyModeration.ClientMessage("автоматический /dupeip ВКЛЮЧЁН");
+                MessageManager.ClientMessage(Colors.YELLOW + "Автоматический /dupeip" + Colors.GREEN + " ВКЛЮЧЁН");
             else
-                HolyModeration.ClientMessage("автоматический /dupeip ВЫКЛЮЧЕН");
+                MessageManager.ClientMessage(Colors.YELLOW + "Автоматический /dupeip" + Colors.RED + " ВЫКЛЮЧЕН");
         }
 
         else if (message.matches("/hmgetvk")) {
             event.setCancelled(true);
-            HolyModeration.ClientMessage("Ваша ссылка на вк: " + PunishmentsSimplifier.GetVkUrl());
+            MessageManager.ClientMessage(Colors.AQUA + "Ваша ссылка на вк: " + PunishmentsSimplifier.GetVkUrl());
         }
 
         else if (message.startsWith("/hmsetvk")) {
             event.setCancelled(true);
             String value = message.split(" ")[1];
             PunishmentsSimplifier.SetVkUrl(value);
-            HolyModeration.ClientMessage("Теперь ваша ссылка на вк: " + PunishmentsSimplifier.GetVkUrl());
+            MessageManager.ClientMessage(Colors.GREEN + "Теперь ваша ссылка на вк: " + PunishmentsSimplifier.GetVkUrl());
         }
 
         else if (message.startsWith("/hmtextadd")) {
             event.setCancelled(true);
             String value = message.split(" ", 2)[1];
             FreezerEvent.AddText(value);
-            HolyModeration.ClientMessage("Вы добавили новый текст!");
+            MessageManager.ClientMessage(Colors.GREEN + "Вы добавили новый текст!");
         }
 
         else if (message.startsWith("/hmtextremove")) {
             event.setCancelled(true);
-            String value = message.split(" ")[1];
-            FreezerEvent.RemoveText(value);
-            HolyModeration.ClientMessage("Вы удалили текст номер  " + message.split(" ", 0)[1] + "!");
+            int number = Integer.parseInt(message.split(" ")[1]);
+            int index = number - 1;
+            if (index >= FreezerEvent.GetSplitTexts().length || number < 0) {
+                MessageManager.ClientMessage(Colors.RED
+                        + "Элемента с таким номером в списке ваших текстов не существует!");
+                return;
+            }
+            FreezerEvent.RemoveText(index);
+            MessageManager.ClientMessage(Colors.RED + "Вы удалили текст номер "
+                    + Colors.GREEN + message.split(" ", 0)[1] + "!");
         }
 
         else if (message.startsWith("/hmtextedit")) {
             event.setCancelled(true);
             int number = Integer.parseInt(message.split(" ")[1]);
+            int index = number - 1;
+            if (index >= FreezerEvent.GetSplitTexts().length || number < 0) {
+                MessageManager.ClientMessage(Colors.RED
+                        + "Элемента с таким номером в списке ваших текстов не существует!");
+                return;
+            }
             String text = message.split(" ", 3)[2];
-            FreezerEvent.EditText(number, text);
-            HolyModeration.ClientMessage("Вы изменили текст номер " + number);
+            FreezerEvent.EditText(index, text);
+            MessageManager.ClientMessage(Colors.YELLOW + "Вы изменили текст номер " + Colors.GREEN + number);
+        }
+
+        else if (message.equals("/hmtextclear")) {
+            event.setCancelled(true);
+            FreezerEvent.ClearTexts();
+            MessageManager.ClientMessage(Colors.GREEN + "Вы успешно очистили все тектсы!");
         }
 
         else if (message.startsWith("/hmsetcords")) {
@@ -71,7 +91,7 @@ public class HMSettings {
             String y = message.split(" ")[2];
             RenderEvent.setxCoords(Integer.parseInt(x));
             RenderEvent.setyCoords(Integer.parseInt(y));
-            HolyModeration.ClientMessage("Успешно применено!");
+            MessageManager.ClientMessage(Colors.GREEN + "Успешно применено!");
         }
     }
 }

@@ -1,9 +1,10 @@
 {
   "name": "HolyModeration",
   "uuid": "%uuid%",
+  "description": "An auxiliary mod for moderation on HW (laby 3)",
   "mainClass": "com.holymoderation.addon.HolyModeration",
-  "description": "An auxiliary mod for the convenience of checking players (on labymod 3)",
   "version": 1.0,
   "author": "https://github.com/Gr0wMan",
-  "icon": "https://imgur.com/a/3ZuM5B6"
+  "category": 4,
+  "icon:": "https://github.com/Gr0wMan/assets/raw/main/images/HMicon64x64.png"
 }

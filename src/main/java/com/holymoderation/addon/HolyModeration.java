@@ -1,20 +1,15 @@
 package com.holymoderation.addon;
 
-import com.holymoderation.addon.events.*;
-
-import java.util.Arrays;
 import java.util.List;
-import java.util.ArrayList;
 
-import com.mojang.datafixers.FunctionType;
-import jdk.nashorn.internal.runtime.regexp.joni.Config;
 import net.labymod.api.LabyModAddon;
 import net.labymod.api.event.Subscribe;
 import net.labymod.api.event.events.client.chat.MessageSendEvent;
-import net.labymod.core.LabyModCore;
 import net.labymod.settings.elements.*;
-import net.minecraft.client.Minecraft;
-import net.minecraft.util.text.StringTextComponent;
+
+import com.holymoderation.addon.events.*;
+import com.holymoderation.addon.ChatUtils.MessageManager;
+import com.holymoderation.addon.ChatUtils.Colors;
 
 public class HolyModeration extends LabyModAddon {
 
@@ -40,25 +35,10 @@ public class HolyModeration extends LabyModAddon {
 
   @Override
   protected void fillSettings(List<SettingsElement> list) {
-    /*list.add(new BooleanElement("/dupeip", new ControlElement.IconData(Material.LEVER), new Consumer<Boolean>() {
-      public void accept(Boolean accepted) {
-        SetDupeIp(accepted.booleanValue());
-        LabyCheck.this.getConfig().addProperty("enable_dupe_ip", accepted);
-        LabyCheck.this.saveConfig();
-      }
-    }, IsDupeIpEnabled()));
-
-    list.add(new StringElement("VK URL", new ControlElement.IconData(Material.ANVIL), GetVkUrl(), new Consumer<String>() {
-      public void accept(String accepted) {
-        SetVkUrl(accepted);
-        LabyCheck.this.getConfig().addProperty("vk_url", accepted);
-        LabyCheck.this.saveConfig();
-      }
-    }));*/
   }
 
   @Subscribe
-  public void OnUpdate(MessageSendEvent event) {
+  public void SaveCfg(MessageSendEvent event) {
     if (event.getMessage().matches("/hmsavecfg"))
     {
       event.setCancelled(true);
@@ -68,15 +48,8 @@ public class HolyModeration extends LabyModAddon {
       HolyModeration.this.getConfig().addProperty("enable_dupe_ip", FreezerEvent.GetDupeIp());
       HolyModeration.this.getConfig().addProperty("texts_list", FreezerEvent.GetTexts());
       HolyModeration.this.saveConfig();
-      ClientMessage("Ваш конфиг был успешно сохранён!");
+      MessageManager.ClientMessage(Colors.GREEN + "Ваш конфиг был успешно сохранён!");
     }
   }
 
-  public static void SendMessage(String message) {
-    LabyModCore.getMinecraft().getPlayer().sendChatMessage(message);
-  }
-
-  public static void ClientMessage(String message) {
-    Minecraft.getInstance().player.sendMessage(new StringTextComponent(message), null);
-  }
 }

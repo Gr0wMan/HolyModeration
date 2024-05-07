@@ -1,57 +1,79 @@
 package com.holymoderation.addon.events;
 
-import com.holymoderation.addon.HolyModeration;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import net.labymod.api.event.Subscribe;
 import net.labymod.api.event.events.client.chat.MessageSendEvent;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import com.holymoderation.addon.ChatUtils.MessageManager;
+import com.holymoderation.addon.ChatUtils.Colors;
 
 public class FreezerEvent {
 
     private static Boolean dupeIpEnabled = false;
     private static String texts = null;
+    private static String player = null;
 
     @Subscribe
     public void OnUpdate(MessageSendEvent event) {
-        String player;
         String message = event.getMessage();
 
         if (message.startsWith("/freezing") || message.startsWith("/frz")) {
             event.setCancelled(true);
+            if (player != null) {
+                MessageManager.ClientMessage(Colors.RED + "Вы уже проверяете какого-то игрока! " +
+                        Colors.RED + "Сначала закончите текущую проверку. --> " + Colors.GOLD + "/unfreezing"
+                        + " или " + Colors.GOLD + "/unfrz");
+            }
             player = event.getMessage().split(" ")[1];
             RenderEvent.setPlayer(player);
-            RenderEvent.setOnCheck(true);
             PunishmentsSimplifier.SetPlayer(player);
-            HolyModeration.SendMessage("/freezing " + player);
-            HolyModeration.SendMessage("/checkmute " + player);
-            HolyModeration.SendMessage("/prova");
+            RenderEvent.setOnCheck(true);
+            PunishmentsSimplifier.SetOnCheck(true);
+            MessageManager.SendMessage("/freezing " + player);
+            MessageManager.SendMessage("/checkmute " + player);
+            MessageManager.SendMessage("/prova");
             RenderEvent.StopWatchStart();
             if (dupeIpEnabled)
-                HolyModeration.SendMessage("/dupeip " + player);
-            for (String text : GetSplitTexts()) {
-                if (GetTexts() == null)
-                    HolyModeration.ClientMessage("У вас нет настроенных текстов для отправки!");
-                else
-                    HolyModeration.SendMessage("/msg " + player + " " + text);
+                MessageManager.SendMessage("/dupeip " + player);
+            if (texts == null) {
+                MessageManager.ClientMessage(Colors.RED + "У вас нет настроенных текстов для отправки! " +
+                        "Добавить тексты --> " + Colors.GOLD + "/hmaddtext");
+                MessageManager.ClientMessage(Colors.RED + "Просмотреть тексты --> " + Colors.GOLD + "/hmtextlist");
+            }
+            else
+                for (String text : GetSplitTexts()) {
+                    MessageManager.SendMessage("/msg " + player + " " + text);
             }
         }
 
         else if (message.startsWith("/unfreezing") || message.startsWith("/unfrz")) {
             event.setCancelled(true);
-            player = message.split(" ")[1];
-            HolyModeration.SendMessage("/freezing " + player);
-            HolyModeration.SendMessage("/prova");
-            RenderEvent.setPlayer(null);
+            if (!message.split(" ")[1].equals(player)) {
+                MessageManager.ClientMessage(Colors.RED + "Этот игрок не находится на вашей проверке! " +
+                        Colors.RED + "Для его разморозки используйте" + Colors.GOLD + " /sfreezing" + Colors.RED
+                        + " или " + Colors.GOLD + "/sfrz");
+            }
+            MessageManager.SendMessage("/freezing " + player);
+            MessageManager.SendMessage("/prova");
+            player = null;
             RenderEvent.setOnCheck(false);
+            PunishmentsSimplifier.SetOnCheck(false);
+            RenderEvent.setPlayer(player);
             PunishmentsSimplifier.SetPlayer(player);
         }
 
         else if (message.startsWith("/sfreezing") || message.startsWith("/sfrz")) {
             event.setCancelled(true);
-            player = message.split(" ")[1];
-            HolyModeration.SendMessage("/freezing " + player);
+            String unFrzPlayer = message.split(" ")[1];
+            if (unFrzPlayer.equals(player)) {
+                MessageManager.ClientMessage(Colors.RED + "Этот игрок находиться у вас на проверке! " +
+                        "Для его разморозки используйте" + Colors.GOLD + " /unfreezing" + Colors.RED
+                        + " или " + Colors.GOLD + "/unfrz");
+                return;
+            }
+            MessageManager.SendMessage("/freezing " + unFrzPlayer);
         }
     }
 
@@ -61,6 +83,17 @@ public class FreezerEvent {
 
     public static String GetTexts() {
         return texts;
+    }
+
+    public static String[] GetSplitTexts() {
+        if (texts == null)
+            return null;
+        else
+            return texts.split("%", 0);
+    }
+
+    public static void SetPlayer(String value) {
+        player = value;
     }
 
     public static void SetTexts(String value) {
@@ -77,9 +110,9 @@ public class FreezerEvent {
             texts = texts + "%" + value;
     }
 
-    public static void RemoveText(String value){
+    public static void RemoveText(int index){
         ArrayList<String> textsarlist = new ArrayList<>(Arrays.asList(texts.split("%", 0)));
-        textsarlist.remove(Integer.parseInt(value) - 1);
+        textsarlist.remove(index);
         texts = null;
         for (int i = 0; i < textsarlist.size(); i++) {
             if (texts == null)
@@ -91,7 +124,7 @@ public class FreezerEvent {
 
     public static void EditText(int index, String value) {
         String[] textsList = texts.split("%");
-        textsList[index-1] = value;
+        textsList[index] = value;
         texts = null;
         for (String text : textsList) {
             if (texts == null)
@@ -101,14 +134,11 @@ public class FreezerEvent {
         }
     }
 
-    public static void SetDupeIp(boolean value) {
-        dupeIpEnabled = value;
+    public static void ClearTexts() {
+        texts = null;
     }
 
-    public static String[] GetSplitTexts() {
-        if (texts == null)
-            return null;
-        else
-            return texts.split("%", 0);
+    public static void SetDupeIp(boolean value) {
+        dupeIpEnabled = value;
     }
 }
