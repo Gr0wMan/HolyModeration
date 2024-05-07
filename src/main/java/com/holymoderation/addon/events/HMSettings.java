@@ -79,6 +79,10 @@ public class HMSettings {
                 MessageManager.ClientMessage(Colors.RED + "У вас нет настроенных текстов");
                 return;
             }
+            if (message.split(" ").length == 1) {
+                MessageManager.ClientMessage(Colors.RED + "Вы не указали номер текста!");
+                return;
+            }
             int index; {
                 try {
                     index = Integer.parseInt(message.split(" ", 2)[1]) - 1;
@@ -87,10 +91,6 @@ public class HMSettings {
                     MessageManager.ClientMessage(Colors.RED + "Некорректный номер текста!");
                     return;
                 }
-            }
-            if (message.split(" ").length == 1) {
-                MessageManager.ClientMessage(Colors.RED + "Вы не указали номер текста!");
-                return;
             }
             if (index >= FreezerEvent.GetSplitTexts().length || index < 0) {
                 MessageManager.ClientMessage(Colors.RED
@@ -104,6 +104,10 @@ public class HMSettings {
 
         else if (message.startsWith("/hmtextedit")) {
             event.setCancelled(true);
+            if (FreezerEvent.GetTexts() == null) {
+                MessageManager.ClientMessage(Colors.RED + "У вас нет настроенных текстов");
+                return;
+            }
             if (message.split(" ").length == 1) {
                 MessageManager.ClientMessage(Colors.RED + "Вы не указали номер текста и новый текст!");
                 return;
@@ -119,10 +123,6 @@ public class HMSettings {
             }
             if (message.split(" ").length == 2) {
                 MessageManager.ClientMessage(Colors.RED + "Вы не указали новый текст!");
-                return;
-            }
-            if (FreezerEvent.GetTexts() == null) {
-                MessageManager.ClientMessage(Colors.RED + "У вас нет настроенных текстов");
                 return;
             }
             if (index >= FreezerEvent.GetSplitTexts().length || index < 0) {
