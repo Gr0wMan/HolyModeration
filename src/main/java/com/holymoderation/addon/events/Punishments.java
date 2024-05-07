@@ -119,15 +119,15 @@ public class Punishments {
 
         else if (command.equals(".tmute")) {
             event.setCancelled(true);
-            if (message.split(" ", 3).length == 1) {
+            if (message.split(" ", 4).length == 1) {
                 ChatManager.ClientMessage(Colors.RED + "Вы не указали ник игрока, время и причину мута!");
                 return;
             }
-            if (message.split(" ", 3).length == 2) {
+            if (message.split(" ", 4).length == 2) {
                 ChatManager.ClientMessage(Colors.RED + "Вы не указали время и причину мута!");
                 return;
             }
-            if (message.split(" ", 3).length == 3) {
+            if (message.split(" ", 4).length == 3) {
                 ChatManager.ClientMessage(Colors.RED + "Вы не указали причину мута!");
                 return;
             }
@@ -152,15 +152,15 @@ public class Punishments {
                 ChatManager.ClientMessage(Colors.RED + "У вас не установлена ссылка на вк!");
                 return;
             }
-            if (message.split(" ", 3).length == 1) {
+            if (message.split(" ", 4).length == 1) {
                 ChatManager.ClientMessage(Colors.RED + "Вы не указали ник игрока, время и причину бана!");
                 return;
             }
-            if (message.split(" ", 3).length == 2) {
+            if (message.split(" ", 4).length == 2) {
                 ChatManager.ClientMessage(Colors.RED + "Вы не указали время и причину бана!");
                 return;
             }
-            if (message.split(" ", 3).length == 3) {
+            if (message.split(" ", 4).length == 3) {
                 ChatManager.ClientMessage(Colors.RED + "Вы не указали причину бана!");
                 return;
             }
@@ -185,15 +185,15 @@ public class Punishments {
                 ChatManager.ClientMessage(Colors.RED + "У вас не установлена ссылка на вк!");
                 return;
             }
-            if (message.split(" ", 3).length == 1) {
+            if (message.split(" ", 4).length == 1) {
                 ChatManager.ClientMessage(Colors.RED + "Вы не указали ник игрока, время и причину бана!");
                 return;
             }
-            if (message.split(" ", 3).length == 2) {
+            if (message.split(" ", 4).length == 2) {
                 ChatManager.ClientMessage(Colors.RED + "Вы не указали время и причину бана!");
                 return;
             }
-            if (message.split(" ", 3).length == 3) {
+            if (message.split(" ", 4).length == 3) {
                 ChatManager.ClientMessage(Colors.RED + "Вы не указали причину бана!");
                 return;
             }
