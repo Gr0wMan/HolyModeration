@@ -20,12 +20,12 @@ public class FreezerEvent {
         String message = event.getMessage();
         String command = message.split(" ")[0];
 
-        if (command.equals("/hmfreezing") || command.equals("/hmfrz")) {
+        if (command.equals(".freezing") || command.equals(".frz")) {
             event.setCancelled(true);
             if (player != null) {
                 ChatManager.ClientMessage(Colors.RED + "Вы уже проверяете какого-то игрока! " +
-                        Colors.RED + "Сначала закончите текущую проверку. --> " + Colors.GOLD + "/unfreezing"
-                        + " или " + Colors.GOLD + "/unfrz");
+                        Colors.RED + "Сначала закончите текущую проверку. --> " + Colors.GOLD + ".unfreezing"
+                        + " или " + Colors.GOLD + ".unfrz");
                 return;
             }
             player = event.getMessage().split(" ")[1];
@@ -41,8 +41,8 @@ public class FreezerEvent {
                 ChatManager.SendMessage("/dupeip " + player);
             if (texts == null) {
                 ChatManager.ClientMessage(Colors.RED + "У вас нет настроенных текстов для отправки! " +
-                        "Добавить тексты --> " + Colors.GOLD + "/hmaddtext");
-                ChatManager.ClientMessage(Colors.RED + "Просмотреть тексты --> " + Colors.GOLD + "/hmtextlist");
+                        "Добавить тексты --> " + Colors.GOLD + ".addtext");
+                ChatManager.ClientMessage(Colors.RED + "Просмотреть тексты --> " + Colors.GOLD + ".textlist");
             }
             else
                 for (String text : GetSplitTexts()) {
@@ -50,7 +50,7 @@ public class FreezerEvent {
             }
         }
 
-        else if (command.equals("/unfreezing") || message.equals("/unfrz")) {
+        else if (command.equals(".unfreezing") || message.equals(".unfrz")) {
             event.setCancelled(true);
             if (player == null) {
                 ChatManager.ClientMessage(Colors.RED + "Вы никого не проверяете!");
@@ -70,8 +70,8 @@ public class FreezerEvent {
             String unFrzPlayer = message.split(" ")[1];
             if (unFrzPlayer.equals(player)) {
                 ChatManager.ClientMessage(Colors.RED + "Этот игрок находиться у вас на проверке! " +
-                        "Для его разморозки используйте" + Colors.GOLD + " /unfreezing" + Colors.RED
-                        + " или " + Colors.GOLD + "/unfrz");
+                        "Для его разморозки используйте" + Colors.GOLD + " .unfreezing" + Colors.RED
+                        + " или " + Colors.GOLD + ".unfrz");
                 return;
             }
             ChatManager.SendMessage("/freezing " + unFrzPlayer);

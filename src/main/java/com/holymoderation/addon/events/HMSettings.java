@@ -13,7 +13,7 @@ public class HMSettings {
     public void OnUpdate(MessageSendEvent event) {
         String message = event.getMessage();
         String command = message.split(" ")[0];
-        if (command.equals("/hmtextlist")) {
+        if (command.equals(".textlist")) {
             event.setCancelled(true);
             ChatManager.ClientMessage(Colors.AQUA + "Список ваших текстов:");
             if (FreezerEvent.GetTexts() == null)
@@ -25,7 +25,7 @@ public class HMSettings {
                 }
         }
 
-        else if (command.equals("/hmdupeip")) {
+        else if (command.equals(".dupeip")) {
             event.setCancelled(true);
             FreezerEvent.SetDupeIp(!FreezerEvent.GetDupeIp());
             if (FreezerEvent.GetDupeIp())
@@ -34,7 +34,7 @@ public class HMSettings {
                 ChatManager.ClientMessage(Colors.YELLOW + "Автоматический /dupeip" + Colors.RED + " ВЫКЛЮЧЕН");
         }
 
-        else if (command.equals("/hmgetvk")) {
+        else if (command.equals(".getvk")) {
             event.setCancelled(true);
             if (PunishmentsManager.GetVkUrl() == null) {
                 ChatManager.ClientMessage(Colors.RED + "У вас не установлена ссылка на вк!");
@@ -43,7 +43,7 @@ public class HMSettings {
             ChatManager.ClientMessage(Colors.AQUA + "Ваша ссылка на вк: " + PunishmentsManager.GetVkUrl());
         }
 
-        else if (command.equals("/hmsetvk")) {
+        else if (command.equals(".setvk")) {
             event.setCancelled(true);
             if (message.split(" ").length == 1) {
                 ChatManager.ClientMessage(Colors.RED + "Вы не ввели ссылку на вк!");
@@ -63,7 +63,7 @@ public class HMSettings {
             ChatManager.ClientMessage(Colors.GREEN + "Теперь ваша ссылка на вк: " + PunishmentsManager.GetVkUrl());
         }
 
-        else if (command.equals("/hmtextadd")) {
+        else if (command.equals(".textadd")) {
             event.setCancelled(true);
             if (message.split(" ").length == 1) {
                 ChatManager.ClientMessage(Colors.RED + "Вы не указали текст!");
@@ -74,7 +74,7 @@ public class HMSettings {
             ChatManager.ClientMessage(Colors.GREEN + "Вы добавили новый текст!");
         }
 
-        else if (command.equals("/hmtextremove")) {
+        else if (command.equals(".textremove")) {
             event.setCancelled(true);
             if (FreezerEvent.GetTexts() == null) {
                 ChatManager.ClientMessage(Colors.RED + "У вас нет настроенных текстов");
@@ -100,7 +100,7 @@ public class HMSettings {
                     + Colors.GREEN + message.split(" ", 0)[1] + "!");
         }
 
-        else if (command.equals("/hmtextedit")) {
+        else if (command.equals(".textedit")) {
             event.setCancelled(true);
             if (FreezerEvent.GetTexts() == null) {
                 ChatManager.ClientMessage(Colors.RED + "У вас нет настроенных текстов");
@@ -130,13 +130,13 @@ public class HMSettings {
             ChatManager.ClientMessage(Colors.YELLOW + "Вы изменили текст номер " + Colors.GREEN + (index + 1));
         }
 
-        else if (message.equals("/hmtextclear")) {
+        else if (message.equals(".textclear")) {
             event.setCancelled(true);
             FreezerEvent.ClearTexts();
             ChatManager.ClientMessage(Colors.GREEN + "Вы успешно очистили все тектсы!");
         }
 
-        else if (command.equals("/hmsetcords")) {
+        else if (command.equals(".setcords")) {
             event.setCancelled(true);
             if (message.split(" ").length == 1) {
                 ChatManager.ClientMessage(Colors.RED + "Вы не указали x и y координаты!");
