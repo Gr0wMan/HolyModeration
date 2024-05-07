@@ -181,8 +181,8 @@ public class HMSettings {
                     MessageManager.ClientMessage(Colors.RED + "Некорректная координата Y!");
                 return;
             }
-            RenderEvent.setxCoords(x);
-            RenderEvent.setyCoords(y);
+            RenderEvent.SetxCoords(x);
+            RenderEvent.SetyCoords(y);
             MessageManager.ClientMessage(Colors.GREEN + "Успешно применено!");
         }
     }

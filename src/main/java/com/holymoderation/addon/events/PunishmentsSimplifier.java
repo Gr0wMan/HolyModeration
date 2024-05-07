@@ -1,6 +1,5 @@
 package com.holymoderation.addon.events;
 
-import ca.weblite.objc.Client;
 import net.labymod.api.event.Subscribe;
 import net.labymod.api.event.events.client.chat.MessageSendEvent;
 
@@ -44,9 +43,86 @@ public class PunishmentsSimplifier {
             MessageManager.SendMessage("/prova");
             onCheck = false;
             player = null;
-            RenderEvent.setOnCheck(onCheck);
+            RenderEvent.SetOnCheck(onCheck);
             FreezerEvent.SetPlayer(player);
-            RenderEvent.setPlayer(player);
+            RenderEvent.SetPlayer(player);
+        }
+
+        else if (message.startsWith("/imute")) {
+            event.setCancelled(true);
+            String nick = message.split(" ", 3)[1];
+            if (onCheck && nick.equals(player)) {
+                MessageManager.ClientMessage(Colors.RED + "Вы не можете замутить этого игрока, " +
+                        "так как он находится у вас на проверке!");
+                return;
+            }
+            String reason = message.split(" ", 3)[2];
+            MessageManager.SendMessage("/mute " + nick + " " + reason + " -s");
+        }
+
+        else if (message.startsWith("/iban")) {
+            event.setCancelled(true);
+            String nick = message.split(" ", 3)[1];
+            if (onCheck && nick.equals(player)) {
+                MessageManager.ClientMessage(Colors.RED + "Вы не можете забанить этого игрока, " +
+                        "так как он находится у вас на проверке!");
+                return;
+            }
+            String reason = message.split(" ", 3)[2];
+            MessageManager.SendMessage("/ban " + nick + " " + reason + " | Вопросы? " + vkUrl + " -s");
+        }
+
+        else if (message.startsWith("/ibanip")) {
+            event.setCancelled(true);
+            String nick = message.split(" ", 3)[1];
+            if (onCheck && nick.equals(player)) {
+                MessageManager.ClientMessage(Colors.RED + "Вы не можете забанить этого игрока, " +
+                        "так как он находится у вас на проверке!");
+                return;
+            }
+            String reason = message.split(" ", 3)[2];
+            MessageManager.SendMessage("/banip " + nick + " " + reason + " | Вопросы? " + vkUrl + " -s");
+        }
+
+        else if (message.startsWith("/tmute")) {
+            event.setCancelled(true);
+            String nick = message.split(" ", 4)[1];
+            if (onCheck && nick.equals(player)) {
+                MessageManager.ClientMessage(Colors.RED + "Вы не можете замутить этого игрока, " +
+                        "так как он находится у вас на проверке!");
+                return;
+            }
+            String time = message.split(" ", 4)[2];
+            String reason = message.split(" ", 4)[3];
+            MessageManager.SendMessage("/tempmute " + nick + " " + time + " " + reason + " -s");
+        }
+
+        else if (message.startsWith("/tban")) {
+            event.setCancelled(true);
+            String nick = message.split(" ", 4)[1];
+            if (onCheck && nick.equals(player)) {
+                MessageManager.ClientMessage(Colors.RED + "Вы не можете забанить этого игрока, " +
+                        "так как он находится у вас на проверке!");
+                return;
+            }
+            String time = message.split(" ", 4)[2];
+            String reason = message.split(" ", 4)[3];
+            MessageManager.SendMessage("/tempban " + nick + " " + time + " " + reason + " | Вопросы? " + vkUrl + " -s");
+        }
+
+        else if (message.startsWith("/tbanip")) {
+            event.setCancelled(true);
+            String nick = message.split(" ", 4)[1];
+            String time = message.split(" ", 4)[2];
+            String reason = message.split(" ", 4)[3];
+            MessageManager.SendMessage("/banip " + nick + " " + time + " " + reason + " | Вопросы? " + vkUrl + " -s");
+            if (onCheck && nick.equals(player)) {
+                onCheck = false;
+                RenderEvent.SetOnCheck(onCheck);
+                player = null;
+                FreezerEvent.SetPlayer(player);
+                RenderEvent.SetPlayer(player);
+            }
         }
     }
 

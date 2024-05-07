@@ -22,14 +22,14 @@ public class RenderEvent {
     @Subscribe
     public void onRender(RenderGameOverlayEvent event) {
         if (onCheck) {
-            DrawString(event, "Текущая проверка:", xCoords, yCoords, rainbow(300));
+            DrawString(event, "Текущая проверка:", xCoords, yCoords, Rainbow(300));
             DrawString(event, player + " | " + stopWatch.getTime(TimeUnit.MINUTES) + ":"
                     + (stopWatch.getTime(TimeUnit.SECONDS) - stopWatch.getTime(TimeUnit.MINUTES)*60),
-                    (xCoords + 10), (yCoords + 10), rainbow(300));
+                    (xCoords + 10), (yCoords + 10), Rainbow(300));
         }
     }
 
-    public static int rainbow(int delay) {
+    public static int Rainbow(int delay) {
         double rainbowState = Math.ceil((System.currentTimeMillis() + delay) / 20.0D);
         rainbowState %= 360.0D;
         return Color.getHSBColor((float)(rainbowState / 360.0D), 0.5F, 1.0F).getRGB();
@@ -40,27 +40,27 @@ public class RenderEvent {
         stopWatch.start();
     }
 
-    public static int getxCoords() {
+    public static int GetxCoords() {
         return xCoords;
     }
 
-    public static int getyCoords() {
+    public static int GetyCoords() {
         return yCoords;
     }
 
-    public static void setxCoords(int value) {
+    public static void SetxCoords(int value) {
         xCoords = value;
     }
 
-    public static void setyCoords(int value) {
+    public static void SetyCoords(int value) {
         yCoords = value;
     }
 
-    public static void setPlayer(String value) {
+    public static void SetPlayer(String value) {
         player = value;
     }
 
-    public static void setOnCheck(boolean value) {
+    public static void SetOnCheck(boolean value) {
         onCheck = value;
     }
 

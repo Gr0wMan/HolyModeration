@@ -16,6 +16,8 @@ public class HMHelp {
             MessageManager.ClientMessage(Colors.BLUE + "HM Help:");
             MessageManager.ClientMessage(Colors.GOLD + "/hmhelp" + Colors.RESET + " или "
                     + Colors.GOLD + "/hm" + Colors.RESET + " - показывает HM Help");
+            MessageManager.ClientMessage("");
+            MessageManager.ClientMessage(Colors.DARK_RED + "ПОМОЩЬ ПО ПРОВЕРКАМ:");
             MessageManager.ClientMessage(Colors.GOLD + "/freezing" + Colors.GREEN + " player" + Colors.RESET
                     + " или " + Colors.GOLD + "/frz" + Colors.GREEN + " player" + Colors.RESET
                     + " - замораживает игрока и начинает проверку");
@@ -28,6 +30,8 @@ public class HMHelp {
                     "при условии, что он не находится на вашей проверке");
             MessageManager.ClientMessage(Colors.GOLD + "/sban" + Colors.GREEN + " time reason" + Colors.RESET
                     + " - банит игрока, который сейчас на вашей проверке");
+            MessageManager.ClientMessage("");
+            MessageManager.ClientMessage(Colors.DARK_RED + "ПОМОЩЬ ПО НАСТРОЙКЕ АДДОНА:");
             MessageManager.ClientMessage(Colors.GOLD + "/hmtextlist" + Colors.RESET + Colors.RESET
                     + " - показывает настроенные тексты");
             MessageManager.ClientMessage(Colors.GOLD + "/hmtextadd" + Colors.GREEN + " text" + Colors.RESET
@@ -46,6 +50,20 @@ public class HMHelp {
                     + " - устанавливает позицию для таймера (считая от левого верхнего угла)");
             MessageManager.ClientMessage(Colors.GOLD + "/hmsavecfg" + Colors.RESET + Colors.RESET
                     + " - сохраняет конфиг");
+            MessageManager.ClientMessage("");
+            MessageManager.ClientMessage(Colors.DARK_RED + "ПОМОЩЬ ПО БЫСТРЫМ БАНАМ/МУТАМ:");
+            MessageManager.ClientMessage(Colors.GOLD + "/imute" + Colors.GREEN + " nick reason" + Colors.RESET
+                    + " - мут навсегда");
+            MessageManager.ClientMessage(Colors.GOLD + "/iban" + Colors.GREEN + " nick reason" + Colors.RESET
+                    + " - бан навсегда");
+            MessageManager.ClientMessage(Colors.GOLD + "/ibanip" + Colors.GREEN + " nick reason" + Colors.RESET
+                    + " - бан по айпи навсегда");
+            MessageManager.ClientMessage(Colors.GOLD + "/tmute" + Colors.GREEN + " nick time reason" + Colors.RESET
+                    + " - мут на время");
+            MessageManager.ClientMessage(Colors.GOLD + "/tban" + Colors.GREEN + " nick time reason" + Colors.RESET
+                    + " - бан на время");
+            MessageManager.ClientMessage(Colors.GOLD + "/tbanip" + Colors.GREEN + " nick time reason" + Colors.RESET
+                    + " - бан по айпи на время");
         }
     }
 }

@@ -28,9 +28,9 @@ public class FreezerEvent {
                 return;
             }
             player = event.getMessage().split(" ")[1];
-            RenderEvent.setPlayer(player);
+            RenderEvent.SetPlayer(player);
             PunishmentsSimplifier.SetPlayer(player);
-            RenderEvent.setOnCheck(true);
+            RenderEvent.SetOnCheck(true);
             PunishmentsSimplifier.SetOnCheck(true);
             MessageManager.SendMessage("/freezing " + player);
             MessageManager.SendMessage("/checkmute " + player);
@@ -60,9 +60,9 @@ public class FreezerEvent {
             MessageManager.SendMessage("/freezing " + player);
             MessageManager.SendMessage("/prova");
             player = null;
-            RenderEvent.setOnCheck(false);
+            RenderEvent.SetOnCheck(false);
             PunishmentsSimplifier.SetOnCheck(false);
-            RenderEvent.setPlayer(player);
+            RenderEvent.SetPlayer(player);
             PunishmentsSimplifier.SetPlayer(player);
         }
 
