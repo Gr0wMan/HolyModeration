@@ -51,6 +51,14 @@ public class Punishments {
 
         else if (command.equals(".imute")) {
             event.setCancelled(true);
+            if (message.split(" ", 3).length == 1) {
+                ChatManager.ClientMessage(Colors.RED + "Вы не указали ник игрока и причину мута!");
+                return;
+            }
+            if (message.split(" ", 3).length == 2) {
+                ChatManager.ClientMessage(Colors.RED + "Вы не указали причину мута!");
+                return;
+            }
             String nick = message.split(" ", 3)[1];
             if (onCheck && nick.equals(player)) {
                 ChatManager.ClientMessage(Colors.RED + "Вы не можете замутить этого игрока, " +
@@ -63,6 +71,14 @@ public class Punishments {
 
         else if (command.equals(".iban")) {
             event.setCancelled(true);
+            if (message.split(" ", 3).length == 1) {
+                ChatManager.ClientMessage(Colors.RED + "Вы не указали ник игрока и причину бана!");
+                return;
+            }
+            if (message.split(" ", 3).length == 2) {
+                ChatManager.ClientMessage(Colors.RED + "Вы не указали причину бана!");
+                return;
+            }
             if (PunishmentsManager.GetVkUrl() == null) {
                 ChatManager.ClientMessage(Colors.RED + "У вас не установлена ссылка на вк!");
                 return;
@@ -83,6 +99,14 @@ public class Punishments {
                 ChatManager.ClientMessage(Colors.RED + "У вас не установлена ссылка на вк!");
                 return;
             }
+            if (message.split(" ", 3).length == 1) {
+                ChatManager.ClientMessage(Colors.RED + "Вы не указали ник игрока и причину бана!");
+                return;
+            }
+            if (message.split(" ", 3).length == 2) {
+                ChatManager.ClientMessage(Colors.RED + "Вы не указали причину бана!");
+                return;
+            }
             String nick = message.split(" ", 3)[1];
             if (onCheck && nick.equals(player)) {
                 ChatManager.ClientMessage(Colors.RED + "Вы не можете забанить этого игрока, " +
@@ -95,6 +119,18 @@ public class Punishments {
 
         else if (command.equals(".tmute")) {
             event.setCancelled(true);
+            if (message.split(" ", 3).length == 1) {
+                ChatManager.ClientMessage(Colors.RED + "Вы не указали ник игрока, время и причину мута!");
+                return;
+            }
+            if (message.split(" ", 3).length == 2) {
+                ChatManager.ClientMessage(Colors.RED + "Вы не указали время и причину мута!");
+                return;
+            }
+            if (message.split(" ", 3).length == 3) {
+                ChatManager.ClientMessage(Colors.RED + "Вы не указали причину мута!");
+                return;
+            }
             String nick = message.split(" ", 4)[1];
             if (onCheck && nick.equals(player)) {
                 ChatManager.ClientMessage(Colors.RED + "Вы не можете замутить этого игрока, " +
@@ -116,6 +152,18 @@ public class Punishments {
                 ChatManager.ClientMessage(Colors.RED + "У вас не установлена ссылка на вк!");
                 return;
             }
+            if (message.split(" ", 3).length == 1) {
+                ChatManager.ClientMessage(Colors.RED + "Вы не указали ник игрока, время и причину бана!");
+                return;
+            }
+            if (message.split(" ", 3).length == 2) {
+                ChatManager.ClientMessage(Colors.RED + "Вы не указали время и причину бана!");
+                return;
+            }
+            if (message.split(" ", 3).length == 3) {
+                ChatManager.ClientMessage(Colors.RED + "Вы не указали причину бана!");
+                return;
+            }
             String nick = message.split(" ", 4)[1];
             if (onCheck && nick.equals(player)) {
                 ChatManager.ClientMessage(Colors.RED + "Вы не можете забанить этого игрока, " +
@@ -135,6 +183,18 @@ public class Punishments {
             event.setCancelled(true);
             if (PunishmentsManager.GetVkUrl() == null) {
                 ChatManager.ClientMessage(Colors.RED + "У вас не установлена ссылка на вк!");
+                return;
+            }
+            if (message.split(" ", 3).length == 1) {
+                ChatManager.ClientMessage(Colors.RED + "Вы не указали ник игрока, время и причину бана!");
+                return;
+            }
+            if (message.split(" ", 3).length == 2) {
+                ChatManager.ClientMessage(Colors.RED + "Вы не указали время и причину бана!");
+                return;
+            }
+            if (message.split(" ", 3).length == 3) {
+                ChatManager.ClientMessage(Colors.RED + "Вы не указали причину бана!");
                 return;
             }
             String nick = message.split(" ", 4)[1];
