@@ -34,11 +34,17 @@ public class HMSettings {
 
         else if (message.matches("/hmgetvk")) {
             event.setCancelled(true);
+            if (PunishmentsSimplifier.GetVkUrl() == null) {
+                MessageManager.ClientMessage(Colors.RED + "У вас не установлена ссылка на вк!");
+            }
             MessageManager.ClientMessage(Colors.AQUA + "Ваша ссылка на вк: " + PunishmentsSimplifier.GetVkUrl());
         }
 
         else if (message.startsWith("/hmsetvk")) {
             event.setCancelled(true);
+            if (message.split(" ").length == 1) {
+                MessageManager.ClientMessage(Colors.RED + "Вы не указали ссылку на вк!");
+            }
             String value = message.split(" ")[1];
             PunishmentsSimplifier.SetVkUrl(value);
             MessageManager.ClientMessage(Colors.GREEN + "Теперь ваша ссылка на вк: " + PunishmentsSimplifier.GetVkUrl());
@@ -46,6 +52,9 @@ public class HMSettings {
 
         else if (message.startsWith("/hmtextadd")) {
             event.setCancelled(true);
+            if (message.split(" ").length == 1) {
+                MessageManager.ClientMessage(Colors.RED + "Вы не указали текст!");
+            }
             String value = message.split(" ", 2)[1];
             FreezerEvent.AddText(value);
             MessageManager.ClientMessage(Colors.GREEN + "Вы добавили новый текст!");
@@ -53,12 +62,14 @@ public class HMSettings {
 
         else if (message.startsWith("/hmtextremove")) {
             event.setCancelled(true);
-            int number = Integer.parseInt(message.split(" ")[1]);
-            int index = number - 1;
+            int index = Integer.parseInt(message.split(" ")[1]) - 1;
             if (FreezerEvent.GetTexts() == null) {
                 MessageManager.ClientMessage(Colors.RED + "У вас нет настроенных текстов");
             }
-            if (index >= FreezerEvent.GetSplitTexts().length || number < 0) {
+            if (message.split(" ").length == 1) {
+                MessageManager.ClientMessage(Colors.RED + "Вы не указали номер текста!");
+            }
+            if (index >= FreezerEvent.GetSplitTexts().length || index < 0) {
                 MessageManager.ClientMessage(Colors.RED
                         + "Элемента с таким номером в списке ваших текстов не существует!");
                 return;

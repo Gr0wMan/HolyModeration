@@ -37,7 +37,7 @@ public class HMHelp {
             MessageManager.ClientMessage(Colors.GOLD + "/hmtextedit" + Colors.GREEN + " number newtext" + Colors.RESET
                     + " - изменяет текст на новый");
             MessageManager.ClientMessage(Colors.GOLD + "/hmsetvk" + Colors.GREEN + " your vk" + Colors.RESET
-                    + " - установливает ссылку на вк (для банов)");
+                    + " - установливает ссылку на вк (для банов), устанавливайте в формате 'vk.com/id'");
             MessageManager.ClientMessage(Colors.GOLD + "/hmgetvk" + Colors.RESET
                     + " - показывает установленный вк");
             MessageManager.ClientMessage(Colors.GOLD + "/hmdupeip" + Colors.RESET
