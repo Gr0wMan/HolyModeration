@@ -93,6 +93,11 @@ public class PunishmentsSimplifier {
                 return;
             }
             String time = message.split(" ", 4)[2];
+            char lastChar = time.charAt(time.length() - 1);
+            if (lastChar != 'h' && lastChar != 'H' && lastChar != 'd' && lastChar != 'D') {
+                MessageManager.ClientMessage(Colors.RED + "Неверный формат времени! Должно быть *h, *H, *d или *D");
+                return;
+            }
             String reason = message.split(" ", 4)[3];
             MessageManager.SendMessage("/tempmute " + nick + " " + time + " " + reason + " -s");
         }
@@ -106,6 +111,11 @@ public class PunishmentsSimplifier {
                 return;
             }
             String time = message.split(" ", 4)[2];
+            char lastChar = time.charAt(time.length() - 1);
+            if (lastChar != 'h' && lastChar != 'H' && lastChar != 'd' && lastChar != 'D') {
+                MessageManager.ClientMessage(Colors.RED + "Неверный формат времени! Должно быть *h, *H, *d или *D");
+                return;
+            }
             String reason = message.split(" ", 4)[3];
             MessageManager.SendMessage("/tempban " + nick + " " + time + " " + reason + " | Вопросы? " + vkUrl + " -s");
         }
@@ -114,6 +124,11 @@ public class PunishmentsSimplifier {
             event.setCancelled(true);
             String nick = message.split(" ", 4)[1];
             String time = message.split(" ", 4)[2];
+            char lastChar = time.charAt(time.length() - 1);
+            if (lastChar != 'h' && lastChar != 'H' && lastChar != 'd' && lastChar != 'D') {
+                MessageManager.ClientMessage(Colors.RED + "Неверный формат времени! Должно быть *h, *H, *d или *D");
+                return;
+            }
             String reason = message.split(" ", 4)[3];
             MessageManager.SendMessage("/banip " + nick + " " + time + " " + reason + " | Вопросы? " + vkUrl + " -s");
             if (onCheck && nick.equals(player)) {

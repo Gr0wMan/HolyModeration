@@ -18,18 +18,18 @@ public class HMHelp {
                     + Colors.GOLD + "/hm" + Colors.RESET + " - показывает HM Help");
             MessageManager.ClientMessage("");
             MessageManager.ClientMessage(Colors.DARK_RED + "ПОМОЩЬ ПО ПРОВЕРКАМ:");
-            MessageManager.ClientMessage(Colors.GOLD + "/freezing" + Colors.GREEN + " player" + Colors.RESET
-                    + " или " + Colors.GOLD + "/frz" + Colors.GREEN + " player" + Colors.RESET
+            MessageManager.ClientMessage(Colors.GOLD + "/hmfreezing" + Colors.GREEN + " player" + Colors.RESET
+                    + " или " + Colors.GOLD + "/hmrz" + Colors.GREEN + " player" + Colors.RESET
                     + " - замораживает игрока и начинает проверку");
             MessageManager.ClientMessage(Colors.GOLD + "/unfreezing" + Colors.GREEN + " player" + Colors.RESET
                     + " или " + Colors.GOLD + "/unfrz" + Colors.GREEN + " player" + Colors.RESET
                     + " - размораживает игрока и заканчивает проверку");
-            MessageManager.ClientMessage(Colors.GOLD + "/sfreezing" + Colors.GREEN + " player" + Colors.RESET
-                    + " или " + Colors.GOLD + "/sfrz" + Colors.GREEN + " player" + Colors.RESET
-                    + " - просто замораживает/размораживает игрока (обычный /freeze), " +
-                    "при условии, что он не находится на вашей проверке");
             MessageManager.ClientMessage(Colors.GOLD + "/sban" + Colors.GREEN + " time reason" + Colors.RESET
                     + " - банит игрока, который сейчас на вашей проверке");
+            MessageManager.ClientMessage(Colors.GOLD + "/freezing" + Colors.GREEN + " player" + Colors.RESET
+                    + " или " + Colors.GOLD + "/frz" + Colors.GREEN + " player" + Colors.RESET
+                    + " - просто замораживает/размораживает игрока, " +
+                    "при условии, что он не находится на вашей проверке");
             MessageManager.ClientMessage("");
             MessageManager.ClientMessage(Colors.DARK_RED + "ПОМОЩЬ ПО НАСТРОЙКЕ АДДОНА:");
             MessageManager.ClientMessage(Colors.GOLD + "/hmtextlist" + Colors.RESET + Colors.RESET

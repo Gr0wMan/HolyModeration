@@ -19,7 +19,7 @@ public class FreezerEvent {
     public void OnUpdate(MessageSendEvent event) {
         String message = event.getMessage();
 
-        if (message.startsWith("/freezing") || message.startsWith("/frz")) {
+        if (message.startsWith("/hmfreezing") || message.startsWith("/hmfrz")) {
             event.setCancelled(true);
             if (player != null) {
                 MessageManager.ClientMessage(Colors.RED + "Вы уже проверяете какого-то игрока! " +
@@ -66,7 +66,7 @@ public class FreezerEvent {
             PunishmentsSimplifier.SetPlayer(player);
         }
 
-        else if (message.startsWith("/sfreezing") || message.startsWith("/sfrz")) {
+        else if (message.startsWith("/freezing") || message.startsWith("/frz")) {
             event.setCancelled(true);
             String unFrzPlayer = message.split(" ")[1];
             if (unFrzPlayer.equals(player)) {
