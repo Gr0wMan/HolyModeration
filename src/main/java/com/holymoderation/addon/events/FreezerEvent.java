@@ -25,6 +25,7 @@ public class FreezerEvent {
                 MessageManager.ClientMessage(Colors.RED + "Вы уже проверяете какого-то игрока! " +
                         Colors.RED + "Сначала закончите текущую проверку. --> " + Colors.GOLD + "/unfreezing"
                         + " или " + Colors.GOLD + "/unfrz");
+                return;
             }
             player = event.getMessage().split(" ")[1];
             RenderEvent.setPlayer(player);
@@ -54,6 +55,7 @@ public class FreezerEvent {
                 MessageManager.ClientMessage(Colors.RED + "Этот игрок не находится на вашей проверке! " +
                         Colors.RED + "Для его разморозки используйте" + Colors.GOLD + " /sfreezing" + Colors.RED
                         + " или " + Colors.GOLD + "/sfrz");
+                return;
             }
             MessageManager.SendMessage("/freezing " + player);
             MessageManager.SendMessage("/prova");
