@@ -55,6 +55,9 @@ public class HMSettings {
             event.setCancelled(true);
             int number = Integer.parseInt(message.split(" ")[1]);
             int index = number - 1;
+            if (FreezerEvent.GetTexts() == null) {
+                MessageManager.ClientMessage(Colors.RED + "У вас нет настроенных текстов");
+            }
             if (index >= FreezerEvent.GetSplitTexts().length || number < 0) {
                 MessageManager.ClientMessage(Colors.RED
                         + "Элемента с таким номером в списке ваших текстов не существует!");
@@ -67,12 +70,19 @@ public class HMSettings {
 
         else if (message.startsWith("/hmtextedit")) {
             event.setCancelled(true);
-            if (message.split(" ").length < 3) {
+            if (message.split(" ").length == 1) {
+                MessageManager.ClientMessage(Colors.RED + "Вы не указали номер текста и новый текст!");
+                return;
+            }
+            else if (message.split(" ").length == 2) {
                 MessageManager.ClientMessage(Colors.RED + "Вы не указали новый текст!");
                 return;
             }
             int number = Integer.parseInt(message.split(" ")[1]);
             int index = number - 1;
+            if (FreezerEvent.GetTexts() == null) {
+                MessageManager.ClientMessage(Colors.RED + "У вас нет настроенных текстов");
+            }
             if (index >= FreezerEvent.GetSplitTexts().length || number < 0) {
                 MessageManager.ClientMessage(Colors.RED
                         + "Элемента с таким номером в списке ваших текстов не существует!");
@@ -91,7 +101,11 @@ public class HMSettings {
 
         else if (message.startsWith("/hmsetcords")) {
             event.setCancelled(true);
-            if (message.split(" ").length < 3) {
+            if (message.split(" ").length == 1) {
+                MessageManager.ClientMessage(Colors.RED + "Вы не указали x и y координаты!");
+                return;
+            }
+            else if (message.split(" ").length == 2) {
                 MessageManager.ClientMessage(Colors.RED + "Вы не указали y координаты!");
                 return;
             }
