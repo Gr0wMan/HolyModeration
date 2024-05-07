@@ -52,7 +52,7 @@ public class HMHelp {
             ChatManager.ClientMessage(Colors.GOLD + ".savecfg" + Colors.RESET + Colors.RESET
                     + " - сохраняет конфиг");
             ChatManager.ClientMessage("");
-            ChatManager.ClientMessage(Colors.DARK_RED + "ПОМОЩЬ ПО БЫСТРЫМ БАНАМ.МУТАМ:");
+            ChatManager.ClientMessage(Colors.DARK_RED + "ПОМОЩЬ ПО БЫСТРЫМ БАНАМ/МУТАМ:");
             ChatManager.ClientMessage(Colors.GOLD + ".imute" + Colors.GREEN + " nick reason" + Colors.RESET
                     + " - мут навсегда");
             ChatManager.ClientMessage(Colors.GOLD + ".iban" + Colors.GREEN + " nick reason" + Colors.RESET
