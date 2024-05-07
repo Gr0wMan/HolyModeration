@@ -152,26 +152,11 @@ public class HMSettings {
                 MessageManager.ClientMessage(Colors.RED + "Вы не указали y координаты!");
                 return;
             }
-            boolean incorrectX;
-            boolean incorrectY;
-            int x = 0; {
-                try {
-                    x = Integer.parseInt(message.split(" ", 3)[1]);
-                    incorrectX = false;
-                }
-                catch (NumberFormatException e) {
-                    incorrectX = true;
-                }
-            }
-            int y = 0; {
-                try {
-                    y = Integer.parseInt(message.split(" ", 3)[2]);
-                    incorrectY = false;
-                }
-                catch (NumberFormatException e) {
-                    incorrectY = true;
-                }
-            }
+            String xText = message.split(" ", 3)[1];
+            String yText = message.split(" ", 3)[2];
+            boolean incorrectX = CheckIncorrectInt(xText);
+            boolean incorrectY = CheckIncorrectInt(yText);
+
             if (incorrectX || incorrectY) {
                 if (incorrectX && incorrectY)
                     MessageManager.ClientMessage(Colors.RED + "Некорректные координаты X и Y!");
@@ -181,9 +166,22 @@ public class HMSettings {
                     MessageManager.ClientMessage(Colors.RED + "Некорректная координата Y!");
                 return;
             }
-            RenderEvent.SetxCoords(x);
-            RenderEvent.SetyCoords(y);
+
+            RenderEvent.SetxCoords(Integer.parseInt(xText));
+            RenderEvent.SetyCoords(Integer.parseInt(yText));
             MessageManager.ClientMessage(Colors.GREEN + "Успешно применено!");
+        }
+    }
+
+    private boolean CheckIncorrectInt(String message) {
+        int value = 0; {
+            try {
+                value = Integer.parseInt(message);
+                return(false);
+            }
+            catch (NumberFormatException e) {
+                return(true);
+            }
         }
     }
 }
