@@ -40,7 +40,7 @@ public class HolyModeration extends LabyModAddon {
 
   @Subscribe
   public void SaveCfg(MessageSendEvent event) {
-    if (event.getMessage().matches("/hmsavecfg"))
+    if (event.getMessage().equals(".savecfg"))
     {
       event.setCancelled(true);
       HolyModeration.this.getConfig().addProperty("X", RenderEvent.GetxCoords());
