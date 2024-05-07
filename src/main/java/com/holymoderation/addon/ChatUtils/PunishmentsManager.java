@@ -23,12 +23,18 @@ public class PunishmentsManager {
         return true;
     }
 
-    public static void Punish(String command, String player, String reason) {
-        ChatManager.SendMessage(command + " " + player + " " + reason + " | Вопросы? " + vkUrl + " -s");
+    public static void Punish(String command, String player, String reason, boolean addVk) {
+        if (addVk)
+            ChatManager.SendMessage(command + " " + player + " " + reason + " | Вопросы? " + vkUrl + " -s");
+        else
+            ChatManager.SendMessage(command + " " + player + " " + reason + " -s");
     }
 
-    public static void Punish(String command, String player, String time, String reason) {
-        ChatManager.SendMessage(command + " " + player + " " + time + " " + reason + " | Вопросы? " + vkUrl + " -s");
+    public static void Punish(String command, String player, String time, String reason, boolean addVk) {
+        if (addVk)
+            ChatManager.SendMessage(command + " " + player + " " + time + " " + reason + " | Вопросы? " + vkUrl + " -s");
+        else
+            ChatManager.SendMessage(command + " " + player + " " + time + " " + reason + " -s");
     }
 
     public static String GetVkUrl() {

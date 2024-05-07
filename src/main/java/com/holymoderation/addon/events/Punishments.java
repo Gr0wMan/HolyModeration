@@ -38,7 +38,7 @@ public class Punishments {
                 return;
             }
             String reason = message.split(" ", 3)[2];
-            PunishmentsManager.Punish("/banip", player, time, reason);
+            PunishmentsManager.Punish("/banip", player, time, reason, true);
             ChatManager.SendMessage("/freezing " + player);
             ChatManager.SendMessage("/prova");
             onCheck = false;
@@ -57,7 +57,7 @@ public class Punishments {
                 return;
             }
             String reason = message.split(" ", 3)[2];
-            PunishmentsManager.Punish("/mute", nick, reason);
+            PunishmentsManager.Punish("/mute", nick, reason, false);
             ChatManager.SendMessage("/mute " + nick + " " + reason + " -s");
         }
 
@@ -74,7 +74,7 @@ public class Punishments {
                 return;
             }
             String reason = message.split(" ", 3)[2];
-            PunishmentsManager.Punish("/ban", nick, reason);
+            PunishmentsManager.Punish("/ban", nick, reason, true);
         }
 
         else if (message.startsWith("/ibanip")) {
@@ -90,7 +90,7 @@ public class Punishments {
                 return;
             }
             String reason = message.split(" ", 3)[2];
-            PunishmentsManager.Punish("/banip", nick, reason);
+            PunishmentsManager.Punish("/banip", nick, reason, true);
         }
 
         else if (message.startsWith("/tmute")) {
@@ -107,7 +107,7 @@ public class Punishments {
                 return;
             }
             String reason = message.split(" ", 4)[3];
-            PunishmentsManager.Punish("/tempmute", nick, time, reason);
+            PunishmentsManager.Punish("/tempmute", nick, time, reason, false);
         }
 
         else if (message.startsWith("/tban")) {
@@ -128,7 +128,7 @@ public class Punishments {
                 return;
             }
             String reason = message.split(" ", 4)[3];
-            PunishmentsManager.Punish("/tempban", nick, time, reason);
+            PunishmentsManager.Punish("/tempban", nick, time, reason, true);
         }
 
         else if (message.startsWith("/tbanip")) {
@@ -144,7 +144,7 @@ public class Punishments {
                 return;
             }
             String reason = message.split(" ", 4)[3];
-            PunishmentsManager.Punish("/banip", nick, time, reason);
+            PunishmentsManager.Punish("/banip", nick, time, reason, true);
             if (onCheck && nick.equals(player)) {
                 onCheck = false;
                 RenderEvent.SetOnCheck(onCheck);
