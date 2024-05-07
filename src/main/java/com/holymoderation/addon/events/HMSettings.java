@@ -133,17 +133,17 @@ public class HMSettings {
         else if (message.equals(".textclear")) {
             event.setCancelled(true);
             FreezerEvent.ClearTexts();
-            ChatManager.ClientMessage(Colors.GREEN + "Вы успешно очистили все тектсы!");
+            ChatManager.ClientMessage(Colors.GREEN + "Вы успешно очистили все тексты!");
         }
 
         else if (command.equals(".setcords")) {
             event.setCancelled(true);
             if (message.split(" ").length == 1) {
-                ChatManager.ClientMessage(Colors.RED + "Вы не указали x и y координаты!");
+                ChatManager.ClientMessage(Colors.RED + "Вы не указали X и Y координаты!");
                 return;
             }
             else if (message.split(" ").length == 2) {
-                ChatManager.ClientMessage(Colors.RED + "Вы не указали y координаты!");
+                ChatManager.ClientMessage(Colors.RED + "Вы не указали Y координаты!");
                 return;
             }
             String xText = message.split(" ", 3)[1];
@@ -153,11 +153,11 @@ public class HMSettings {
 
             if (incorrectX || incorrectY) {
                 if (incorrectX && incorrectY)
-                    ChatManager.ClientMessage(Colors.RED + "Некорректные координаты X и Y!");
+                    ChatManager.ClientMessage(Colors.RED + "Некорректные X и Y координаты!");
                 else if (incorrectX && !incorrectY)
-                    ChatManager.ClientMessage(Colors.RED + "Некорректная координата X!");
+                    ChatManager.ClientMessage(Colors.RED + "Некорректная X координата!");
                 else if (!incorrectX && incorrectY)
-                    ChatManager.ClientMessage(Colors.RED + "Некорректная координата Y!");
+                    ChatManager.ClientMessage(Colors.RED + "Некорректная Y координата!");
                 return;
             }
 

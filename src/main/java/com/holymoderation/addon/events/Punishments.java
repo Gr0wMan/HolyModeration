@@ -139,7 +139,7 @@ public class Punishments {
             }
             String time = message.split(" ", 4)[2];
             if (!PunishmentsManager.CheckTimeFormat(time)) {
-                ChatManager.ClientMessage(Colors.RED + "Неверный формат времени! Должно быть *h, *H, *d или *D");
+                ChatManager.ClientMessage(Colors.RED + "Неверный формат времени! Должно быть *h/*H или *d/*D");
                 return;
             }
             String reason = message.split(" ", 4)[3];
@@ -172,7 +172,7 @@ public class Punishments {
             }
             String time = message.split(" ", 4)[2];
             if (!PunishmentsManager.CheckTimeFormat(time)) {
-                ChatManager.ClientMessage(Colors.RED + "Неверный формат времени! Должно быть *h, *H, *d или *D");
+                ChatManager.ClientMessage(Colors.RED + "Неверный формат времени! Должно быть *h/*H или *d/*D");
                 return;
             }
             String reason = message.split(" ", 4)[3];
@@ -200,7 +200,7 @@ public class Punishments {
             String nick = message.split(" ", 4)[1];
             String time = message.split(" ", 4)[2];
             if (!PunishmentsManager.CheckTimeFormat(time)) {
-                ChatManager.ClientMessage(Colors.RED + "Неверный формат времени! Должно быть *h, *H, *d или *D");
+                ChatManager.ClientMessage(Colors.RED + "Неверный формат времени! Должно быть *h/*H или *d/*D");
                 return;
             }
             String reason = message.split(" ", 4)[3];
