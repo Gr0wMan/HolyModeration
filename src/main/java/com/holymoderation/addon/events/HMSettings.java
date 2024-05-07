@@ -67,6 +67,10 @@ public class HMSettings {
 
         else if (message.startsWith("/hmtextedit")) {
             event.setCancelled(true);
+            if (message.split(" ").length < 2) {
+                MessageManager.ClientMessage(Colors.RED + "Вы не указали новый текст!");
+                return;
+            }
             int number = Integer.parseInt(message.split(" ")[1]);
             int index = number - 1;
             if (index >= FreezerEvent.GetSplitTexts().length || number < 0) {
@@ -87,6 +91,10 @@ public class HMSettings {
 
         else if (message.startsWith("/hmsetcords")) {
             event.setCancelled(true);
+            if (message.split(" ").length < 2) {
+                MessageManager.ClientMessage(Colors.RED + "Вы не указали y координаты!");
+                return;
+            }
             String x = message.split(" ")[1];
             String y = message.split(" ")[2];
             RenderEvent.setxCoords(Integer.parseInt(x));

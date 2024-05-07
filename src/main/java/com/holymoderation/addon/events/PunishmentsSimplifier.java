@@ -1,5 +1,6 @@
 package com.holymoderation.addon.events;
 
+import ca.weblite.objc.Client;
 import net.labymod.api.event.Subscribe;
 import net.labymod.api.event.events.client.chat.MessageSendEvent;
 
@@ -26,6 +27,7 @@ public class PunishmentsSimplifier {
             }
             if (message.split(" ").length < 2) {
                 MessageManager.ClientMessage(Colors.RED + "Вы не указали причину бана!");
+                return;
             }
             String time = message.split(" ", 3)[1];
             String reason = message.split(" ", 3)[2];
