@@ -12,11 +12,11 @@ public class HMHelp {
     @Subscribe
     public void OnUpdate(MessageSendEvent event) {
         String message = event.getMessage();
-        if (message.equals(".help")) {
+        if (message.equals(".help") || message.equals(".hm")) {
             event.setCancelled(true);
             ChatManager.ClientMessage(Colors.BLUE + "HM Help:");
             ChatManager.ClientMessage(Colors.GOLD + ".help" + Colors.RESET + " или "
-                    + Colors.GOLD + "." + Colors.RESET + " - показывает HM Help");
+                    + Colors.GOLD + ".hm" + Colors.RESET + " - показывает HM Help");
             ChatManager.ClientMessage("");
             ChatManager.ClientMessage(Colors.DARK_RED + "ПОМОЩЬ ПО ПРОВЕРКАМ:");
             ChatManager.ClientMessage(Colors.GOLD + ".freezing" + Colors.GREEN + " player" + Colors.RESET
