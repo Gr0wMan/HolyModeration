@@ -26,8 +26,8 @@ public class Freezer {
             event.setCancelled(true);
             switch (command) {
                 case (".freezing"):
-                case (".frz"):
-                    messageSplit = message.split(" ");
+                case (".frz"): {
+                    messageSplit = message.split(" ", 2);
                     if (player != null) {
                         ChatManager.ClientMessage(Colors.RED + "Вы уже проверяете какого-то игрока! " +
                                 Colors.RED + "Сначала закончите текущую проверку. --> " + Colors.GOLD + ".unfreezing"
@@ -53,9 +53,11 @@ public class Freezer {
                             ChatManager.SendMessage("/msg " + player + " " + text);
                         }
                     }
+                    break;
+                }
 
                 case (".unfreezing"):
-                case(".unfrz"):
+                case(".unfrz"): {
                     if (player == null) {
                         ChatManager.ClientMessage(Colors.RED + "Вы никого не проверяете!");
                         return;
@@ -65,12 +67,16 @@ public class Freezer {
                     player = null;
                     Render.SetPlayer(player);
                     Punishments.SetPlayer(player);
-                case (".sban"):
+                    break;
+                }
+
+                case (".sban"): {
+                    messageSplit = message.split(" ", 3);
                     if (player == null) {
                         ChatManager.ClientMessage(Colors.RED + "Вы никого не проверяете!");
                         return;
                     }
-                    switch (message.split(" ", 3).length) {
+                    switch (messageSplit.length) {
                         case (1):
                             ChatManager.ClientMessage(Colors.RED + "Вы не указали время и причину бана!");
                             return;
@@ -78,8 +84,8 @@ public class Freezer {
                             ChatManager.ClientMessage(Colors.RED + "Вы не указали причину бана!");
                             return;
                     }
-                    String time = message.split(" ", 3)[1];
-                    String reason = message.split(" ", 3)[2];
+                    String time = messageSplit[1];
+                    String reason = messageSplit[2];
                     if (!PunishmentsManager.CheckTimeFormat(time)) {
                         return;
                     }
@@ -89,9 +95,13 @@ public class Freezer {
                     player = null;
                     Punishments.SetPlayer(player);
                     Render.SetPlayer(player);
+                    break;
+                }
+
                 case ("/freezing"):
-                case ("/frz"):
-                    String unFrzPlayer = message.split(" ")[1];
+                case ("/frz"): {
+                    messageSplit = message.split(" ", 2);
+                    String unFrzPlayer = messageSplit[1];
                     if (unFrzPlayer.equals(player)) {
                         ChatManager.ClientMessage(Colors.RED + "Этот игрок находиться у вас на проверке! " +
                                 "Для его разморозки используйте" + Colors.GOLD + " .unfreezing" + Colors.RED
@@ -99,6 +109,8 @@ public class Freezer {
                         return;
                     }
                     ChatManager.SendMessage("/freezing " + unFrzPlayer);
+                    break;
+                }
             }
         }
     }
