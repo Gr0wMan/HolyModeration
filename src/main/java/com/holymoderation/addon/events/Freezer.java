@@ -34,6 +34,9 @@ public class Freezer {
                                 + " или " + Colors.GOLD + ".unfrz");
                         return;
                     }
+                    if (messageSplit.length < 2) {
+                        ChatManager.ClientMessage(Colors.RED + "Вы не указали ник игрока!");
+                    }
                     player = messageSplit[1];
                     Render.SetPlayer(player);
                     Punishments.SetPlayer(player);
