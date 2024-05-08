@@ -54,12 +54,16 @@ public class Help {
             ChatManager.ClientMessage(Colors.DARK_RED + "ПОМОЩЬ ПО БЫСТРЫМ БАНАМ/МУТАМ:");
             ChatManager.ClientMessage(Colors.GOLD + ".imute" + Colors.GREEN + " nick reason" + Colors.RESET
                     + " - мут навсегда");
+            ChatManager.ClientMessage(Colors.GOLD + ".imuteip" + Colors.GREEN + " nick reason" + Colors.RESET
+                    + " - мут по айпи навсегда");
+            ChatManager.ClientMessage(Colors.GOLD + ".tmute" + Colors.GREEN + " nick time reason" + Colors.RESET
+                    + " - мут на время");
+            ChatManager.ClientMessage(Colors.GOLD + ".tmuteip" + Colors.GREEN + " nick time reason" + Colors.RESET
+                    + " - мут по айпи на время");
             ChatManager.ClientMessage(Colors.GOLD + ".iban" + Colors.GREEN + " nick reason" + Colors.RESET
                     + " - бан навсегда");
             ChatManager.ClientMessage(Colors.GOLD + ".ibanip" + Colors.GREEN + " nick reason" + Colors.RESET
                     + " - бан по айпи навсегда");
-            ChatManager.ClientMessage(Colors.GOLD + ".tmute" + Colors.GREEN + " nick time reason" + Colors.RESET
-                    + " - мут на время");
             ChatManager.ClientMessage(Colors.GOLD + ".tban" + Colors.GREEN + " nick time reason" + Colors.RESET
                     + " - бан на время");
             ChatManager.ClientMessage(Colors.GOLD + ".tbanip" + Colors.GREEN + " nick time reason" + Colors.RESET
