@@ -32,7 +32,6 @@ public class Freezer {
             player = event.getMessage().split(" ")[1];
             Render.SetPlayer(player);
             Punishments.SetPlayer(player);
-            Render.SetOnCheck(true);
             ChatManager.SendMessage("/freezing " + player);
             ChatManager.SendMessage("/checkmute " + player);
             ChatManager.SendMessage("/prova");
@@ -59,7 +58,6 @@ public class Freezer {
             ChatManager.SendMessage("/freezing " + player);
             ChatManager.SendMessage("/prova");
             player = null;
-            Render.SetOnCheck(false);
             Render.SetPlayer(player);
             Punishments.SetPlayer(player);
         }
@@ -86,7 +84,6 @@ public class Freezer {
             ChatManager.SendMessage("/freezing " + player);
             ChatManager.SendMessage("/prova");
             player = null;
-            Render.SetOnCheck(player == null);
             Punishments.SetPlayer(player);
             Render.SetPlayer(player);
         }

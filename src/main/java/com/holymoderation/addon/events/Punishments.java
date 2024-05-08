@@ -44,7 +44,7 @@ public class Punishments {
                     PunishmentsManager.Punish(command, nick, time, reason, false);
                 }
                 if (PunishmentsManager.IsArrayContains(ChatManager.banCommands, command)) {
-                    if (!CheckVK()) {
+                    if (!PunishmentsManager.CheckVK()) {
                         return;
                     }
                     switch (messageSplit.length) {
@@ -80,7 +80,7 @@ public class Punishments {
                     PunishmentsManager.Punish(command, nick, reason, false);
                 }
                 if (PunishmentsManager.IsArrayContains(ChatManager.banCommands, command)) {
-                    if (!CheckVK()) {
+                    if (!PunishmentsManager.CheckVK()) {
                         return;
                     }
                     switch (messageSplit.length) {
@@ -99,13 +99,5 @@ public class Punishments {
 
     public static void SetPlayer(String value) {
         player = value;
-    }
-
-    private static boolean CheckVK() {
-        if (PunishmentsManager.GetVkUrl() == null) {
-            ChatManager.ClientMessage(Colors.RED + "У вас не установлена ссылка на вк!");
-            return false;
-        }
-        return true;
     }
 }

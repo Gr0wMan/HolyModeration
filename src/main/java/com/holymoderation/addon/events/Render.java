@@ -12,8 +12,6 @@ import org.apache.commons.lang3.time.StopWatch;
 public class Render {
     private static String player = null;
 
-    private static boolean onCheck = false;
-
     private static int xCoords = 10;
     private static int yCoords = 10;
 
@@ -21,7 +19,7 @@ public class Render {
 
     @Subscribe
     public void onRender(RenderGameOverlayEvent event) {
-        if (onCheck) {
+        if (player != null) {
             DrawString(event, "Текущая проверка:", xCoords, yCoords, Rainbow(300));
             DrawString(event, player + " | " + stopWatch.getTime(TimeUnit.MINUTES) + ":"
                     + (stopWatch.getTime(TimeUnit.SECONDS) - stopWatch.getTime(TimeUnit.MINUTES)*60),
@@ -58,10 +56,6 @@ public class Render {
 
     public static void SetPlayer(String value) {
         player = value;
-    }
-
-    public static void SetOnCheck(boolean value) {
-        onCheck = value;
     }
 
     private static void DrawString(RenderGameOverlayEvent event, String text, int x, int y, int color) {

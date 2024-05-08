@@ -60,4 +60,12 @@ public class PunishmentsManager {
     public static void SetVkUrl(String value) {
         vkUrl = value;
     }
+
+    public static boolean CheckVK() {
+        if (PunishmentsManager.GetVkUrl() == null) {
+            ChatManager.ClientMessage(Colors.RED + "У вас не установлена ссылка на вк!");
+            return false;
+        }
+        return true;
+    }
 }
