@@ -28,13 +28,13 @@ public class Freezer {
                 case (".freezing"):
                 case (".frz"):
                     messageSplit = message.split(" ");
-                    player = messageSplit[1];
                     if (player != null) {
                         ChatManager.ClientMessage(Colors.RED + "Вы уже проверяете какого-то игрока! " +
                                 Colors.RED + "Сначала закончите текущую проверку. --> " + Colors.GOLD + ".unfreezing"
                                 + " или " + Colors.GOLD + ".unfrz");
                         return;
                     }
+                    player = messageSplit[1];
                     Render.SetPlayer(player);
                     Punishments.SetPlayer(player);
                     ChatManager.SendMessage("/freezing " + player);
