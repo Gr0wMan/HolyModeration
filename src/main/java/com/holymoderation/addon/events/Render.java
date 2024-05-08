@@ -3,6 +3,7 @@ package com.holymoderation.addon.events;
 import java.awt.Color;
 import java.util.concurrent.TimeUnit;
 
+import com.holymoderation.addon.utils.ChatManager;
 import net.labymod.api.event.Subscribe;
 import net.labymod.api.event.events.client.gui.RenderGameOverlayEvent;
 import net.labymod.core.LabyModCore;
@@ -19,15 +20,15 @@ public class Render {
 
     private static int rainbowDelay = 300;
 
-    private static int customColor = 0;
+    private static int customColor = 0x0;
 
     @Subscribe
     public void onRender(RenderGameOverlayEvent event) {
         if (player != null) {
-            DrawString(event, "Текущая проверка:", xCoords, yCoords, customColor == 0 ? Rainbow(rainbowDelay) : customColor);
+            DrawString(event, "Текущая проверка:", xCoords, yCoords, customColor == 0x0 ? Rainbow(rainbowDelay) : customColor);
             DrawString(event, player + " | " + stopWatch.getTime(TimeUnit.MINUTES) + ":"
                     + (stopWatch.getTime(TimeUnit.SECONDS) - stopWatch.getTime(TimeUnit.MINUTES)*60),
-                    (xCoords + 10), (yCoords + 10), customColor == 0 ? Rainbow(rainbowDelay) : customColor);
+                    (xCoords + 10), (yCoords + 10), customColor == 0x0 ? Rainbow(rainbowDelay) : customColor);
         }
     }
 

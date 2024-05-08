@@ -56,10 +56,11 @@ public class Help {
                     + " - устанавливает позицию для таймера (считая от левого верхнего угла)");
             ChatManager.ClientMessage(Colors.GOLD + ".setrainbowdelay" + Colors.GREEN + " delay" + Colors.RESET
                     + " - устанавливает задержку в переливании радужного цвета таймера");
-            ChatManager.ClientMessage(Colors.GOLD + ".setcolor" + Colors.GREEN + " color" + Colors.RESET
-                    + " - устанавливает свой цвет для таймера");
-            ChatManager.ClientMessage(Colors.GOLD + ".getcolors" + Colors.RESET
-                    + " - выводит в чат все доступные цвета таймера для установки");
+            ChatManager.ClientMessage(Colors.GOLD + ".setcolor" + Colors.GREEN + " color id" + Colors.RESET
+                    + " - устанавливает свой цвет для таймера " + Colors.GREEN + "(Пример: ff0000 - красный, " +
+                    "значит пишите" + Colors.GOLD + " .setcolor" + Colors.RED + "0x" + Colors.GREEN + "ff0000, " +
+                    Colors.GREEN + "коды цветов смотрите в интернете), " + Colors.RESET + "Чтобы вернуть " +
+                    "разноцветный таймер " + "пишите" + Colors.GOLD + " .setcolor" + Colors.GREEN + " 0x0");
             ChatManager.ClientMessage(Colors.GOLD + ".savecfg" + Colors.RESET + Colors.RESET
                     + " - сохраняет конфиг");
             ChatManager.ClientMessage("");

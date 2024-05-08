@@ -15,9 +15,9 @@ public class ChatManager {
 
     public static String[] SettingsCommands = {".hm", ".hmhelp", ".textlist", ".textclear",
             ".textadd", ".textremove", ".textedit", ".setvk", ".getvk", ".dupeip",
-            ".setcords", ".savecfg", ".getcolors", ".setrainbowdelay", ".setcolor"};
+            ".setcords", ".savecfg", ".setrainbowdelay", ".setcolor"};
     public static String[] SettingsWithoutArguments = {".textlist", ".textclear",
-            ".getvk", ".dupeip", ".savecfg", ".getcolors"};
+            ".getvk", ".dupeip", ".savecfg"};
     public static String[] SettingsWithOneArguments = {".textadd",
             ".textremove", ".setvk", ".setrainbowdelay", ".setcolor"};
     public static String[] SettingsWithTwoArguments = {".textedit",".setcords"};

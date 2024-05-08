@@ -30,8 +30,8 @@ public class Freezer {
                     messageSplit = message.split(" ", 2);
                     if (player != null) {
                         ChatManager.ClientMessage(Colors.RED + "Вы уже проверяете какого-то игрока! " +
-                                Colors.RED + "Сначала закончите текущую проверку. --> " + Colors.GOLD + ".unfreezing"
-                                + " или " + Colors.GOLD + ".unfrz");
+                                Colors.RED + "Сначала закончите текущую проверку. --> " + Colors.GOLD + "/unfreezing"
+                                + " или " + Colors.GOLD + "/unfrz");
                         return;
                     }
                     if (messageSplit.length < 2) {
@@ -116,8 +116,8 @@ public class Freezer {
                     String unFrzPlayer = messageSplit[1];
                     if (unFrzPlayer.equals(player)) {
                         ChatManager.ClientMessage(Colors.RED + "Этот игрок находиться у вас на проверке! " +
-                                "Для его разморозки используйте" + Colors.GOLD + " .unfreezing" + Colors.RED
-                                + " или " + Colors.GOLD + ".unfrz");
+                                "Для его разморозки используйте" + Colors.GOLD + " /unfreezing" + Colors.RED
+                                + " или " + Colors.GOLD + "/unfrz");
                         return;
                     }
                     ChatManager.SendMessage("/freezing " + unFrzPlayer);

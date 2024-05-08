@@ -1,12 +1,12 @@
 package com.holymoderation.addon.events;
 
+import com.labymedia.connect.api.chat.Chat;
 import net.labymod.api.event.Subscribe;
 import net.labymod.api.event.events.client.chat.MessageSendEvent;
 
 import com.holymoderation.addon.utils.ChatManager;
 import com.holymoderation.addon.utils.Colors;
 import com.holymoderation.addon.utils.PunishmentsManager;
-import com.holymoderation.addon.utils.RenderColors;
 
 import java.awt.*;
 
@@ -51,12 +51,6 @@ public class Settings {
                         }
                         else {
                             ChatManager.ClientMessage(Colors.YELLOW + "Автоматический /dupeip" + Colors.RED + " ВЫКЛЮЧЕН");
-                        }
-                        break;
-                    case (".getcolors"):
-                        ChatManager.ClientMessage(Colors.BLUE + "Доступные цвета:");
-                        for (String color : RenderColors.Colors) {
-                            ChatManager.ClientMessage(color);
                         }
                         break;
                 }
@@ -121,45 +115,18 @@ public class Settings {
                         String stringDelay = messageSplit[1];
                         if (!ChatManager.CheckCorrectInt(stringDelay)) {
                             ChatManager.ClientMessage(Colors.RED + "Некорректная задержка!");
+                            return;
                         }
                         Render.SetRainbowDelay(Integer.parseInt(stringDelay));
                         ChatManager.ClientMessage(Colors.GREEN + "Успешно применено!");
                         break;
                     case (".setcolor"):
                         String stringColor = messageSplit[1];
-                        int intColor;
-                        if (!ChatManager.IsArrayContains(RenderColors.Colors, stringColor)) {
-                            ChatManager.ClientMessage(Colors.RED + "Некорректный цвет!");
+                        if (!ChatManager.CheckCorrectInt(stringColor)) {
+                            ChatManager.ClientMessage(Colors.RED + "Некорректный цветовой код!");
                             return;
                         }
-                        switch (stringColor) {
-                            case ("BLACK"):
-                                intColor = Color.BLACK.getRGB();
-                            case ("BLUE"):
-                                intColor = Color.BLUE.getRGB();
-                            case ("CYAN"):
-                                intColor = Color.CYAN.getRGB();
-                            case ("DARK_GRAY"):
-                                intColor = Color.DARK_GRAY.getRGB();
-                            case ("GREEN"):
-                                intColor = Color.GREEN.getRGB();
-                            case ("GRAY"):
-                                intColor = Color.GRAY.getRGB();
-                            case ("YELLOW"):
-                                intColor = Color.YELLOW.getRGB();
-                            case ("LIGHT_GRAY"):
-                                intColor = Color.LIGHT_GRAY.getRGB();
-                            case ("MAGENTA"):
-                                intColor = Color.MAGENTA.getRGB();
-                            case ("ORANGE"):
-                                intColor = Color.ORANGE.getRGB();
-                            case ("PINK"):
-                                intColor = Color.PINK.getRGB();
-                            case ("RED"):
-                                intColor = Color.RED.getRGB();
-                            case ("WHITE"):
-                                intColor = Color.WHITE.getRGB();
-                        }
+                        Render.SetCustomColor(Integer.parseInt(stringColor));
                         ChatManager.ClientMessage(Colors.GREEN + "Успешно применено!");
                         break;
                 }
