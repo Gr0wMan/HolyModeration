@@ -16,9 +16,9 @@ public class Punishments {
         String message = event.getMessage();
         String command = message.split(" ", 0)[0];
 
-        if (ChatManager.IsArrayContains(ChatManager.punishmentsCommands, command)) {
+        if (ChatManager.IsArrayContains(ChatManager.PunishmentsCommands, command)) {
             event.setCancelled(true);
-            if (ChatManager.IsArrayContains(ChatManager.tempPunishments, command)) {
+            if (ChatManager.IsArrayContains(ChatManager.TempPunishments, command)) {
                 messageSplit = message.split(" ", 4);
                 switch (messageSplit.length) {
                     case (1):
@@ -40,17 +40,17 @@ public class Punishments {
                 if (!PunishmentsManager.CheckTimeFormat(time)) {
                     return;
                 }
-                if (ChatManager.IsArrayContains(ChatManager.muteCommands, command)) {
+                if (ChatManager.IsArrayContains(ChatManager.MuteCommands, command)) {
                     PunishmentsManager.Punish(command, nick, time, reason, false);
                 }
-                if (ChatManager.IsArrayContains(ChatManager.banCommands, command)) {
+                if (ChatManager.IsArrayContains(ChatManager.BanCommands, command)) {
                     if (!PunishmentsManager.CheckVK()) {
                         return;
                     }
                     PunishmentsManager.Punish(command, nick, time, reason, true);
                 }
             }
-            else if (ChatManager.IsArrayContains(ChatManager.infinityPunishments, command)) {
+            else if (ChatManager.IsArrayContains(ChatManager.InfinityPunishments, command)) {
                 messageSplit = message.split(" ", 3);
                 switch (messageSplit.length) {
                     case (1):
@@ -65,10 +65,10 @@ public class Punishments {
                 if (PunishmentsManager.CheckPlayerOnCheck(player, nick)) {
                     return;
                 }
-                if (ChatManager.IsArrayContains(ChatManager.muteCommands, command)) {
+                if (ChatManager.IsArrayContains(ChatManager.MuteCommands, command)) {
                     PunishmentsManager.Punish(command, nick, reason, false);
                 }
-                if (ChatManager.IsArrayContains(ChatManager.banCommands, command)) {
+                if (ChatManager.IsArrayContains(ChatManager.BanCommands, command)) {
                     if (!PunishmentsManager.CheckVK()) {
                         return;
                     }

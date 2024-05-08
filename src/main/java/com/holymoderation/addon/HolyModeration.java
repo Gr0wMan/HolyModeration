@@ -1,10 +1,14 @@
 package com.holymoderation.addon;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.EventListener;
 import java.util.List;
 
 import com.holymoderation.addon.ChatUtils.PunishmentsManager;
 import net.labymod.api.LabyModAddon;
 import net.labymod.api.event.Subscribe;
+import net.labymod.api.event.events.client.TickEvent;
 import net.labymod.api.event.events.client.chat.MessageSendEvent;
 import net.labymod.settings.elements.*;
 
@@ -40,8 +44,7 @@ public class HolyModeration extends LabyModAddon {
 
   @Subscribe
   public void SaveCfg(MessageSendEvent event) {
-    if (event.getMessage().equals(".savecfg"))
-    {
+    if (event.getMessage().equals(".savecfg")) {
       event.setCancelled(true);
       HolyModeration.this.getConfig().addProperty("X", Render.GetxCoords());
       HolyModeration.this.getConfig().addProperty("Y", Render.GetyCoords());
@@ -52,5 +55,4 @@ public class HolyModeration extends LabyModAddon {
       ChatManager.ClientMessage(Colors.GREEN + "Ваш конфиг был успешно сохранён!");
     }
   }
-
 }

@@ -7,11 +7,15 @@ import com.holymoderation.addon.ChatUtils.Colors;
 import com.holymoderation.addon.ChatUtils.ChatManager;
 
 public class Help {
+    public static String[] messageSplit;
 
     @Subscribe
     public void OnUpdate(MessageSendEvent event) {
         String message = event.getMessage();
-        if (message.equals(".hmhelp") || message.equals(".hm")) {
+        messageSplit = message.split(" ");
+        String command = messageSplit[0];
+        if (ChatManager.IsArrayContains(ChatManager.HelpCommands, command))
+        {
             event.setCancelled(true);
             ChatManager.ClientMessage(Colors.BLUE + "HM Help:");
             ChatManager.ClientMessage(Colors.GOLD + ".hmhelp" + Colors.RESET + " или "

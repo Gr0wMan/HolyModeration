@@ -9,15 +9,23 @@ import java.util.Arrays;
 
 public class ChatManager {
 
-    public static String[] punishmentsCommands = {".imute", ".imuteip",
-            ".tmute", ".tmuteip", ".iban", ".ibanip", ".tban", ".tbanip"};
-    public static String[] settingsCommands = {".hm", ".hmhelp", ".freezing", ".frz",
-            ".unfreezing", ".unfrz", ".sban", "/freezing", "/frz", ".textlist", ".textadd",
+    public static String[] HelpCommands = {".hm", ".hmhelp"};
+
+    public static String[] FreezerCommands = {".sban", ".freezing", ".frz", ".unfreezing", ".unfrz", "/freezing", "/frz",};
+
+    public static String[] SettingsCommands = {".hm", ".hmhelp", ".textlist", ".textadd",
             ".textremove", ".textedit", ".setvk", ".getvk", ".dupeip", ".setcords", ".savecfg"};
-    public static String[] tempPunishments = {".tmute", ".tmuteip", ".tban", ".tbanip"};
-    public static String[] infinityPunishments = {".imute", ".imuteip", ".iban", ".ibanip"};
-    public static String[] banCommands = {".iban", ".ibanip", ".tban", ".tbanip"};
-    public static String[] muteCommands = {".imute", ".imuteip", ".tmute", ".tmuteip"};
+    public static String[] SettingsWithoutArguments = {".textlist", "textclear", ".getvk", ".dupeip", ".savecfg"};
+    public static String[] SettingsWithOneArguments = {".textadd", ".textremove", ".setvk"};
+    public static String[] SettingsWithTwoArguments = {".textedit",".setcords"};
+
+    public static String[] PunishmentsCommands = {".imute", ".imuteip",
+            ".tmute", ".tmuteip", ".iban", ".ibanip", ".tban", ".tbanip"};
+    public static String[] TempPunishments = {".tmute", ".tmuteip", ".tban", ".tbanip"};
+    public static String[] InfinityPunishments = {".imute", ".imuteip", ".iban", ".ibanip"};
+    public static String[] BanCommands = {".iban", ".ibanip", ".tban", ".tbanip"};
+    public static String[] MuteCommands = {".imute", ".imuteip", ".tmute", ".tmuteip"};
+
 
     public static void SendMessage(String message) {
         LabyModCore.getMinecraft().getPlayer().sendChatMessage(message);

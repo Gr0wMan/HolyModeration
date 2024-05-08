@@ -7,163 +7,159 @@ import com.holymoderation.addon.ChatUtils.ChatManager;
 import com.holymoderation.addon.ChatUtils.Colors;
 import com.holymoderation.addon.ChatUtils.PunishmentsManager;
 
+import java.util.EventObject;
+
 public class Settings {
+    private static String[] messageSplit;
 
     @Subscribe
     public void OnUpdate(MessageSendEvent event) {
         String message = event.getMessage();
         String command = message.split(" ")[0];
-        if (command.equals(".textlist")) {
+
+        if (ChatManager.IsArrayContains(ChatManager.SettingsCommands, command)) {
             event.setCancelled(true);
-            ChatManager.ClientMessage(Colors.AQUA + "Список ваших текстов:");
-            if (Freezer.GetTexts() == null)
-                ChatManager.ClientMessage(Colors.RED + "У вас нет настроенных текстов");
-            else
-                for (int i = 0; i < Freezer.GetSplitTexts().length; i++)
-                {
-                    ChatManager.ClientMessage((i+1) + ". " + Freezer.GetSplitTexts()[i]);
+            if (ChatManager.IsArrayContains(ChatManager.SettingsWithoutArguments, command)) {
+                switch (command) {
+                    case (".textlist"):
+                        ChatManager.ClientMessage(Colors.AQUA + "Список ваших текстов:");
+                        if (Freezer.GetTexts() == null)
+                            ChatManager.ClientMessage(Colors.RED + "У вас нет настроенных текстов");
+                        else
+                            for (int i = 0; i < Freezer.GetSplitTexts().length; i++) {
+                                ChatManager.ClientMessage((i+1) + ". " + Freezer.GetSplitTexts()[i]);
+                            }
+                    case (".textclear"):
+                        Freezer.ClearTexts();
+                        ChatManager.ClientMessage(Colors.GREEN + "Вы успешно очистили все тексты!");
+                    case (".getvk"):
+                        if (PunishmentsManager.GetVkUrl() == null) {
+                            ChatManager.ClientMessage(Colors.RED + "У вас не установлена ссылка на вк!");
+                            return;
+                        }
+                        ChatManager.ClientMessage(Colors.AQUA + "Ваша ссылка на вк: " + PunishmentsManager.GetVkUrl());
+                    case (".dupeip"):
+                        Freezer.SetDupeIp(!Freezer.GetDupeIp());
+                        if (Freezer.GetDupeIp())
+                            ChatManager.ClientMessage(Colors.YELLOW + "Автоматический /dupeip" + Colors.GREEN + " ВКЛЮЧЁН");
+                        else
+                            ChatManager.ClientMessage(Colors.YELLOW + "Автоматический /dupeip" + Colors.RED + " ВЫКЛЮЧЕН");
                 }
-        }
+            }
+            else if (ChatManager.IsArrayContains(ChatManager.SettingsWithOneArguments, command)) {
+                messageSplit = message.split(" ", 2);
+                switch (command) {
+                    case (".setvk"):
+                        if (messageSplit.length == 1) {
+                            ChatManager.ClientMessage(Colors.RED + "Вы не ввели ссылку на вк!");
+                            return;
+                        }
+                        String vkUrl = messageSplit[1];
+                        boolean hasSpaces = false;
+                        for (int i = 0; i < vkUrl.length(); i++) {
+                            if (vkUrl.charAt(i) == ' ') {
+                                hasSpaces = true;
+                            }
+                        }
+                        if (hasSpaces) {
+                            ChatManager.ClientMessage(Colors.RED + "В ссылке обнаружены пробелы, пожалуйста, " +
+                                    "указывайте ссылку на вк в формате 'vk.com/id'");
+                            return;
+                        }
+                        PunishmentsManager.SetVkUrl(vkUrl);
+                        ChatManager.ClientMessage(Colors.GREEN + "Теперь ваша ссылка на вк: " + PunishmentsManager.GetVkUrl());
+                    case (".textadd"):
+                        if (messageSplit.length == 1) {
+                            ChatManager.ClientMessage(Colors.RED + "Вы не указали текст!");
+                            return;
+                        }
+                        String text = messageSplit[1];
+                        Freezer.AddText(text);
+                        ChatManager.ClientMessage(Colors.GREEN + "Вы добавили новый текст!");
+                    case (".textremove"):
+                        if (Freezer.GetTexts() == null) {
+                            ChatManager.ClientMessage(Colors.RED + "У вас нет настроенных текстов");
+                            return;
+                        }
+                        if (messageSplit.length == 1) {
+                            ChatManager.ClientMessage(Colors.RED + "Вы не указали номер текста!");
+                            return;
+                        }
+                        String indexText = messageSplit[1];
+                        if (!PunishmentsManager.CheckCorrectInt(indexText)) {
+                            ChatManager.ClientMessage(Colors.RED + "Некорректный номер текста!");
+                            return;
+                        }
+                        int intIndex = Integer.parseInt(indexText) - 1;
+                        if (intIndex >= Freezer.GetSplitTexts().length || intIndex < 0) {
+                            ChatManager.ClientMessage(Colors.RED
+                                    + "Элемента с таким номером в списке ваших текстов не существует!");
+                            return;
+                        }
+                        Freezer.RemoveText(intIndex);
+                        ChatManager.ClientMessage(Colors.RED + "Вы удалили текст номер "
+                                + Colors.GREEN + messageSplit[1] + "!");
+                }
+            }
+            else if (ChatManager.IsArrayContains(ChatManager.SettingsWithTwoArguments, command)) {
+                messageSplit = message.split(" ", 3);
+                switch (command) {
+                    case (".textedit"):
+                        if (Freezer.GetTexts() == null) {
+                            ChatManager.ClientMessage(Colors.RED + "У вас нет настроенных текстов");
+                            return;
+                        }
+                        if (messageSplit.length == 1) {
+                            ChatManager.ClientMessage(Colors.RED + "Вы не указали номер текста и новый текст!");
+                            return;
+                        }
+                        String indexText = messageSplit[1];
+                        if (!PunishmentsManager.CheckCorrectInt(indexText)) {
+                            ChatManager.ClientMessage(Colors.RED + "Некорректный номер текста!");
+                            return;
+                        }
+                        int index = Integer.parseInt(indexText) - 1;
+                        if (messageSplit.length == 2) {
+                            ChatManager.ClientMessage(Colors.RED + "Вы не указали новый текст!");
+                            return;
+                        }
+                        if (index >= Freezer.GetSplitTexts().length || index < 0) {
+                            ChatManager.ClientMessage(Colors.RED
+                                    + "Элемента с таким номером в списке ваших текстов не существует!");
+                            return;
+                        }
+                        String text = messageSplit[2];
+                        Freezer.EditText(index, text);
+                        ChatManager.ClientMessage(Colors.YELLOW + "Вы изменили текст номер " + Colors.GREEN + (index + 1));
+                    case (".setcords"):
+                        if (messageSplit.length == 1) {
+                            ChatManager.ClientMessage(Colors.RED + "Вы не указали X и Y координаты!");
+                            return;
+                        }
+                        else if (messageSplit.length == 2) {
+                            ChatManager.ClientMessage(Colors.RED + "Вы не указали Y координату!");
+                            return;
+                        }
+                        String xText = messageSplit[1];
+                        String yText = messageSplit[2];
+                        boolean isXcorrect = PunishmentsManager.CheckCorrectInt(xText);
+                        boolean isYcorrect = PunishmentsManager.CheckCorrectInt(yText);
 
-        else if (command.equals(".dupeip")) {
-            event.setCancelled(true);
-            Freezer.SetDupeIp(!Freezer.GetDupeIp());
-            if (Freezer.GetDupeIp())
-                ChatManager.ClientMessage(Colors.YELLOW + "Автоматический /dupeip" + Colors.GREEN + " ВКЛЮЧЁН");
-            else
-                ChatManager.ClientMessage(Colors.YELLOW + "Автоматический /dupeip" + Colors.RED + " ВЫКЛЮЧЕН");
-        }
+                        if (!isXcorrect || !isYcorrect) {
+                            if (!isXcorrect && !isYcorrect)
+                                ChatManager.ClientMessage(Colors.RED + "Некорректные X и Y координаты!");
+                            else if (!isXcorrect && isYcorrect)
+                                ChatManager.ClientMessage(Colors.RED + "Некорректная X координата!");
+                            else if (isXcorrect && !isYcorrect)
+                                ChatManager.ClientMessage(Colors.RED + "Некорректная Y координата!");
+                            return;
+                        }
 
-        else if (command.equals(".getvk")) {
-            event.setCancelled(true);
-            if (PunishmentsManager.GetVkUrl() == null) {
-                ChatManager.ClientMessage(Colors.RED + "У вас не установлена ссылка на вк!");
-                return;
+                        Render.SetxCoords(Integer.parseInt(xText));
+                        Render.SetyCoords(Integer.parseInt(yText));
+                        ChatManager.ClientMessage(Colors.GREEN + "Успешно применено!");
+                }
             }
-            ChatManager.ClientMessage(Colors.AQUA + "Ваша ссылка на вк: " + PunishmentsManager.GetVkUrl());
-        }
-
-        else if (command.equals(".setvk")) {
-            event.setCancelled(true);
-            if (message.split(" ").length == 1) {
-                ChatManager.ClientMessage(Colors.RED + "Вы не ввели ссылку на вк!");
-                return;
-            }
-            String value = message.split(" ", 2)[1];
-            boolean hasSpaces = false;
-            for (int i = 0; i < value.length(); i++)
-                if (value.charAt(i) == ' ')
-                    hasSpaces = true;
-            if (hasSpaces) {
-                ChatManager.ClientMessage(Colors.RED + "В ссылке обнаружены пробелы, пожалуйста, " +
-                        "указывайте ссылку на вк в формате 'vk.com/id'");
-                return;
-            }
-            PunishmentsManager.SetVkUrl(value);
-            ChatManager.ClientMessage(Colors.GREEN + "Теперь ваша ссылка на вк: " + PunishmentsManager.GetVkUrl());
-        }
-
-        else if (command.equals(".textadd")) {
-            event.setCancelled(true);
-            if (message.split(" ").length == 1) {
-                ChatManager.ClientMessage(Colors.RED + "Вы не указали текст!");
-                return;
-            }
-            String value = message.split(" ", 2)[1];
-            Freezer.AddText(value);
-            ChatManager.ClientMessage(Colors.GREEN + "Вы добавили новый текст!");
-        }
-
-        else if (command.equals(".textremove")) {
-            event.setCancelled(true);
-            if (Freezer.GetTexts() == null) {
-                ChatManager.ClientMessage(Colors.RED + "У вас нет настроенных текстов");
-                return;
-            }
-            if (message.split(" ").length == 1) {
-                ChatManager.ClientMessage(Colors.RED + "Вы не указали номер текста!");
-                return;
-            }
-            String indexText = message.split(" ", 2)[1];
-            if (!PunishmentsManager.CheckCorrectInt(indexText)) {
-                ChatManager.ClientMessage(Colors.RED + "Некорректный номер текста!");
-                return;
-            }
-            int index = Integer.parseInt(indexText) - 1;
-            if (index >= Freezer.GetSplitTexts().length || index < 0) {
-                ChatManager.ClientMessage(Colors.RED
-                        + "Элемента с таким номером в списке ваших текстов не существует!");
-                return;
-            }
-            Freezer.RemoveText(index);
-            ChatManager.ClientMessage(Colors.RED + "Вы удалили текст номер "
-                    + Colors.GREEN + message.split(" ", 0)[1] + "!");
-        }
-
-        else if (command.equals(".textedit")) {
-            event.setCancelled(true);
-            if (Freezer.GetTexts() == null) {
-                ChatManager.ClientMessage(Colors.RED + "У вас нет настроенных текстов");
-                return;
-            }
-            if (message.split(" ").length == 1) {
-                ChatManager.ClientMessage(Colors.RED + "Вы не указали номер текста и новый текст!");
-                return;
-            }
-            String indexText = message.split(" ")[1];
-            if (!PunishmentsManager.CheckCorrectInt(indexText)) {
-                ChatManager.ClientMessage(Colors.RED + "Некорректный номер текста!");
-                return;
-            }
-            int index = Integer.parseInt(indexText) - 1;
-            if (message.split(" ").length == 2) {
-                ChatManager.ClientMessage(Colors.RED + "Вы не указали новый текст!");
-                return;
-            }
-            if (index >= Freezer.GetSplitTexts().length || index < 0) {
-                ChatManager.ClientMessage(Colors.RED
-                        + "Элемента с таким номером в списке ваших текстов не существует!");
-                return;
-            }
-            String text = message.split(" ", 3)[2];
-            Freezer.EditText(index, text);
-            ChatManager.ClientMessage(Colors.YELLOW + "Вы изменили текст номер " + Colors.GREEN + (index + 1));
-        }
-
-        else if (message.equals(".textclear")) {
-            event.setCancelled(true);
-            Freezer.ClearTexts();
-            ChatManager.ClientMessage(Colors.GREEN + "Вы успешно очистили все тексты!");
-        }
-
-        else if (command.equals(".setcords")) {
-            event.setCancelled(true);
-            if (message.split(" ").length == 1) {
-                ChatManager.ClientMessage(Colors.RED + "Вы не указали X и Y координаты!");
-                return;
-            }
-            else if (message.split(" ").length == 2) {
-                ChatManager.ClientMessage(Colors.RED + "Вы не указали Y координаты!");
-                return;
-            }
-            String xText = message.split(" ", 3)[1];
-            String yText = message.split(" ", 3)[2];
-            boolean isXcorrect = PunishmentsManager.CheckCorrectInt(xText);
-            boolean isYcorrect = PunishmentsManager.CheckCorrectInt(yText);
-
-            if (!isXcorrect || !isYcorrect) {
-                if (!isXcorrect && !isYcorrect)
-                    ChatManager.ClientMessage(Colors.RED + "Некорректные X и Y координаты!");
-                else if (!isXcorrect && isYcorrect)
-                    ChatManager.ClientMessage(Colors.RED + "Некорректная X координата!");
-                else if (isXcorrect && !isYcorrect)
-                    ChatManager.ClientMessage(Colors.RED + "Некорректная Y координата!");
-                return;
-            }
-
-            Render.SetxCoords(Integer.parseInt(xText));
-            Render.SetyCoords(Integer.parseInt(yText));
-            ChatManager.ClientMessage(Colors.GREEN + "Успешно применено!");
         }
     }
 }

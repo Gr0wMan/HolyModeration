@@ -22,7 +22,7 @@ public class Freezer {
         String message = event.getMessage();
         String command = message.split(" ")[0];
 
-        if (ChatManager.IsArrayContains(ChatManager.settingsCommands, command)) {
+        if (ChatManager.IsArrayContains(ChatManager.FreezerCommands, command)) {
             event.setCancelled(true);
             switch (command) {
                 case (".freezing"):
