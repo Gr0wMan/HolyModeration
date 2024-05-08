@@ -73,10 +73,8 @@ public class Help {
             ChatManager.ClientMessage(Colors.GOLD + ".tbanip" + Colors.GREEN + " nick time reason" + Colors.RESET
                     + " - бан по айпи на время");
             ChatManager.ClientMessage("");
-            ChatManager.ClientMessage(Colors.GREEN + "Инструкция к моду:");
-            ChatManager.ClientMessage("https://docs.google.com/document/d/1iSD-mqQ8dKcQBjmJ6LWHEwbOtN5JDV7fUo5wcID9VK4/edit?usp=sharing");
-            ChatManager.ClientMessage(Colors.GREEN + "Исходный код:");
-            ChatManager.ClientMessage("https://github.com/Gr0wMan/HolyModeration");
+            ChatManager.ClientMessage(Colors.GREEN + "Ссылки на инструкцию к моду и исходный код можно найти в файле 'README.TXT'");
+
         }
     }
 }

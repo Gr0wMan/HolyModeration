@@ -76,6 +76,9 @@ public class Freezer {
                         ChatManager.ClientMessage(Colors.RED + "Вы никого не проверяете!");
                         return;
                     }
+                    if (!PunishmentsManager.CheckVK()) {
+                        return;
+                    }
                     switch (messageSplit.length) {
                         case (1):
                             ChatManager.ClientMessage(Colors.RED + "Вы не указали время и причину бана!");
