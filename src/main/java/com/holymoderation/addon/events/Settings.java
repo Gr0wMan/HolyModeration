@@ -23,27 +23,35 @@ public class Settings {
                 switch (command) {
                     case (".textlist"):
                         ChatManager.ClientMessage(Colors.AQUA + "Список ваших текстов:");
-                        if (Freezer.GetTexts() == null)
+                        if (Freezer.GetTexts() == null) {
                             ChatManager.ClientMessage(Colors.RED + "У вас нет настроенных текстов");
-                        else
+                        }
+                        else {
                             for (int i = 0; i < Freezer.GetSplitTexts().length; i++) {
                                 ChatManager.ClientMessage((i+1) + ". " + Freezer.GetSplitTexts()[i]);
                             }
+                        }
+                        break;
                     case (".textclear"):
                         Freezer.ClearTexts();
                         ChatManager.ClientMessage(Colors.GREEN + "Вы успешно очистили все тексты!");
+                        break;
                     case (".getvk"):
                         if (PunishmentsManager.GetVkUrl() == null) {
                             ChatManager.ClientMessage(Colors.RED + "У вас не установлена ссылка на вк!");
                             return;
                         }
                         ChatManager.ClientMessage(Colors.AQUA + "Ваша ссылка на вк: " + PunishmentsManager.GetVkUrl());
+                        break;
                     case (".dupeip"):
                         Freezer.SetDupeIp(!Freezer.GetDupeIp());
-                        if (Freezer.GetDupeIp())
+                        if (Freezer.GetDupeIp()) {
                             ChatManager.ClientMessage(Colors.YELLOW + "Автоматический /dupeip" + Colors.GREEN + " ВКЛЮЧЁН");
-                        else
+                        }
+                        else {
                             ChatManager.ClientMessage(Colors.YELLOW + "Автоматический /dupeip" + Colors.RED + " ВЫКЛЮЧЕН");
+                        }
+                        break;
                 }
             }
             else if (ChatManager.IsArrayContains(ChatManager.SettingsWithOneArguments, command)) {
@@ -68,6 +76,7 @@ public class Settings {
                         }
                         PunishmentsManager.SetVkUrl(vkUrl);
                         ChatManager.ClientMessage(Colors.GREEN + "Теперь ваша ссылка на вк: " + PunishmentsManager.GetVkUrl());
+                        break;
                     case (".textadd"):
                         if (messageSplit.length == 1) {
                             ChatManager.ClientMessage(Colors.RED + "Вы не указали текст!");
@@ -76,6 +85,7 @@ public class Settings {
                         String text = messageSplit[1];
                         Freezer.AddText(text);
                         ChatManager.ClientMessage(Colors.GREEN + "Вы добавили новый текст!");
+                        break;
                     case (".textremove"):
                         if (Freezer.GetTexts() == null) {
                             ChatManager.ClientMessage(Colors.RED + "У вас нет настроенных текстов");
@@ -99,6 +109,7 @@ public class Settings {
                         Freezer.RemoveText(intIndex);
                         ChatManager.ClientMessage(Colors.RED + "Вы удалили текст номер "
                                 + Colors.GREEN + messageSplit[1] + "!");
+                        break;
                 }
             }
             else if (ChatManager.IsArrayContains(ChatManager.SettingsWithTwoArguments, command)) {
@@ -131,6 +142,7 @@ public class Settings {
                         String text = messageSplit[2];
                         Freezer.EditText(index, text);
                         ChatManager.ClientMessage(Colors.YELLOW + "Вы изменили текст номер " + Colors.GREEN + (index + 1));
+                        break;
                     case (".setcords"):
                         if (messageSplit.length == 1) {
                             ChatManager.ClientMessage(Colors.RED + "Вы не указали X и Y координаты!");
@@ -158,6 +170,7 @@ public class Settings {
                         Render.SetxCoords(Integer.parseInt(xText));
                         Render.SetyCoords(Integer.parseInt(yText));
                         ChatManager.ClientMessage(Colors.GREEN + "Успешно применено!");
+                        break;
                 }
             }
         }
