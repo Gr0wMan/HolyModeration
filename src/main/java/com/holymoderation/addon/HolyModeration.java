@@ -2,15 +2,15 @@ package com.holymoderation.addon;
 
 import java.util.List;
 
-import com.holymoderation.addon.ChatUtils.PunishmentsManager;
+import com.holymoderation.addon.utils.PunishmentsManager;
 import net.labymod.api.LabyModAddon;
 import net.labymod.api.event.Subscribe;
 import net.labymod.api.event.events.client.chat.MessageSendEvent;
 import net.labymod.settings.elements.*;
 
 import com.holymoderation.addon.events.*;
-import com.holymoderation.addon.ChatUtils.ChatManager;
-import com.holymoderation.addon.ChatUtils.Colors;
+import com.holymoderation.addon.utils.ChatManager;
+import com.holymoderation.addon.utils.Colors;
 
 public class HolyModeration extends LabyModAddon {
 

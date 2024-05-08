@@ -3,9 +3,9 @@ package com.holymoderation.addon.events;
 import net.labymod.api.event.Subscribe;
 import net.labymod.api.event.events.client.chat.MessageSendEvent;
 
-import com.holymoderation.addon.ChatUtils.ChatManager;
-import com.holymoderation.addon.ChatUtils.Colors;
-import com.holymoderation.addon.ChatUtils.PunishmentsManager;
+import com.holymoderation.addon.utils.ChatManager;
+import com.holymoderation.addon.utils.Colors;
+import com.holymoderation.addon.utils.PunishmentsManager;
 
 public class Punishments {
     private static String player = null;

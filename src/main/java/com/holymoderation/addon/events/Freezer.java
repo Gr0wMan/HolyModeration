@@ -3,12 +3,12 @@ package com.holymoderation.addon.events;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import com.holymoderation.addon.ChatUtils.PunishmentsManager;
+import com.holymoderation.addon.utils.PunishmentsManager;
 import net.labymod.api.event.Subscribe;
 import net.labymod.api.event.events.client.chat.MessageSendEvent;
 
-import com.holymoderation.addon.ChatUtils.ChatManager;
-import com.holymoderation.addon.ChatUtils.Colors;
+import com.holymoderation.addon.utils.ChatManager;
+import com.holymoderation.addon.utils.Colors;
 
 public class Freezer {
 

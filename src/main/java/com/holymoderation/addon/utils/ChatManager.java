@@ -1,4 +1,4 @@
-package com.holymoderation.addon.ChatUtils;
+package com.holymoderation.addon.utils;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.text.StringTextComponent;
@@ -13,10 +13,13 @@ public class ChatManager {
 
     public static String[] FreezerCommands = {"/sban", "/freezing", "/frz", "/unfreezing", "/unfrz", ".freezing", ".frz",};
 
-    public static String[] SettingsCommands = {".hm", ".hmhelp", ".textlist", ".textclear", ".textadd",
-            ".textremove", ".textedit", ".setvk", ".getvk", ".dupeip", ".setcords", ".savecfg"};
-    public static String[] SettingsWithoutArguments = {".textlist", ".textclear", ".getvk", ".dupeip", ".savecfg"};
-    public static String[] SettingsWithOneArguments = {".textadd", ".textremove", ".setvk"};
+    public static String[] SettingsCommands = {".hm", ".hmhelp", ".textlist", ".textclear",
+            ".textadd", ".textremove", ".textedit", ".setvk", ".getvk", ".dupeip",
+            ".setcords", ".savecfg", ".getcolors", ".setrainbowdelay", ".setcolor"};
+    public static String[] SettingsWithoutArguments = {".textlist", ".textclear",
+            ".getvk", ".dupeip", ".savecfg", ".getcolors"};
+    public static String[] SettingsWithOneArguments = {".textadd",
+            ".textremove", ".setvk", ".setrainbowdelay", ".setcolor"};
     public static String[] SettingsWithTwoArguments = {".textedit",".setcords"};
 
     public static String[] PunishmentsCommands = {"/mute", "/muteip",
@@ -37,5 +40,17 @@ public class ChatManager {
 
     public static boolean IsArrayContains(String[] array, String value) {
         return Arrays.asList(array).contains(value);
+    }
+
+    public static boolean CheckCorrectInt(String message) {
+        int value = 0; {
+            try {
+                value = Integer.parseInt(message);
+                return(true);
+            }
+            catch (NumberFormatException e) {
+                return(false);
+            }
+        }
     }
 }

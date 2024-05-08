@@ -1,4 +1,4 @@
-package com.holymoderation.addon.ChatUtils;
+package com.holymoderation.addon.utils;
 
 import net.minecraft.util.text.TextFormatting;
 

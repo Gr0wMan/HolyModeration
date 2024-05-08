@@ -3,8 +3,8 @@ package com.holymoderation.addon.events;
 import net.labymod.api.event.Subscribe;
 import net.labymod.api.event.events.client.chat.MessageSendEvent;
 
-import com.holymoderation.addon.ChatUtils.Colors;
-import com.holymoderation.addon.ChatUtils.ChatManager;
+import com.holymoderation.addon.utils.Colors;
+import com.holymoderation.addon.utils.ChatManager;
 
 public class Help {
     public static String[] messageSplit;
@@ -54,6 +54,12 @@ public class Help {
                     + " - включает/выключает автоматический /dupeip при проверке");
             ChatManager.ClientMessage(Colors.GOLD + ".setcords" + Colors.GREEN + " x y" + Colors.RESET
                     + " - устанавливает позицию для таймера (считая от левого верхнего угла)");
+            ChatManager.ClientMessage(Colors.GOLD + ".setrainbowdelay" + Colors.GREEN + " delay" + Colors.RESET
+                    + " - устанавливает задержку в переливании радужного цвета таймера");
+            ChatManager.ClientMessage(Colors.GOLD + ".setcolor" + Colors.GREEN + " color" + Colors.RESET
+                    + " - устанавливает свой цвет для таймера");
+            ChatManager.ClientMessage(Colors.GOLD + ".getcolors" + Colors.RESET
+                    + " - выводит в чат все доступные цвета таймера для установки");
             ChatManager.ClientMessage(Colors.GOLD + ".savecfg" + Colors.RESET + Colors.RESET
                     + " - сохраняет конфиг");
             ChatManager.ClientMessage("");

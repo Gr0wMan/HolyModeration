@@ -10,12 +10,16 @@ import net.labymod.core.LabyModCore;
 import org.apache.commons.lang3.time.StopWatch;
 
 public class Render {
+    private static StopWatch stopWatch;
+
     private static String player = null;
 
     private static int xCoords = 10;
     private static int yCoords = 10;
 
-    private static StopWatch stopWatch;
+    private static int rainbowDelay = 300;
+
+    private static int customColor = 0;
 
     @Subscribe
     public void onRender(RenderGameOverlayEvent event) {
@@ -23,7 +27,7 @@ public class Render {
             DrawString(event, "Текущая проверка:", xCoords, yCoords, Rainbow(300));
             DrawString(event, player + " | " + stopWatch.getTime(TimeUnit.MINUTES) + ":"
                     + (stopWatch.getTime(TimeUnit.SECONDS) - stopWatch.getTime(TimeUnit.MINUTES)*60),
-                    (xCoords + 10), (yCoords + 10), Rainbow(300));
+                    (xCoords + 10), (yCoords + 10), customColor == 0 ? Rainbow(rainbowDelay) : customColor);
         }
     }
 
@@ -56,6 +60,14 @@ public class Render {
 
     public static void SetPlayer(String value) {
         player = value;
+    }
+
+    public static void SetRainbowDelay(int delay) {
+        rainbowDelay = delay;
+    }
+
+    public static void SetCustomColor(int color) {
+        customColor = color;
     }
 
     private static void DrawString(RenderGameOverlayEvent event, String text, int x, int y, int color) {
