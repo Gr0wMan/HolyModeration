@@ -85,7 +85,7 @@ public class Settings {
                 return;
             }
             String indexText = message.split(" ", 2)[1];
-            if (PunishmentsManager.CheckIncorrectInt(indexText)) {
+            if (!PunishmentsManager.CheckCorrectInt(indexText)) {
                 ChatManager.ClientMessage(Colors.RED + "Некорректный номер текста!");
                 return;
             }
@@ -111,7 +111,7 @@ public class Settings {
                 return;
             }
             String indexText = message.split(" ")[1];
-            if (PunishmentsManager.CheckIncorrectInt(indexText)) {
+            if (!PunishmentsManager.CheckCorrectInt(indexText)) {
                 ChatManager.ClientMessage(Colors.RED + "Некорректный номер текста!");
                 return;
             }
@@ -148,15 +148,15 @@ public class Settings {
             }
             String xText = message.split(" ", 3)[1];
             String yText = message.split(" ", 3)[2];
-            boolean incorrectX = PunishmentsManager.CheckIncorrectInt(xText);
-            boolean incorrectY = PunishmentsManager.CheckIncorrectInt(yText);
+            boolean isXcorrect = PunishmentsManager.CheckCorrectInt(xText);
+            boolean isYcorrect = PunishmentsManager.CheckCorrectInt(yText);
 
-            if (incorrectX || incorrectY) {
-                if (incorrectX && incorrectY)
+            if (!isXcorrect || !isYcorrect) {
+                if (!isXcorrect && !isYcorrect)
                     ChatManager.ClientMessage(Colors.RED + "Некорректные X и Y координаты!");
-                else if (incorrectX && !incorrectY)
+                else if (!isXcorrect && isYcorrect)
                     ChatManager.ClientMessage(Colors.RED + "Некорректная X координата!");
-                else if (!incorrectX && incorrectY)
+                else if (isXcorrect && !isYcorrect)
                     ChatManager.ClientMessage(Colors.RED + "Некорректная Y координата!");
                 return;
             }
