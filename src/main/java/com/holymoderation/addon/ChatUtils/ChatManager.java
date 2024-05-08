@@ -11,7 +11,7 @@ public class ChatManager {
 
     public static String[] HelpCommands = {".hm", ".hmhelp"};
 
-    public static String[] FreezerCommands = {".sban", ".freezing", ".frz", ".unfreezing", ".unfrz", "/freezing", "/frz",};
+    public static String[] FreezerCommands = {"/sban", "/freezing", "/frz", "/unfreezing", "/unfrz", ".freezing", ".frz",};
 
     public static String[] SettingsCommands = {".hm", ".hmhelp", ".textlist", ".textclear", ".textadd",
             ".textremove", ".textedit", ".setvk", ".getvk", ".dupeip", ".setcords", ".savecfg"};
@@ -19,12 +19,12 @@ public class ChatManager {
     public static String[] SettingsWithOneArguments = {".textadd", ".textremove", ".setvk"};
     public static String[] SettingsWithTwoArguments = {".textedit",".setcords"};
 
-    public static String[] PunishmentsCommands = {".imute", ".imuteip",
-            ".tmute", ".tmuteip", ".iban", ".ibanip", ".tban", ".tbanip"};
-    public static String[] TempPunishments = {".tmute", ".tmuteip", ".tban", ".tbanip"};
-    public static String[] InfinityPunishments = {".imute", ".imuteip", ".iban", ".ibanip"};
-    public static String[] BanCommands = {".iban", ".ibanip", ".tban", ".tbanip"};
-    public static String[] MuteCommands = {".imute", ".imuteip", ".tmute", ".tmuteip"};
+    public static String[] PunishmentsCommands = {"/mute", "/muteip",
+            "/tempmute", "/tempmuteip", "/ban", "/banip", "/tempban", "/tempbanip"};
+    public static String[] TempPunishments = {"/tempmute", "/tempmuteip", "/tempban", "/tempbanip"};
+    public static String[] InfinityPunishments = {"/mute", "/muteip", "/ban", "/banip"};
+    public static String[] BanCommands = {"/ban", "/banip", "/tempban", "/tempbanip"};
+    public static String[] MuteCommands = {"/mute", "/muteip", "/tempmute", "/tempmuteip"};
 
 
     public static void SendMessage(String message) {

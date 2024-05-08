@@ -34,8 +34,7 @@ public class PunishmentsManager {
         return false;
     }
 
-    public static void Punish(String punishCommand, String player, String reason, boolean addVk) {
-        String command = "/" + punishCommand.substring(1);
+    public static void Punish(String command, String player, String reason, boolean addVk) {
         if (addVk)
             ChatManager.SendMessage(command + " " + player + " " + reason + " | Вопросы? " + vkUrl + " -s");
         else

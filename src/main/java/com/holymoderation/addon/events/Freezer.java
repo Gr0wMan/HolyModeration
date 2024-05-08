@@ -41,9 +41,6 @@ public class Freezer {
                     player = messageSplit[1];
                     Render.SetPlayer(player);
                     Punishments.SetPlayer(player);
-                    ChatManager.SendMessage("/freezing " + player);
-                    ChatManager.SendMessage("/checkmute " + player);
-                    ChatManager.SendMessage("/prova");
                     Render.StopWatchStart();
                     if (dupeIpEnabled)
                         ChatManager.SendMessage("/dupeip " + player);
@@ -58,6 +55,9 @@ public class Freezer {
                             ChatManager.SendMessage("/msg " + player + " " + text);
                         }
                     }
+                    ChatManager.SendMessage("/freezing " + player);
+                    ChatManager.SendMessage("/checkmute " + player);
+                    ChatManager.SendMessage("/prova");
                     break;
                 }
 
@@ -97,7 +97,7 @@ public class Freezer {
                     if (!PunishmentsManager.CheckTimeFormat(time)) {
                         return;
                     }
-                    PunishmentsManager.Punish("/banip", player, time, reason, true);
+                    PunishmentsManager.Punish("/banip", player, time, "2.4 (" + reason + ")", true);
                     ChatManager.SendMessage("/freezing " + player);
                     ChatManager.SendMessage("/prova");
                     player = null;
