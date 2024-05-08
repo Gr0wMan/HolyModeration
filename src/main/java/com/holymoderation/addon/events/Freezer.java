@@ -3,13 +3,14 @@ package com.holymoderation.addon.events;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import com.holymoderation.addon.ChatUtils.PunishmentsManager;
 import net.labymod.api.event.Subscribe;
 import net.labymod.api.event.events.client.chat.MessageSendEvent;
 
 import com.holymoderation.addon.ChatUtils.ChatManager;
 import com.holymoderation.addon.ChatUtils.Colors;
 
-public class FreezerEvent {
+public class Freezer {
 
     private static Boolean dupeIpEnabled = false;
     private static String texts = null;
@@ -29,14 +30,13 @@ public class FreezerEvent {
                 return;
             }
             player = event.getMessage().split(" ")[1];
-            RenderEvent.SetPlayer(player);
+            Render.SetPlayer(player);
             Punishments.SetPlayer(player);
-            RenderEvent.SetOnCheck(true);
-            Punishments.SetOnCheck(true);
+            Render.SetOnCheck(true);
             ChatManager.SendMessage("/freezing " + player);
             ChatManager.SendMessage("/checkmute " + player);
             ChatManager.SendMessage("/prova");
-            RenderEvent.StopWatchStart();
+            Render.StopWatchStart();
             if (dupeIpEnabled)
                 ChatManager.SendMessage("/dupeip " + player);
             if (texts == null) {
@@ -59,10 +59,36 @@ public class FreezerEvent {
             ChatManager.SendMessage("/freezing " + player);
             ChatManager.SendMessage("/prova");
             player = null;
-            RenderEvent.SetOnCheck(false);
-            Punishments.SetOnCheck(false);
-            RenderEvent.SetPlayer(player);
+            Render.SetOnCheck(false);
+            Render.SetPlayer(player);
             Punishments.SetPlayer(player);
+        }
+
+        else if (command.equals(".sban")) {
+            if (player == null) {
+                ChatManager.ClientMessage(Colors.RED + "Вы никого не проверяете!");
+                return;
+            }
+            switch (message.split(" ", 3).length) {
+                case (1):
+                    ChatManager.ClientMessage(Colors.RED + "Вы не указали время и причину бана!");
+                    return;
+                case (2):
+                    ChatManager.ClientMessage(Colors.RED + "Вы не указали причину бана!");
+                    return;
+            }
+            String time = message.split(" ", 3)[1];
+            String reason = message.split(" ", 3)[2];
+            if (!PunishmentsManager.CheckTimeFormat(time)) {
+                return;
+            }
+            PunishmentsManager.Punish("/banip", player, time, reason, true);
+            ChatManager.SendMessage("/freezing " + player);
+            ChatManager.SendMessage("/prova");
+            player = null;
+            Render.SetOnCheck(player == null);
+            Punishments.SetPlayer(player);
+            Render.SetPlayer(player);
         }
 
         else if (command.equals("/freezing") || command.equals("/frz")) {

@@ -8,209 +8,91 @@ import com.holymoderation.addon.ChatUtils.Colors;
 import com.holymoderation.addon.ChatUtils.PunishmentsManager;
 
 public class Punishments {
-    private static Boolean onCheck = false;
     private static String player = null;
+    private static String[] messageSplit;
 
     @Subscribe
     public void OnUpdate(MessageSendEvent event) {
         String message = event.getMessage();
         String command = message.split(" ")[0];
-        if (command.equals(".sban")) {
-            event.setCancelled(true);
-            if (!onCheck) {
-                ChatManager.ClientMessage(Colors.RED + "Вы никого не проверяете!");
-                return;
-            }
-            if (PunishmentsManager.GetVkUrl() == null) {
-                ChatManager.ClientMessage(Colors.RED + "У вас не установлена ссылка на вк!");
-                return;
-            }
-            if (message.split(" ", 3).length == 1) {
-                ChatManager.ClientMessage(Colors.RED + "Вы не указали время и причину бана!");
-                return;
-            }
-            if (message.split(" ", 3).length == 2) {
-                ChatManager.ClientMessage(Colors.RED + "Вы не указали причину бана!");
-                return;
-            }
-            String time = message.split(" ", 3)[1];
-            if (!(time.equals("20d")) && !(time.equals("20D")) && !(time.equals("30d")) && !(time.equals("30D"))){
-                ChatManager.ClientMessage(Colors.RED + "Некорректное время бана! (Должно быть 20d/20D или 30d/20D)");
-                return;
-            }
-            String reason = message.split(" ", 3)[2];
-            PunishmentsManager.Punish("/banip", player, time, reason, true);
-            ChatManager.SendMessage("/freezing " + player);
-            ChatManager.SendMessage("/prova");
-            onCheck = false;
-            player = null;
-            RenderEvent.SetOnCheck(onCheck);
-            FreezerEvent.SetPlayer(player);
-            RenderEvent.SetPlayer(player);
-        }
 
-        else if (command.equals(".imute")) {
+        if (PunishmentsManager.IsArrayContains(ChatManager.punishmentsCommands, command)) {
             event.setCancelled(true);
-            if (message.split(" ", 3).length == 1) {
-                ChatManager.ClientMessage(Colors.RED + "Вы не указали ник игрока и причину мута!");
-                return;
+            if (PunishmentsManager.IsArrayContains(ChatManager.tempPunishments, command)) {
+                messageSplit = message.split(" ", 4);
+                String nick = messageSplit[1];
+                String time = messageSplit[2];
+                String reason = messageSplit[3];
+                if (PunishmentsManager.CheckPlayerOnCheck(player, nick)) {
+                    return;
+                }
+                if (!PunishmentsManager.CheckTimeFormat(time)) {
+                    return;
+                }
+                if (PunishmentsManager.IsArrayContains(ChatManager.muteCommands, command)) {
+                    switch (messageSplit.length) {
+                        case (1):
+                            ChatManager.ClientMessage(Colors.RED + "Вы не указали ник игрока, время и причину мута!");
+                            return;
+                        case (2):
+                            ChatManager.ClientMessage(Colors.RED + "Вы не указали время и причину мута!");
+                            return;
+                        case (3):
+                            ChatManager.ClientMessage(Colors.RED + "Вы не указали причину мута!");
+                            return;
+                    }
+                    PunishmentsManager.Punish(command, nick, time, reason, false);
+                }
+                if (PunishmentsManager.IsArrayContains(ChatManager.banCommands, command)) {
+                    if (!CheckVK()) {
+                        return;
+                    }
+                    switch (messageSplit.length) {
+                        case (1):
+                            ChatManager.ClientMessage(Colors.RED + "Вы не указали ник игрока, время и причину бана!");
+                            return;
+                        case (2):
+                            ChatManager.ClientMessage(Colors.RED + "Вы не указали время и причину бана!");
+                            return;
+                        case (3):
+                            ChatManager.ClientMessage(Colors.RED + "Вы не указали причину бана!");
+                            return;
+                    }
+                    PunishmentsManager.Punish(command, nick, time, reason, true);
+                }
             }
-            if (message.split(" ", 3).length == 2) {
-                ChatManager.ClientMessage(Colors.RED + "Вы не указали причину мута!");
-                return;
-            }
-            String nick = message.split(" ", 3)[1];
-            if (onCheck && nick.equals(player)) {
-                ChatManager.ClientMessage(Colors.RED + "Вы не можете замутить этого игрока, " +
-                        "так как он находится у вас на проверке!");
-                return;
-            }
-            String reason = message.split(" ", 3)[2];
-            PunishmentsManager.Punish("/mute", nick, reason, false);
-        }
-
-        else if (command.equals(".iban")) {
-            event.setCancelled(true);
-            if (message.split(" ", 3).length == 1) {
-                ChatManager.ClientMessage(Colors.RED + "Вы не указали ник игрока и причину бана!");
-                return;
-            }
-            if (message.split(" ", 3).length == 2) {
-                ChatManager.ClientMessage(Colors.RED + "Вы не указали причину бана!");
-                return;
-            }
-            if (PunishmentsManager.GetVkUrl() == null) {
-                ChatManager.ClientMessage(Colors.RED + "У вас не установлена ссылка на вк!");
-                return;
-            }
-            String nick = message.split(" ", 3)[1];
-            if (onCheck && nick.equals(player)) {
-                ChatManager.ClientMessage(Colors.RED + "Вы не можете забанить этого игрока, " +
-                        "так как он находится у вас на проверке!");
-                return;
-            }
-            String reason = message.split(" ", 3)[2];
-            PunishmentsManager.Punish("/ban", nick, reason, true);
-        }
-
-        else if (command.equals(".ibanip")) {
-            event.setCancelled(true);
-            if (PunishmentsManager.GetVkUrl() == null) {
-                ChatManager.ClientMessage(Colors.RED + "У вас не установлена ссылка на вк!");
-                return;
-            }
-            if (message.split(" ", 3).length == 1) {
-                ChatManager.ClientMessage(Colors.RED + "Вы не указали ник игрока и причину бана!");
-                return;
-            }
-            if (message.split(" ", 3).length == 2) {
-                ChatManager.ClientMessage(Colors.RED + "Вы не указали причину бана!");
-                return;
-            }
-            String nick = message.split(" ", 3)[1];
-            if (onCheck && nick.equals(player)) {
-                ChatManager.ClientMessage(Colors.RED + "Вы не можете забанить этого игрока, " +
-                        "так как он находится у вас на проверке!");
-                return;
-            }
-            String reason = message.split(" ", 3)[2];
-            PunishmentsManager.Punish("/banip", nick, reason, true);
-        }
-
-        else if (command.equals(".tmute")) {
-            event.setCancelled(true);
-            if (message.split(" ", 4).length == 1) {
-                ChatManager.ClientMessage(Colors.RED + "Вы не указали ник игрока, время и причину мута!");
-                return;
-            }
-            if (message.split(" ", 4).length == 2) {
-                ChatManager.ClientMessage(Colors.RED + "Вы не указали время и причину мута!");
-                return;
-            }
-            if (message.split(" ", 4).length == 3) {
-                ChatManager.ClientMessage(Colors.RED + "Вы не указали причину мута!");
-                return;
-            }
-            String nick = message.split(" ", 4)[1];
-            if (onCheck && nick.equals(player)) {
-                ChatManager.ClientMessage(Colors.RED + "Вы не можете замутить этого игрока, " +
-                        "так как он находится у вас на проверке!");
-                return;
-            }
-            String time = message.split(" ", 4)[2];
-            if (!PunishmentsManager.CheckTimeFormat(time)) {
-                ChatManager.ClientMessage(Colors.RED + "Неверный формат времени! Должно быть *h/*H или *d/*D");
-                return;
-            }
-            String reason = message.split(" ", 4)[3];
-            PunishmentsManager.Punish("/tempmute", nick, time, reason, false);
-        }
-
-        else if (command.equals(".tban")) {
-            event.setCancelled(true);
-            if (PunishmentsManager.GetVkUrl() == null) {
-                ChatManager.ClientMessage(Colors.RED + "У вас не установлена ссылка на вк!");
-                return;
-            }
-            if (message.split(" ", 4).length == 1) {
-                ChatManager.ClientMessage(Colors.RED + "Вы не указали ник игрока, время и причину бана!");
-                return;
-            }
-            if (message.split(" ", 4).length == 2) {
-                ChatManager.ClientMessage(Colors.RED + "Вы не указали время и причину бана!");
-                return;
-            }
-            if (message.split(" ", 4).length == 3) {
-                ChatManager.ClientMessage(Colors.RED + "Вы не указали причину бана!");
-                return;
-            }
-            String nick = message.split(" ", 4)[1];
-            if (onCheck && nick.equals(player)) {
-                ChatManager.ClientMessage(Colors.RED + "Вы не можете забанить этого игрока, " +
-                        "так как он находится у вас на проверке!");
-                return;
-            }
-            String time = message.split(" ", 4)[2];
-            if (!PunishmentsManager.CheckTimeFormat(time)) {
-                ChatManager.ClientMessage(Colors.RED + "Неверный формат времени! Должно быть *h/*H или *d/*D");
-                return;
-            }
-            String reason = message.split(" ", 4)[3];
-            PunishmentsManager.Punish("/tempban", nick, time, reason, true);
-        }
-
-        else if (command.equals(".tbanip")) {
-            event.setCancelled(true);
-            if (PunishmentsManager.GetVkUrl() == null) {
-                ChatManager.ClientMessage(Colors.RED + "У вас не установлена ссылка на вк!");
-                return;
-            }
-            if (message.split(" ", 4).length == 1) {
-                ChatManager.ClientMessage(Colors.RED + "Вы не указали ник игрока, время и причину бана!");
-                return;
-            }
-            if (message.split(" ", 4).length == 2) {
-                ChatManager.ClientMessage(Colors.RED + "Вы не указали время и причину бана!");
-                return;
-            }
-            if (message.split(" ", 4).length == 3) {
-                ChatManager.ClientMessage(Colors.RED + "Вы не указали причину бана!");
-                return;
-            }
-            String nick = message.split(" ", 4)[1];
-            String time = message.split(" ", 4)[2];
-            if (!PunishmentsManager.CheckTimeFormat(time)) {
-                ChatManager.ClientMessage(Colors.RED + "Неверный формат времени! Должно быть *h/*H или *d/*D");
-                return;
-            }
-            String reason = message.split(" ", 4)[3];
-            PunishmentsManager.Punish("/banip", nick, time, reason, true);
-            if (onCheck && nick.equals(player)) {
-                onCheck = false;
-                RenderEvent.SetOnCheck(onCheck);
-                player = null;
-                FreezerEvent.SetPlayer(player);
-                RenderEvent.SetPlayer(player);
+            else if (PunishmentsManager.IsArrayContains(ChatManager.infinityPunishments, command)) {
+                messageSplit = message.split(" ", 3);
+                String nick = messageSplit[1];
+                String reason = messageSplit[2];
+                if (PunishmentsManager.CheckPlayerOnCheck(player, nick)) {
+                    return;
+                }
+                if (PunishmentsManager.IsArrayContains(ChatManager.muteCommands, command)) {
+                    switch (messageSplit.length) {
+                        case (1):
+                            ChatManager.ClientMessage(Colors.RED + "Вы не указали ник игрока и причину мута!");
+                            return;
+                        case (2):
+                            ChatManager.ClientMessage(Colors.RED + "Вы не указали причину мута!");
+                            return;
+                    }
+                    PunishmentsManager.Punish(command, nick, reason, false);
+                }
+                if (PunishmentsManager.IsArrayContains(ChatManager.banCommands, command)) {
+                    if (!CheckVK()) {
+                        return;
+                    }
+                    switch (messageSplit.length) {
+                        case (1):
+                            ChatManager.ClientMessage(Colors.RED + "Вы не указали ник игрока и причину бана!");
+                            return;
+                        case (2):
+                            ChatManager.ClientMessage(Colors.RED + "Вы не указали причину бана!");
+                            return;
+                    }
+                    PunishmentsManager.Punish(command, nick, reason, true);
+                }
             }
         }
     }
@@ -219,7 +101,11 @@ public class Punishments {
         player = value;
     }
 
-    public static void SetOnCheck(Boolean value) {
-        onCheck = value;
+    private static boolean CheckVK() {
+        if (PunishmentsManager.GetVkUrl() == null) {
+            ChatManager.ClientMessage(Colors.RED + "У вас не установлена ссылка на вк!");
+            return false;
+        }
+        return true;
     }
 }

@@ -7,7 +7,7 @@ import com.holymoderation.addon.ChatUtils.ChatManager;
 import com.holymoderation.addon.ChatUtils.Colors;
 import com.holymoderation.addon.ChatUtils.PunishmentsManager;
 
-public class HMSettings {
+public class Settings {
 
     @Subscribe
     public void OnUpdate(MessageSendEvent event) {
@@ -16,19 +16,19 @@ public class HMSettings {
         if (command.equals(".textlist")) {
             event.setCancelled(true);
             ChatManager.ClientMessage(Colors.AQUA + "Список ваших текстов:");
-            if (FreezerEvent.GetTexts() == null)
+            if (Freezer.GetTexts() == null)
                 ChatManager.ClientMessage(Colors.RED + "У вас нет настроенных текстов");
             else
-                for (int i = 0; i < FreezerEvent.GetSplitTexts().length; i++)
+                for (int i = 0; i < Freezer.GetSplitTexts().length; i++)
                 {
-                    ChatManager.ClientMessage((i+1) + ". " + FreezerEvent.GetSplitTexts()[i]);
+                    ChatManager.ClientMessage((i+1) + ". " + Freezer.GetSplitTexts()[i]);
                 }
         }
 
         else if (command.equals(".dupeip")) {
             event.setCancelled(true);
-            FreezerEvent.SetDupeIp(!FreezerEvent.GetDupeIp());
-            if (FreezerEvent.GetDupeIp())
+            Freezer.SetDupeIp(!Freezer.GetDupeIp());
+            if (Freezer.GetDupeIp())
                 ChatManager.ClientMessage(Colors.YELLOW + "Автоматический /dupeip" + Colors.GREEN + " ВКЛЮЧЁН");
             else
                 ChatManager.ClientMessage(Colors.YELLOW + "Автоматический /dupeip" + Colors.RED + " ВЫКЛЮЧЕН");
@@ -70,13 +70,13 @@ public class HMSettings {
                 return;
             }
             String value = message.split(" ", 2)[1];
-            FreezerEvent.AddText(value);
+            Freezer.AddText(value);
             ChatManager.ClientMessage(Colors.GREEN + "Вы добавили новый текст!");
         }
 
         else if (command.equals(".textremove")) {
             event.setCancelled(true);
-            if (FreezerEvent.GetTexts() == null) {
+            if (Freezer.GetTexts() == null) {
                 ChatManager.ClientMessage(Colors.RED + "У вас нет настроенных текстов");
                 return;
             }
@@ -90,19 +90,19 @@ public class HMSettings {
                 return;
             }
             int index = Integer.parseInt(indexText) - 1;
-            if (index >= FreezerEvent.GetSplitTexts().length || index < 0) {
+            if (index >= Freezer.GetSplitTexts().length || index < 0) {
                 ChatManager.ClientMessage(Colors.RED
                         + "Элемента с таким номером в списке ваших текстов не существует!");
                 return;
             }
-            FreezerEvent.RemoveText(index);
+            Freezer.RemoveText(index);
             ChatManager.ClientMessage(Colors.RED + "Вы удалили текст номер "
                     + Colors.GREEN + message.split(" ", 0)[1] + "!");
         }
 
         else if (command.equals(".textedit")) {
             event.setCancelled(true);
-            if (FreezerEvent.GetTexts() == null) {
+            if (Freezer.GetTexts() == null) {
                 ChatManager.ClientMessage(Colors.RED + "У вас нет настроенных текстов");
                 return;
             }
@@ -120,19 +120,19 @@ public class HMSettings {
                 ChatManager.ClientMessage(Colors.RED + "Вы не указали новый текст!");
                 return;
             }
-            if (index >= FreezerEvent.GetSplitTexts().length || index < 0) {
+            if (index >= Freezer.GetSplitTexts().length || index < 0) {
                 ChatManager.ClientMessage(Colors.RED
                         + "Элемента с таким номером в списке ваших текстов не существует!");
                 return;
             }
             String text = message.split(" ", 3)[2];
-            FreezerEvent.EditText(index, text);
+            Freezer.EditText(index, text);
             ChatManager.ClientMessage(Colors.YELLOW + "Вы изменили текст номер " + Colors.GREEN + (index + 1));
         }
 
         else if (message.equals(".textclear")) {
             event.setCancelled(true);
-            FreezerEvent.ClearTexts();
+            Freezer.ClearTexts();
             ChatManager.ClientMessage(Colors.GREEN + "Вы успешно очистили все тексты!");
         }
 
@@ -161,8 +161,8 @@ public class HMSettings {
                 return;
             }
 
-            RenderEvent.SetxCoords(Integer.parseInt(xText));
-            RenderEvent.SetyCoords(Integer.parseInt(yText));
+            Render.SetxCoords(Integer.parseInt(xText));
+            Render.SetyCoords(Integer.parseInt(yText));
             ChatManager.ClientMessage(Colors.GREEN + "Успешно применено!");
         }
     }

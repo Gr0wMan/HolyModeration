@@ -1,5 +1,7 @@
 package com.holymoderation.addon.ChatUtils;
 
+import java.util.Arrays;
+
 public class PunishmentsManager {
     private static String vkUrl = null;
 
@@ -18,9 +20,23 @@ public class PunishmentsManager {
     public static boolean CheckTimeFormat(String message) {
         char lastChar = message.charAt(message.length() - 1);
         if (lastChar != 'h' && lastChar != 'H' && lastChar != 'd' && lastChar != 'D') {
+            ChatManager.ClientMessage(Colors.RED + "Неверный формат времени! Должно быть *h/*H или *d/*D");
             return false;
         }
         return true;
+    }
+
+    public static boolean IsArrayContains(String[] array, String value) {
+        return Arrays.asList(array).contains(value);
+    }
+
+    public static boolean CheckPlayerOnCheck(String player, String nick) {
+        if (player != null && player.equals(nick)) {
+            ChatManager.ClientMessage(Colors.RED + "Вы не можете наказать этого игрока, " +
+                    "так как он находится у вас на проверке!");
+            return true;
+        }
+        return false;
     }
 
     public static void Punish(String command, String player, String reason, boolean addVk) {

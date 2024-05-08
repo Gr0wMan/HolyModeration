@@ -1,13 +1,12 @@
 package com.holymoderation.addon.events;
 
-import com.labymedia.connect.api.chat.Chat;
 import net.labymod.api.event.Subscribe;
 import net.labymod.api.event.events.client.chat.MessageSendEvent;
 
 import com.holymoderation.addon.ChatUtils.Colors;
 import com.holymoderation.addon.ChatUtils.ChatManager;
 
-public class HMHelp {
+public class Help {
 
     @Subscribe
     public void OnUpdate(MessageSendEvent event) {
@@ -68,6 +67,8 @@ public class HMHelp {
             ChatManager.ClientMessage("");
             ChatManager.ClientMessage(Colors.GREEN + "Инструкция к моду:");
             ChatManager.ClientMessage("https://docs.google.com/document/d/1iSD-mqQ8dKcQBjmJ6LWHEwbOtN5JDV7fUo5wcID9VK4/edit?usp=sharing");
+            ChatManager.ClientMessage(Colors.GREEN + "Исходный код:");
+            ChatManager.ClientMessage("https://github.com/Gr0wMan/HolyModeration");
         }
     }
 }
