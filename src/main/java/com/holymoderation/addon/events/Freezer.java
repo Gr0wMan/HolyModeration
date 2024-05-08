@@ -15,89 +15,91 @@ public class Freezer {
     private static Boolean dupeIpEnabled = false;
     private static String texts = null;
     private static String player = null;
+    private static String[] messageSplit;
 
     @Subscribe
     public void OnUpdate(MessageSendEvent event) {
         String message = event.getMessage();
         String command = message.split(" ")[0];
 
-        if (command.equals(".freezing") || command.equals(".frz")) {
+        if (ChatManager.IsArrayContains(ChatManager.settingsCommands, command)) {
             event.setCancelled(true);
-            if (player != null) {
-                ChatManager.ClientMessage(Colors.RED + "Вы уже проверяете какого-то игрока! " +
-                        Colors.RED + "Сначала закончите текущую проверку. --> " + Colors.GOLD + ".unfreezing"
-                        + " или " + Colors.GOLD + ".unfrz");
-                return;
-            }
-            player = event.getMessage().split(" ")[1];
-            Render.SetPlayer(player);
-            Punishments.SetPlayer(player);
-            ChatManager.SendMessage("/freezing " + player);
-            ChatManager.SendMessage("/checkmute " + player);
-            ChatManager.SendMessage("/prova");
-            Render.StopWatchStart();
-            if (dupeIpEnabled)
-                ChatManager.SendMessage("/dupeip " + player);
-            if (texts == null) {
-                ChatManager.ClientMessage(Colors.RED + "У вас нет настроенных текстов для отправки! " +
-                        "Добавить тексты --> " + Colors.GOLD + ".addtext");
-                ChatManager.ClientMessage(Colors.RED + "Просмотреть тексты --> " + Colors.GOLD + ".textlist");
-            }
-            else
-                for (String text : GetSplitTexts()) {
-                    ChatManager.SendMessage("/msg " + player + " " + text);
-            }
-        }
+            switch (command) {
+                case (".freezing"):
+                case (".frz"):
+                    messageSplit = message.split(" ");
+                    player = messageSplit[1];
+                    if (player != null) {
+                        ChatManager.ClientMessage(Colors.RED + "Вы уже проверяете какого-то игрока! " +
+                                Colors.RED + "Сначала закончите текущую проверку. --> " + Colors.GOLD + ".unfreezing"
+                                + " или " + Colors.GOLD + ".unfrz");
+                        return;
+                    }
+                    Render.SetPlayer(player);
+                    Punishments.SetPlayer(player);
+                    ChatManager.SendMessage("/freezing " + player);
+                    ChatManager.SendMessage("/checkmute " + player);
+                    ChatManager.SendMessage("/prova");
+                    Render.StopWatchStart();
+                    if (dupeIpEnabled)
+                        ChatManager.SendMessage("/dupeip " + player);
+                    if (texts == null) {
+                        ChatManager.ClientMessage(Colors.RED + "У вас нет настроенных текстов для отправки! " +
+                                "Добавить тексты --> " + Colors.GOLD + ".addtext");
+                        ChatManager.ClientMessage(Colors.RED + "Просмотреть тексты --> " + Colors.GOLD + ".textlist");
+                    }
+                    else {
+                        for (String text : GetSplitTexts()) {
+                            ChatManager.SendMessage("/msg " + player + " " + text);
+                        }
+                    }
 
-        else if (command.equals(".unfreezing") || message.equals(".unfrz")) {
-            event.setCancelled(true);
-            if (player == null) {
-                ChatManager.ClientMessage(Colors.RED + "Вы никого не проверяете!");
-                return;
+                case (".unfreezing"):
+                case(".unfrz"):
+                    if (player == null) {
+                        ChatManager.ClientMessage(Colors.RED + "Вы никого не проверяете!");
+                        return;
+                    }
+                    ChatManager.SendMessage("/freezing " + player);
+                    ChatManager.SendMessage("/prova");
+                    player = null;
+                    Render.SetPlayer(player);
+                    Punishments.SetPlayer(player);
+                case (".sban"):
+                    if (player == null) {
+                        ChatManager.ClientMessage(Colors.RED + "Вы никого не проверяете!");
+                        return;
+                    }
+                    switch (message.split(" ", 3).length) {
+                        case (1):
+                            ChatManager.ClientMessage(Colors.RED + "Вы не указали время и причину бана!");
+                            return;
+                        case (2):
+                            ChatManager.ClientMessage(Colors.RED + "Вы не указали причину бана!");
+                            return;
+                    }
+                    String time = message.split(" ", 3)[1];
+                    String reason = message.split(" ", 3)[2];
+                    if (!PunishmentsManager.CheckTimeFormat(time)) {
+                        return;
+                    }
+                    PunishmentsManager.Punish("/banip", player, time, reason, true);
+                    ChatManager.SendMessage("/freezing " + player);
+                    ChatManager.SendMessage("/prova");
+                    player = null;
+                    Punishments.SetPlayer(player);
+                    Render.SetPlayer(player);
+                case ("/freezing"):
+                case ("/frz"):
+                    String unFrzPlayer = message.split(" ")[1];
+                    if (unFrzPlayer.equals(player)) {
+                        ChatManager.ClientMessage(Colors.RED + "Этот игрок находиться у вас на проверке! " +
+                                "Для его разморозки используйте" + Colors.GOLD + " .unfreezing" + Colors.RED
+                                + " или " + Colors.GOLD + ".unfrz");
+                        return;
+                    }
+                    ChatManager.SendMessage("/freezing " + unFrzPlayer);
             }
-            ChatManager.SendMessage("/freezing " + player);
-            ChatManager.SendMessage("/prova");
-            player = null;
-            Render.SetPlayer(player);
-            Punishments.SetPlayer(player);
-        }
-
-        else if (command.equals(".sban")) {
-            if (player == null) {
-                ChatManager.ClientMessage(Colors.RED + "Вы никого не проверяете!");
-                return;
-            }
-            switch (message.split(" ", 3).length) {
-                case (1):
-                    ChatManager.ClientMessage(Colors.RED + "Вы не указали время и причину бана!");
-                    return;
-                case (2):
-                    ChatManager.ClientMessage(Colors.RED + "Вы не указали причину бана!");
-                    return;
-            }
-            String time = message.split(" ", 3)[1];
-            String reason = message.split(" ", 3)[2];
-            if (!PunishmentsManager.CheckTimeFormat(time)) {
-                return;
-            }
-            PunishmentsManager.Punish("/banip", player, time, reason, true);
-            ChatManager.SendMessage("/freezing " + player);
-            ChatManager.SendMessage("/prova");
-            player = null;
-            Punishments.SetPlayer(player);
-            Render.SetPlayer(player);
-        }
-
-        else if (command.equals("/freezing") || command.equals("/frz")) {
-            event.setCancelled(true);
-            String unFrzPlayer = message.split(" ")[1];
-            if (unFrzPlayer.equals(player)) {
-                ChatManager.ClientMessage(Colors.RED + "Этот игрок находиться у вас на проверке! " +
-                        "Для его разморозки используйте" + Colors.GOLD + " .unfreezing" + Colors.RED
-                        + " или " + Colors.GOLD + ".unfrz");
-                return;
-            }
-            ChatManager.SendMessage("/freezing " + unFrzPlayer);
         }
     }
 
@@ -114,10 +116,6 @@ public class Freezer {
             return null;
         else
             return texts.split("%", 0);
-    }
-
-    public static void SetPlayer(String value) {
-        player = value;
     }
 
     public static void SetTexts(String value) {

@@ -1,14 +1,11 @@
 package com.holymoderation.addon.events;
 
-import com.labymedia.connect.api.chat.Chat;
 import net.labymod.api.event.Subscribe;
 import net.labymod.api.event.events.client.chat.MessageSendEvent;
 
 import com.holymoderation.addon.ChatUtils.ChatManager;
 import com.holymoderation.addon.ChatUtils.Colors;
 import com.holymoderation.addon.ChatUtils.PunishmentsManager;
-
-import java.util.Arrays;
 
 public class Punishments {
     private static String player = null;
@@ -19,9 +16,9 @@ public class Punishments {
         String message = event.getMessage();
         String command = message.split(" ", 0)[0];
 
-        if (PunishmentsManager.IsArrayContains(ChatManager.punishmentsCommands, command)) {
+        if (ChatManager.IsArrayContains(ChatManager.punishmentsCommands, command)) {
             event.setCancelled(true);
-            if (PunishmentsManager.IsArrayContains(ChatManager.tempPunishments, command)) {
+            if (ChatManager.IsArrayContains(ChatManager.tempPunishments, command)) {
                 messageSplit = message.split(" ", 4);
                 switch (messageSplit.length) {
                     case (1):
@@ -43,17 +40,17 @@ public class Punishments {
                 if (!PunishmentsManager.CheckTimeFormat(time)) {
                     return;
                 }
-                if (PunishmentsManager.IsArrayContains(ChatManager.muteCommands, command)) {
+                if (ChatManager.IsArrayContains(ChatManager.muteCommands, command)) {
                     PunishmentsManager.Punish(command, nick, time, reason, false);
                 }
-                if (PunishmentsManager.IsArrayContains(ChatManager.banCommands, command)) {
+                if (ChatManager.IsArrayContains(ChatManager.banCommands, command)) {
                     if (!PunishmentsManager.CheckVK()) {
                         return;
                     }
                     PunishmentsManager.Punish(command, nick, time, reason, true);
                 }
             }
-            else if (PunishmentsManager.IsArrayContains(ChatManager.infinityPunishments, command)) {
+            else if (ChatManager.IsArrayContains(ChatManager.infinityPunishments, command)) {
                 messageSplit = message.split(" ", 3);
                 switch (messageSplit.length) {
                     case (1):
@@ -68,10 +65,10 @@ public class Punishments {
                 if (PunishmentsManager.CheckPlayerOnCheck(player, nick)) {
                     return;
                 }
-                if (PunishmentsManager.IsArrayContains(ChatManager.muteCommands, command)) {
+                if (ChatManager.IsArrayContains(ChatManager.muteCommands, command)) {
                     PunishmentsManager.Punish(command, nick, reason, false);
                 }
-                if (PunishmentsManager.IsArrayContains(ChatManager.banCommands, command)) {
+                if (ChatManager.IsArrayContains(ChatManager.banCommands, command)) {
                     if (!PunishmentsManager.CheckVK()) {
                         return;
                     }

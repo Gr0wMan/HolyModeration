@@ -5,6 +5,8 @@ import net.minecraft.util.text.StringTextComponent;
 
 import net.labymod.core.LabyModCore;
 
+import java.util.Arrays;
+
 public class ChatManager {
 
     public static String[] punishmentsCommands = {".imute", ".imuteip",
@@ -23,5 +25,9 @@ public class ChatManager {
 
     public static void ClientMessage(String message) {
         Minecraft.getInstance().player.sendMessage(new StringTextComponent(message), null);
+    }
+
+    public static boolean IsArrayContains(String[] array, String value) {
+        return Arrays.asList(array).contains(value);
     }
 }

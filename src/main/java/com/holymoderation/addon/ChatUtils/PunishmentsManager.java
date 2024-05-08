@@ -1,7 +1,5 @@
 package com.holymoderation.addon.ChatUtils;
 
-import java.util.Arrays;
-
 public class PunishmentsManager {
     private static String vkUrl = null;
 
@@ -25,10 +23,6 @@ public class PunishmentsManager {
             return false;
         }
         return true;
-    }
-
-    public static boolean IsArrayContains(String[] array, String value) {
-        return Arrays.asList(array).contains(value);
     }
 
     public static boolean CheckPlayerOnCheck(String player, String nick) {
