@@ -20,7 +20,7 @@ public class Render {
 
     private static int rainbowDelay = 300;
 
-    private static int customColor = 0x0;
+    public static int customColor = 0xFFFFFF;
 
     @Subscribe
     public void onRender(RenderGameOverlayEvent event) {

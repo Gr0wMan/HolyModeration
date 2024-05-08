@@ -123,7 +123,7 @@ public class Settings {
                     case (".setcolor"):
                         String stringColor = messageSplit[1];
                         if (!ChatManager.CheckCorrectInt(stringColor)) {
-                            ChatManager.ClientMessage(Colors.RED + "Некорректный цветовой код!");
+                            ChatManager.ClientMessage(Colors.RED + "Некорректный цветовой код!"); //0xFFFFFF и т.п. в int не превратишь
                             return;
                         }
                         Render.SetCustomColor(Integer.parseInt(stringColor));
