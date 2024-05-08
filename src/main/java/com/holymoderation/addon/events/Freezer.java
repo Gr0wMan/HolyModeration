@@ -36,6 +36,7 @@ public class Freezer {
                     }
                     if (messageSplit.length < 2) {
                         ChatManager.ClientMessage(Colors.RED + "Вы не указали ник игрока!");
+                        return;
                     }
                     player = messageSplit[1];
                     Render.SetPlayer(player);
@@ -50,6 +51,7 @@ public class Freezer {
                         ChatManager.ClientMessage(Colors.RED + "У вас нет настроенных текстов для отправки! " +
                                 "Добавить тексты --> " + Colors.GOLD + ".addtext");
                         ChatManager.ClientMessage(Colors.RED + "Просмотреть тексты --> " + Colors.GOLD + ".textlist");
+                        return;
                     }
                     else {
                         for (String text : GetSplitTexts()) {
@@ -107,6 +109,10 @@ public class Freezer {
                 case ("/freezing"):
                 case ("/frz"): {
                     messageSplit = message.split(" ", 2);
+                    if (messageSplit.length < 2) {
+                        ChatManager.ClientMessage(Colors.RED + "Вы не указали ник игрока!");
+                        return;
+                    }
                     String unFrzPlayer = messageSplit[1];
                     if (unFrzPlayer.equals(player)) {
                         ChatManager.ClientMessage(Colors.RED + "Этот игрок находиться у вас на проверке! " +
