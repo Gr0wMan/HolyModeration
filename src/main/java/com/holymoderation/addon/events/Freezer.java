@@ -25,8 +25,8 @@ public class Freezer {
         if (ChatManager.IsArrayContains(ChatManager.FreezerCommands, command)) {
             event.setCancelled(true);
             switch (command) {
-                case (".freezing"):
-                case (".frz"): {
+                case ("/freezing"):
+                case ("/frz"): {
                     messageSplit = message.split(" ", 2);
                     if (player != null) {
                         ChatManager.ClientMessage(Colors.RED + "Вы уже проверяете какого-то игрока! " +
@@ -61,8 +61,8 @@ public class Freezer {
                     break;
                 }
 
-                case (".unfreezing"):
-                case(".unfrz"): {
+                case ("/unfreezing"):
+                case("/unfrz"): {
                     if (player == null) {
                         ChatManager.ClientMessage(Colors.RED + "Вы никого не проверяете!");
                         return;
@@ -75,7 +75,7 @@ public class Freezer {
                     break;
                 }
 
-                case (".sban"): {
+                case ("/sban"): {
                     messageSplit = message.split(" ", 3);
                     if (player == null) {
                         ChatManager.ClientMessage(Colors.RED + "Вы никого не проверяете!");
@@ -106,8 +106,8 @@ public class Freezer {
                     break;
                 }
 
-                case ("/freezing"):
-                case ("/frz"): {
+                case (".freezing"):
+                case (".frz"): {
                     messageSplit = message.split(" ", 2);
                     if (messageSplit.length < 2) {
                         ChatManager.ClientMessage(Colors.RED + "Вы не указали ник игрока!");
