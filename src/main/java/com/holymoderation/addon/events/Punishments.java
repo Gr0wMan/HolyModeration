@@ -21,9 +21,7 @@ public class Punishments {
 
         if (PunishmentsManager.IsArrayContains(ChatManager.punishmentsCommands, command)) {
             event.setCancelled(true);
-            ChatManager.ClientMessage("Такое наказание есть");
             if (PunishmentsManager.IsArrayContains(ChatManager.tempPunishments, command)) {
-                ChatManager.ClientMessage("Это наказание временное");
                 messageSplit = message.split(" ", 4);
                 switch (messageSplit.length) {
                     case (1):
@@ -46,11 +44,9 @@ public class Punishments {
                     return;
                 }
                 if (PunishmentsManager.IsArrayContains(ChatManager.muteCommands, command)) {
-                    ChatManager.ClientMessage("Это временный мут");
                     PunishmentsManager.Punish(command, nick, time, reason, false);
                 }
                 if (PunishmentsManager.IsArrayContains(ChatManager.banCommands, command)) {
-                    ChatManager.ClientMessage("Это временный бан");
                     if (!PunishmentsManager.CheckVK()) {
                         return;
                     }
@@ -58,7 +54,6 @@ public class Punishments {
                 }
             }
             else if (PunishmentsManager.IsArrayContains(ChatManager.infinityPunishments, command)) {
-                ChatManager.ClientMessage("Это наказание бесконечное");
                 messageSplit = message.split(" ", 3);
                 switch (messageSplit.length) {
                     case (1):
@@ -74,11 +69,9 @@ public class Punishments {
                     return;
                 }
                 if (PunishmentsManager.IsArrayContains(ChatManager.muteCommands, command)) {
-                    ChatManager.ClientMessage("Это бесконечный мут");
                     PunishmentsManager.Punish(command, nick, reason, false);
                 }
                 if (PunishmentsManager.IsArrayContains(ChatManager.banCommands, command)) {
-                    ChatManager.ClientMessage("Это бесконечный бан");
                     if (!PunishmentsManager.CheckVK()) {
                         return;
                     }
