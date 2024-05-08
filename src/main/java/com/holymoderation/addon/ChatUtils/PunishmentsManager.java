@@ -39,14 +39,18 @@ public class PunishmentsManager {
         return false;
     }
 
-    public static void Punish(String command, String player, String reason, boolean addVk) {
+    public static void Punish(String punishCommand, String player, String reason, boolean addVk) {
+        String command = punishCommand;
+        command.toCharArray()[0] = '/';
         if (addVk)
             ChatManager.SendMessage(command + " " + player + " " + reason + " | Вопросы? " + vkUrl + " -s");
         else
             ChatManager.SendMessage(command + " " + player + " " + reason + " -s");
     }
 
-    public static void Punish(String command, String player, String time, String reason, boolean addVk) {
+    public static void Punish(String punishCommand, String player, String time, String reason, boolean addVk) {
+        String command = punishCommand;
+        command.toCharArray()[0] = '/';
         if (addVk)
             ChatManager.SendMessage(command + " " + player + " " + time + " " + reason + " | Вопросы? " + vkUrl + " -s");
         else
