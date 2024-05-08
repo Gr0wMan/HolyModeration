@@ -7,9 +7,11 @@ import net.labymod.core.LabyModCore;
 
 public class ChatManager {
 
-    public static String[] punishmentsCommands = {".hm", ".hmhelp", ".freezing", ".frz", ".unfreezing", ".unfrz", ".sban",
-            "/freezing", "/frz", ".textlist", ".textadd", ".textremove", ".textedit", ".setvk", ".getvk", ".dupeip",
-            ".setcords", ".savecfg", ".imute", ".imuteip", ".tmute", ".tmuteip", ".iban", ".ibanip", ".tban", ".tbanip"};
+    public static String[] punishmentsCommands = {".imute", ".imuteip",
+            ".tmute", ".tmuteip", ".iban", ".ibanip", ".tban", ".tbanip"};
+    public static String[] settingsCommands = {".hm", ".hmhelp", ".freezing", ".frz",
+            ".unfreezing", ".unfrz", ".sban", "/freezing", "/frz", ".textlist", ".textadd",
+            ".textremove", ".textedit", ".setvk", ".getvk", ".dupeip", ".setcords", ".savecfg"};
     public static String[] tempPunishments = {".tmute", ".tmuteip", ".tban", ".tbanip"};
     public static String[] infinityPunishments = {".imute", ".imuteip", ".iban", ".ibanip"};
     public static String[] banCommands = {".iban", ".ibanip", ".tban", ".tbanip"};
