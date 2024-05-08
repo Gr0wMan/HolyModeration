@@ -1,14 +1,10 @@
 package com.holymoderation.addon;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.EventListener;
 import java.util.List;
 
 import com.holymoderation.addon.ChatUtils.PunishmentsManager;
 import net.labymod.api.LabyModAddon;
 import net.labymod.api.event.Subscribe;
-import net.labymod.api.event.events.client.TickEvent;
 import net.labymod.api.event.events.client.chat.MessageSendEvent;
 import net.labymod.settings.elements.*;
 

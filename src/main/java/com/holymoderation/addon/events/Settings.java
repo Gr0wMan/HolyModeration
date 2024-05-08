@@ -7,8 +7,6 @@ import com.holymoderation.addon.ChatUtils.ChatManager;
 import com.holymoderation.addon.ChatUtils.Colors;
 import com.holymoderation.addon.ChatUtils.PunishmentsManager;
 
-import java.util.EventObject;
-
 public class Settings {
     private static String[] messageSplit;
 
