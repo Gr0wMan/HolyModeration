@@ -24,7 +24,7 @@ public class Render {
     @Subscribe
     public void onRender(RenderGameOverlayEvent event) {
         if (player != null) {
-            DrawString(event, "Текущая проверка:", xCoords, yCoords, Rainbow(300));
+            DrawString(event, "Текущая проверка:", xCoords, yCoords, customColor == 0 ? Rainbow(rainbowDelay) : customColor);
             DrawString(event, player + " | " + stopWatch.getTime(TimeUnit.MINUTES) + ":"
                     + (stopWatch.getTime(TimeUnit.SECONDS) - stopWatch.getTime(TimeUnit.MINUTES)*60),
                     (xCoords + 10), (yCoords + 10), customColor == 0 ? Rainbow(rainbowDelay) : customColor);

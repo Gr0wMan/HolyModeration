@@ -58,6 +58,7 @@ public class Settings {
                         for (String color : RenderColors.Colors) {
                             ChatManager.ClientMessage(color);
                         }
+                        break;
                 }
             }
             else if (ChatManager.IsArrayContains(ChatManager.SettingsWithOneArguments, command)) {
@@ -123,6 +124,7 @@ public class Settings {
                         }
                         Render.SetRainbowDelay(Integer.parseInt(stringDelay));
                         ChatManager.ClientMessage(Colors.GREEN + "Успешно применено!");
+                        break;
                     case (".setcolor"):
                         String stringColor = messageSplit[1];
                         int intColor;
@@ -159,6 +161,7 @@ public class Settings {
                                 intColor = Color.WHITE.getRGB();
                         }
                         ChatManager.ClientMessage(Colors.GREEN + "Успешно применено!");
+                        break;
                 }
             }
             else if (ChatManager.IsArrayContains(ChatManager.SettingsWithTwoArguments, command)) {
