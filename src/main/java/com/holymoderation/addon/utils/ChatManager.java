@@ -9,7 +9,7 @@ import java.util.Arrays;
 
 public class ChatManager {
 
-    public static String[] HelpCommands = {".hm", ".hmhelp"};
+    public static String[] HelpCommands = {".hm", ".help"};
 
     public static String[] FreezerCommands = {"/sban", "/freezing", "/frz", "/unfreezing", "/unfrz", ".freezing", ".frz",};
 
