@@ -59,12 +59,12 @@ public class Render {
         yCoords = value;
     }
 
-    public static void SetPlayer(String value) {
-        player = value;
+    public static int GetCustomColor() {
+        return customColor;
     }
 
-    public static void SetRainbowDelay(int delay) {
-        rainbowDelay = delay;
+    public static void SetPlayer(String value) {
+        player = value;
     }
 
     public static void SetCustomColor(int color) {

@@ -27,6 +27,7 @@ public class HolyModeration extends LabyModAddon {
 
   @Override
   public void loadConfig() {
+    Render.SetCustomColor(getConfig().has("custom_color") ? getConfig().get("custom_color").getAsInt() : 0x0);
     Render.SetxCoords(getConfig().has("X") ? getConfig().get("X").getAsInt() : 0);
     Render.SetyCoords(getConfig().has("Y") ? getConfig().get("Y").getAsInt() : 0);
     PunishmentsManager.SetVkUrl(getConfig().has("vk_url") ? getConfig().get("vk_url").getAsString() : null);
@@ -42,6 +43,7 @@ public class HolyModeration extends LabyModAddon {
   public void SaveCfg(MessageSendEvent event) {
     if (event.getMessage().equals(".savecfg")) {
       event.setCancelled(true);
+      HolyModeration.this.getConfig().addProperty("custom_color", Render.GetCustomColor());
       HolyModeration.this.getConfig().addProperty("X", Render.GetxCoords());
       HolyModeration.this.getConfig().addProperty("Y", Render.GetyCoords());
       HolyModeration.this.getConfig().addProperty("vk_url", PunishmentsManager.GetVkUrl());
