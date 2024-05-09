@@ -112,6 +112,9 @@ public class Settings {
                                 + Colors.GREEN + messageSplit[1] + "!");
                         break;
                     case (".setcolor"):
+                        if (messageSplit.length == 1) {
+                            ChatManager.ClientMessage("Вы не указали айди цвета!");
+                        }
                         String stringColor = messageSplit[1];
                         int intColor; {
                             try {

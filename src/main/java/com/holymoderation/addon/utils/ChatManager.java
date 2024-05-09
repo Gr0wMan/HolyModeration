@@ -13,9 +13,8 @@ public class ChatManager {
 
     public static String[] FreezerCommands = {"/sban", "/freezing", "/frz", "/unfreezing", "/unfrz", ".freezing", ".frz",};
 
-    public static String[] SettingsCommands = {".hm", ".hmhelp", ".textlist", ".textclear",
-            ".textadd", ".textremove", ".textedit", ".setvk", ".getvk", ".dupeip",
-            ".setcords", ".savecfg", ".setcolor"};
+    public static String[] SettingsCommands = {".textlist", ".textclear", ".textadd", ".textremove",
+            ".textedit", ".setvk", ".getvk", ".dupeip", ".setcords", ".savecfg", ".setcolor"};
     public static String[] SettingsWithoutArguments = {".textlist", ".textclear",
             ".getvk", ".dupeip", ".savecfg"};
     public static String[] SettingsWithOneArguments = {".textadd",
