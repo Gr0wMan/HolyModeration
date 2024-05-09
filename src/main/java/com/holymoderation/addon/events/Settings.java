@@ -113,7 +113,7 @@ public class Settings {
                         break;
                     case (".setcolor"):
                         if (messageSplit.length == 1) {
-                            ChatManager.ClientMessage("Вы не указали айди цвета!");
+                            ChatManager.ClientMessage(Colors.RED + "Вы не указали айди цвета!");
                         }
                         String stringColor = messageSplit[1];
                         int intColor; {
