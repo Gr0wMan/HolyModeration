@@ -77,11 +77,9 @@ public class Help {
             ChatManager.ClientMessage(Colors.GOLD + "/ban" + Colors.GREEN + " nick reason" + Colors.RESET
                     + " - бан навсегда");
             ChatManager.ClientMessage(Colors.GOLD + "/banip" + Colors.GREEN + " nick reason" + Colors.RESET
-                    + " - бан по айпи навсегда");
+                    + " - бан по айпи на время/навсегда");
             ChatManager.ClientMessage(Colors.GOLD + "/tempban" + Colors.GREEN + " nick time reason" + Colors.RESET
                     + " - бан на время");
-            ChatManager.ClientMessage(Colors.GOLD + "/tempbanip" + Colors.GREEN + " nick time reason" + Colors.RESET
-                    + " - бан по айпи на время");
             ChatManager.ClientMessage("");
             ChatManager.ClientMessage(Colors.GREEN + "Ссылки на инструкцию к моду и исходный код можно найти в файле 'README.TXT'");
 

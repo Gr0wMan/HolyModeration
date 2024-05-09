@@ -22,10 +22,10 @@ public class ChatManager {
     public static String[] SettingsWithTwoArguments = {".textedit",".setcords"};
 
     public static String[] PunishmentsCommands = {"/mute", "/muteip",
-            "/tempmute", "/tempmuteip", "/ban", "/banip", "/tempban", "/tempbanip"};
-    public static String[] TempPunishments = {"/tempmute", "/tempmuteip", "/tempban", "/tempbanip"};
+            "/tempmute", "/tempmuteip", "/ban", "/banip", "/tempban"};
+    public static String[] TempPunishments = {"/tempmute", "/tempmuteip", "/tempban"};
     public static String[] InfinityPunishments = {"/mute", "/muteip", "/ban", "/banip"};
-    public static String[] BanCommands = {"/ban", "/banip", "/tempban", "/tempbanip"};
+    public static String[] BanCommands = {"/ban", "/banip", "/tempban"};
     public static String[] MuteCommands = {"/mute", "/muteip", "/tempmute", "/tempmuteip"};
 
 
