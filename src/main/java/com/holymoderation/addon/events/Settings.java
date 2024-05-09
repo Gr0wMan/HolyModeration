@@ -111,22 +111,18 @@ public class Settings {
                         ChatManager.ClientMessage(Colors.RED + "Вы удалили текст номер "
                                 + Colors.GREEN + messageSplit[1] + "!");
                         break;
-                    case (".setrainbowdelay"):
-                        String stringDelay = messageSplit[1];
-                        if (!ChatManager.CheckCorrectInt(stringDelay)) {
-                            ChatManager.ClientMessage(Colors.RED + "Некорректная задержка!");
-                            return;
-                        }
-                        Render.SetRainbowDelay(Integer.parseInt(stringDelay));
-                        ChatManager.ClientMessage(Colors.GREEN + "Успешно применено!");
-                        break;
                     case (".setcolor"):
                         String stringColor = messageSplit[1];
-                        if (!ChatManager.CheckCorrectInt(stringColor)) {
-                            ChatManager.ClientMessage(Colors.RED + "Некорректный цветовой код!"); //0xFFFFFF и т.п. в int не превратишь
-                            return;
+                        int intColor; {
+                            try {
+                                intColor = Integer.decode(stringColor);
+                            }
+                            catch (NumberFormatException e) {
+                                ChatManager.ClientMessage(Colors.RED + "Некорректный цветовой код!");
+                                return;
+                            }
                         }
-                        Render.SetCustomColor(Integer.parseInt(stringColor));
+                        Render.SetCustomColor(intColor);
                         ChatManager.ClientMessage(Colors.GREEN + "Успешно применено!");
                         break;
                 }
