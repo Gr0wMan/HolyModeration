@@ -3,13 +3,12 @@
 	"id": "holymoderation",
 	"version": "${version}",
 	"name": "HolyModeration",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "An auxiliary mod for moderation on HW (Fabric) | Bugs? vk.com/gr0wman",
 	"authors": [
-		"Me!"
+		"_SenpaiCrown_"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"sources": "https://github.com/Gr0wMan/HolyModeration"
 	},
 	"license": "CC0-1.0",
 	"icon": "assets/holymoderation/icon.png",
@@ -19,11 +18,8 @@
 			"com.holymoderation.HolyModeration"
 		]
 	},
-	"mixins": [
-		"holymoderation.mixins.json"
-	],
 	"depends": {
-		"fabricloader": ">=0.15.11",
+		"fabricloader": ">=0.13",
 		"minecraft": "~1.16.5",
 		"java": ">=8",
 		"fabric": "*"
