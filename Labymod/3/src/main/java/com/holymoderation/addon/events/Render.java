@@ -18,17 +18,15 @@ public class Render {
     private static int xCoords = 0;
     private static int yCoords = 0;
 
-    private static int rainbowDelay = 300;
-
     public static int customColor = 0x0;
 
     @Subscribe
     public void onRender(RenderGameOverlayEvent event) {
         if (player != null) {
-            DrawString(event, "Текущая проверка:", xCoords, yCoords, customColor == 0x0 ? Rainbow(rainbowDelay) : customColor);
+            DrawString(event, "Текущая проверка:", xCoords, yCoords, customColor == 0x0 ? Rainbow(300) : customColor);
             DrawString(event, player + " | " + stopWatch.getTime(TimeUnit.MINUTES) + ":"
                     + (stopWatch.getTime(TimeUnit.SECONDS) - stopWatch.getTime(TimeUnit.MINUTES)*60),
-                    xCoords, (yCoords + 10), customColor == 0x0 ? Rainbow(rainbowDelay) : customColor);
+                    xCoords, (yCoords + 10), customColor == 0x0 ? Rainbow(300) : customColor);
         }
     }
 

@@ -8,6 +8,8 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/addon-example.test.iml" filepath="$PROJECT_DIR$/.idea/modules/addon-example.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.example.addon-example.main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.example.addon-example.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.example.addon-example.test.iml" filepath="$PROJECT_DIR$/.idea/modules/com.example.addon-example.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.holymoderation.LabyCheckAddon.main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.holymoderation.LabyCheckAddon.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.holymoderation.LabyCheckAddon.test.iml" filepath="$PROJECT_DIR$/.idea/modules/com.holymoderation.LabyCheckAddon.test.iml" />
     </modules>
   </component>
 </project>
