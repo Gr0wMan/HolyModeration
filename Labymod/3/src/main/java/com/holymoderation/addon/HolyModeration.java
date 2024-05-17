@@ -23,6 +23,7 @@ public class HolyModeration extends LabyModAddon {
     getApi().getEventService().registerListener(new Settings());
     getApi().getEventService().registerListener(new Help());
     getApi().getEventService().registerListener(new Punishments());
+    getApi().getEventService().registerListener(new Journal());
   }
 
   @Override

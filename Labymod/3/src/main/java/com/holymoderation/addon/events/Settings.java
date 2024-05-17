@@ -1,14 +1,11 @@
 package com.holymoderation.addon.events;
 
-import com.labymedia.connect.api.chat.Chat;
 import net.labymod.api.event.Subscribe;
 import net.labymod.api.event.events.client.chat.MessageSendEvent;
 
 import com.holymoderation.addon.utils.ChatManager;
 import com.holymoderation.addon.utils.Colors;
 import com.holymoderation.addon.utils.PunishmentsManager;
-
-import java.awt.*;
 
 public class Settings {
     private static String[] messageSplit;
@@ -55,7 +52,7 @@ public class Settings {
                         break;
                 }
             }
-            else if (ChatManager.IsArrayContains(ChatManager.SettingsWithOneArguments, command)) {
+            else if (ChatManager.IsArrayContains(ChatManager.SettingsWithOneArgument, command)) {
                 messageSplit = message.split(" ", 2);
                 switch (command) {
                     case (".setvk"):
@@ -126,6 +123,14 @@ public class Settings {
                             }
                         }
                         Render.SetCustomColor(intColor);
+                        ChatManager.ClientMessage(Colors.GREEN + "Успешно применено!");
+                        break;
+                    case (".settoken"):
+                        if (messageSplit.length == 1) {
+                            ChatManager.ClientMessage(Colors.RED + "Вы не указали токен!");
+                            return;
+                        }
+                        Journal.SetToken(messageSplit[1]);
                         ChatManager.ClientMessage(Colors.GREEN + "Успешно применено!");
                         break;
                 }

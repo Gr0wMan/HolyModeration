@@ -14,11 +14,11 @@ public class ChatManager {
     public static String[] FreezerCommands = {"/sban", "/freezing", "/frz", "/unfreezing", "/unfrz", ".freezing", ".frz",};
 
     public static String[] SettingsCommands = {".textlist", ".textclear", ".textadd", ".textremove",
-            ".textedit", ".setvk", ".getvk", ".dupeip", ".setcords", ".savecfg", ".setcolor"};
+            ".textedit", ".setvk", ".getvk", ".dupeip", ".setcords", ".savecfg", ".setcolor", ".settoken"};
     public static String[] SettingsWithoutArguments = {".textlist", ".textclear",
             ".getvk", ".dupeip", ".savecfg"};
-    public static String[] SettingsWithOneArguments = {".textadd",
-            ".textremove", ".setvk", ".setcolor"};
+    public static String[] SettingsWithOneArgument = {".textadd",
+            ".textremove", ".setvk", ".setcolor", ".settoken"};
     public static String[] SettingsWithTwoArguments = {".textedit",".setcords"};
 
     public static String[] PunishmentsCommands = {"/mute", "/muteip",
