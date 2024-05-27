@@ -39,9 +39,9 @@ public class Freezer {
                         return;
                     }
                     player = messageSplit[1];
-                    Render.SetPlayer(player);
+                    Timer.SetPlayer(player);
                     Punishments.SetPlayer(player);
-                    Render.StopWatchStart();
+                    Timer.StopWatchStart();
                     if (dupeIpEnabled)
                         ChatManager.SendMessage("/dupeip " + player);
                     if (texts == null) {
@@ -70,7 +70,7 @@ public class Freezer {
                     ChatManager.SendMessage("/freezing " + player);
                     ChatManager.SendMessage("/prova");
                     player = null;
-                    Render.SetPlayer(player);
+                    Timer.SetPlayer(player);
                     Punishments.SetPlayer(player);
                     break;
                 }
@@ -102,7 +102,7 @@ public class Freezer {
                     ChatManager.SendMessage("/prova");
                     player = null;
                     Punishments.SetPlayer(player);
-                    Render.SetPlayer(player);
+                    Timer.SetPlayer(player);
                     break;
                 }
 

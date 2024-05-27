@@ -63,7 +63,8 @@ public class Help {
             ChatManager.ClientMessage("Чтобы вернуть радужный таймер напишите" + Colors.GOLD + " .setcolor"
                     + Colors.GREEN + " 0");
             ChatManager.ClientMessage(Colors.GOLD + ".savecfg" + Colors.RESET + Colors.RESET
-                    + " - сохраняет конфиг (ваши тексты, ссылку на вк, положение и цвет таймера, автоматический /dupeip)");
+                    + " - сохраняет конфиг (ваши тексты, ссылку на вк, положение и цвет таймера, " +
+                    "автоматический /dupeip, автоматический бан по истечении времени)");
             ChatManager.ClientMessage("");
             ChatManager.ClientMessage(Colors.DARK_RED + "СПИСОК НАКАЗАНИЙ:");
             ChatManager.ClientMessage(Colors.GOLD + "/mute" + Colors.GREEN + " nick reason" + Colors.RESET

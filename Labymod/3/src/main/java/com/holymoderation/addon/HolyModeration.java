@@ -19,7 +19,7 @@ public class HolyModeration extends LabyModAddon {
   public void onEnable() {
     getApi().getEventService().registerListener(this);
     getApi().getEventService().registerListener(new Freezer());
-    getApi().getEventService().registerListener(new Render());
+    getApi().getEventService().registerListener(new Timer());
     getApi().getEventService().registerListener(new Settings());
     getApi().getEventService().registerListener(new Help());
     getApi().getEventService().registerListener(new Punishments());
@@ -28,9 +28,9 @@ public class HolyModeration extends LabyModAddon {
 
   @Override
   public void loadConfig() {
-    Render.SetCustomColor(getConfig().has("custom_color") ? getConfig().get("custom_color").getAsInt() : 0x0);
-    Render.SetxCoords(getConfig().has("X") ? getConfig().get("X").getAsInt() : 0);
-    Render.SetyCoords(getConfig().has("Y") ? getConfig().get("Y").getAsInt() : 0);
+    Timer.SetCustomColor(getConfig().has("custom_color") ? getConfig().get("custom_color").getAsInt() : 0x0);
+    Timer.SetxCoords(getConfig().has("X") ? getConfig().get("X").getAsInt() : 0);
+    Timer.SetyCoords(getConfig().has("Y") ? getConfig().get("Y").getAsInt() : 0);
     PunishmentsManager.SetVkUrl(getConfig().has("vk_url") ? getConfig().get("vk_url").getAsString() : null);
     Freezer.SetDupeIp(getConfig().has("enable_dupe_ip") ? getConfig().get("enable_dupe_ip").getAsBoolean() : false);
     Freezer.SetTexts(getConfig().has("texts_list") ? getConfig().get("texts_list").getAsString() : null);
@@ -44,9 +44,9 @@ public class HolyModeration extends LabyModAddon {
   public void SaveCfg(MessageSendEvent event) {
     if (event.getMessage().equals(".savecfg")) {
       event.setCancelled(true);
-      HolyModeration.this.getConfig().addProperty("custom_color", Render.GetCustomColor());
-      HolyModeration.this.getConfig().addProperty("X", Render.GetxCoords());
-      HolyModeration.this.getConfig().addProperty("Y", Render.GetyCoords());
+      HolyModeration.this.getConfig().addProperty("custom_color", Timer.GetCustomColor());
+      HolyModeration.this.getConfig().addProperty("X", Timer.GetxCoords());
+      HolyModeration.this.getConfig().addProperty("Y", Timer.GetyCoords());
       HolyModeration.this.getConfig().addProperty("vk_url", PunishmentsManager.GetVkUrl());
       HolyModeration.this.getConfig().addProperty("enable_dupe_ip", Freezer.GetDupeIp());
       HolyModeration.this.getConfig().addProperty("texts_list", Freezer.GetTexts());

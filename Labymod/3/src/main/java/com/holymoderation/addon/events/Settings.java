@@ -122,7 +122,7 @@ public class Settings {
                                 return;
                             }
                         }
-                        Render.SetCustomColor(intColor);
+                        Timer.SetCustomColor(intColor);
                         ChatManager.ClientMessage(Colors.GREEN + "Успешно применено!");
                         break;
                     case (".settoken"):
@@ -190,8 +190,8 @@ public class Settings {
                             return;
                         }
 
-                        Render.SetxCoords(Integer.parseInt(xText));
-                        Render.SetyCoords(Integer.parseInt(yText));
+                        Timer.SetxCoords(Integer.parseInt(xText));
+                        Timer.SetyCoords(Integer.parseInt(yText));
                         ChatManager.ClientMessage(Colors.GREEN + "Успешно применено!");
                         break;
                 }

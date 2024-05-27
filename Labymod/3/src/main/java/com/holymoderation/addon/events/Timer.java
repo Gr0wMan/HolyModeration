@@ -10,7 +10,7 @@ import net.labymod.core.LabyModCore;
 
 import org.apache.commons.lang3.time.StopWatch;
 
-public class Render {
+public class Timer {
     private static StopWatch stopWatch;
 
     private static String player = null;
@@ -61,12 +61,12 @@ public class Render {
         return customColor;
     }
 
-    public static void SetPlayer(String value) {
-        player = value;
-    }
-
     public static void SetCustomColor(int color) {
         customColor = color;
+    }
+
+    public static void SetPlayer(String value) {
+        player = value;
     }
 
     private static void DrawString(RenderGameOverlayEvent event, String text, int x, int y, int color) {
