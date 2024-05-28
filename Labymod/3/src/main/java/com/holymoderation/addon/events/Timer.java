@@ -1,12 +1,10 @@
 package com.holymoderation.addon.events;
 
-import java.awt.Color;
 import java.util.concurrent.TimeUnit;
 
-import com.holymoderation.addon.utils.ChatManager;
+import com.holymoderation.addon.utils.RenderHelper;
 import net.labymod.api.event.Subscribe;
 import net.labymod.api.event.events.client.gui.RenderGameOverlayEvent;
-import net.labymod.core.LabyModCore;
 
 import org.apache.commons.lang3.time.StopWatch;
 
@@ -18,22 +16,17 @@ public class Timer {
     private static int xCoords = 0;
     private static int yCoords = 0;
 
-    public static int customColor = 0x0;
+    private static int customColor = 0x0;
 
     @Subscribe
     public void onRender(RenderGameOverlayEvent event) {
         if (player != null) {
-            DrawString(event, "Текущая проверка:", xCoords, yCoords, customColor == 0x0 ? Rainbow(300) : customColor);
-            DrawString(event, player + " | " + stopWatch.getTime(TimeUnit.MINUTES) + ":"
+            RenderHelper.DrawString(event, "Текущая проверка:", xCoords, yCoords,
+                    customColor == 0x0 ? RenderHelper.Rainbow(300) : customColor);
+            RenderHelper.DrawString(event, player + " | " + stopWatch.getTime(TimeUnit.MINUTES) + ":"
                     + (stopWatch.getTime(TimeUnit.SECONDS) - stopWatch.getTime(TimeUnit.MINUTES)*60),
-                    xCoords, (yCoords + 10), customColor == 0x0 ? Rainbow(300) : customColor);
+                    xCoords, (yCoords + 10), customColor == 0x0 ? RenderHelper.Rainbow(300) : customColor);
         }
-    }
-
-    public static int Rainbow(int delay) {
-        double rainbowState = Math.ceil((System.currentTimeMillis() + delay) / 20.0D);
-        rainbowState %= 360.0D;
-        return Color.getHSBColor((float)(rainbowState / 360.0D), 0.5F, 1.0F).getRGB();
     }
 
     public static void StopWatchStart() {
@@ -41,19 +34,19 @@ public class Timer {
         stopWatch.start();
     }
 
-    public static int GetxCoords() {
+    public static int GetXCoords() {
         return xCoords;
     }
 
-    public static int GetyCoords() {
+    public static int GetYCoords() {
         return yCoords;
     }
 
-    public static void SetxCoords(int value) {
+    public static void SetXCoords(int value) {
         xCoords = value;
     }
 
-    public static void SetyCoords(int value) {
+    public static void SetYCoords(int value) {
         yCoords = value;
     }
 
@@ -67,9 +60,5 @@ public class Timer {
 
     public static void SetPlayer(String value) {
         player = value;
-    }
-
-    private static void DrawString(RenderGameOverlayEvent event, String text, int x, int y, int color) {
-        LabyModCore.getMinecraft().getFontRenderer().drawString(event.getMatrixStack(), text, x, y, color);
     }
 }

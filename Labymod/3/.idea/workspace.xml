@@ -83,31 +83,31 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.Build LabyCheck.executor": "Run",
-    "Gradle.LabyCheck [assemble].executor": "Run",
-    "Gradle.LabyCheck [buildEnvironment].executor": "Run",
-    "Gradle.LabyCheck [build].executor": "Run",
-    "Gradle.LabyCheck [clean].executor": "Run",
-    "Gradle.LabyCheck [downloadAPI].executor": "Run",
-    "Gradle.LabyCheck [downloadAssets].executor": "Run",
-    "Gradle.LabyCheck [genIntellijRuns].executor": "Run",
-    "Gradle.LabyCheck [runClient].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/GitProjects/IntelliJ IDEA WorkSpace/HolyModeration/Labymod/3",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Problems",
-    "project.structure.proportion": "0.15039062",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "File.Encoding",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.Build LabyCheck.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.LabyCheck [assemble].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.LabyCheck [buildEnvironment].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.LabyCheck [build].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.LabyCheck [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.LabyCheck [downloadAPI].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.LabyCheck [downloadAssets].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.LabyCheck [genIntellijRuns].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.LabyCheck [runClient].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/GitProjects/IntelliJ IDEA WorkSpace/HolyModeration/Labymod/3&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15039062&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;File.Encoding&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\GitProjects\IntelliJ IDEA WorkSpace\HolyModeration\src\main\java\com" />
@@ -314,7 +314,8 @@
       <workItem from="1715524964591" duration="3745000" />
       <workItem from="1715541377381" duration="1344000" />
       <workItem from="1716549031495" duration="92000" />
-      <workItem from="1716809021591" duration="3817000" />
+      <workItem from="1716809021591" duration="19111000" />
+      <workItem from="1716889412717" duration="8053000" />
     </task>
     <servers />
   </component>

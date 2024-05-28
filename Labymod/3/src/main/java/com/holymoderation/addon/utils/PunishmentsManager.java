@@ -1,5 +1,7 @@
 package com.holymoderation.addon.utils;
 
+import com.holymoderation.addon.events.Counter;
+
 public class PunishmentsManager {
     private static String vkUrl = null;
 
@@ -27,6 +29,18 @@ public class PunishmentsManager {
             ChatManager.SendMessage(command + " " + player + " " + reason + " | Вопросы? " + vkUrl + " -s");
         else
             ChatManager.SendMessage(command + " " + player + " " + reason + " -s");
+
+        ChatManager.ClientMessage(command);
+        if (command.equals("/mute") || command.equals("/muteip") || command.equals("/tempmute") || command.equals("/tempmuteip"))
+        {
+            Counter.IncreaseInfo("mutes");
+        }
+
+        else if (command.equals("/ban") || command.equals("/banip") || command.equals("/tempban"))
+        {
+            Counter.IncreaseInfo("bans");
+        }
+        Counter.IncreaseInfo("punishments");
     }
 
     public static void Punish(String punishCommand, String player, String time, String reason, boolean addVk) {
@@ -36,6 +50,18 @@ public class PunishmentsManager {
             ChatManager.SendMessage(command + " " + player + " " + time + " " + reason + " | Вопросы? " + vkUrl + " -s");
         else
             ChatManager.SendMessage(command + " " + player + " " + time + " " + reason + " -s");
+
+        ChatManager.ClientMessage(command);
+        if (command.equals("/mute") || command.equals("/muteip") || command.equals("/tempmute") || command.equals("/tempmuteip"))
+        {
+            Counter.IncreaseInfo("mutes");
+        }
+
+        else if (command.equals("/ban") || command.equals("/banip") || command.equals("/tempban"))
+        {
+            Counter.IncreaseInfo("bans");
+        }
+        Counter.IncreaseInfo("punishments");
     }
 
     public static String GetVkUrl() {

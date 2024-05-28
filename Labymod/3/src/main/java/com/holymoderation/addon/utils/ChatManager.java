@@ -14,12 +14,13 @@ public class ChatManager {
     public static String[] FreezerCommands = {"/sban", "/freezing", "/frz", "/unfreezing", "/unfrz", ".freezing", ".frz",};
 
     public static String[] SettingsCommands = {".textlist", ".textclear", ".textadd", ".textremove",
-            ".textedit", ".setvk", ".getvk", ".dupeip", ".setcords", ".savecfg", ".setcolor", ".settoken"};
+            ".textedit", ".setvk", ".getvk", ".dupeip", ".settimercoords", ".setcountercoords", ".savecfg",
+            ".settimercolor", ".setcountercolor", ".settoken", ".getcounterinfo", ".cleartempinfo", ".counter"};
     public static String[] SettingsWithoutArguments = {".textlist", ".textclear",
-            ".getvk", ".dupeip", ".savecfg"};
+            ".getvk", ".dupeip", ".savecfg", ".getcounterinfo", ".cleartempinfo", ".counter"};
     public static String[] SettingsWithOneArgument = {".textadd",
-            ".textremove", ".setvk", ".setcolor", ".settoken"};
-    public static String[] SettingsWithTwoArguments = {".textedit",".setcords"};
+            ".textremove", ".setvk", ".settimercolor", ".setcountercolor", ".settoken"};
+    public static String[] SettingsWithTwoArguments = {".textedit", ".settimercoords", ".setcountercoords"};
 
     public static String[] PunishmentsCommands = {"/mute", "/muteip",
             "/tempmute", "/tempmuteip", "/ban", "/banip", "/tempban"};

@@ -1,11 +1,9 @@
-package com.holymoderation.addon.events;
+package com.holymoderation.addon.Temp;
 
 import com.holymoderation.addon.utils.ChatManager;
 import com.holymoderation.addon.utils.Colors;
-import com.labymedia.connect.api.chat.Chat;
 import net.labymod.api.event.Subscribe;
 import net.labymod.api.event.events.client.chat.MessageSendEvent;
-import net.labymod.main.LabyMod;
 
 import java.awt.*;
 import java.io.BufferedWriter;

@@ -1,5 +1,6 @@
 package com.holymoderation.addon.events;
 
+import com.holymoderation.addon.Temp.Journal;
 import net.labymod.api.event.Subscribe;
 import net.labymod.api.event.events.client.chat.MessageSendEvent;
 
@@ -49,6 +50,33 @@ public class Settings {
                         else {
                             ChatManager.ClientMessage(Colors.YELLOW + "Автоматический /dupeip" + Colors.RED + " ВЫКЛЮЧЕН");
                         }
+                        break;
+                    case (".counter"):
+                        Counter.SetCounterEnabled(!Counter.GetCounterEnabled());
+                        if (Counter.GetCounterEnabled()) {
+                            ChatManager.ClientMessage(Colors.YELLOW + "Счётчик" + Colors.GREEN + " ВКЛЮЧЁН");
+                        }
+                        else {
+                            ChatManager.ClientMessage(Colors.YELLOW + "Счётчик" + Colors.RED + " ВЫКЛЮЧЁН");
+                        }
+                        break;
+                    case (".getcounterinfo"):
+                        ChatManager.ClientMessage(Colors.AQUA + "Всего проверок: " +
+                                Colors.GOLD + Counter.GetAllTimeInfo()[0]);
+                        ChatManager.ClientMessage(Colors.AQUA + "Всего репортов: " +
+                                Colors.GOLD + Counter.GetAllTimeInfo()[1]);
+                        ChatManager.ClientMessage(Colors.AQUA + "Всего простых проверок: " +
+                                Colors.GOLD + (Counter.GetAllTimeInfo()[0] - Counter.GetAllTimeInfo()[1]));
+                        ChatManager.ClientMessage(Colors.AQUA + "Всего наказаний: " +
+                                Colors.GOLD + Counter.GetAllTimeInfo()[2]);
+                        ChatManager.ClientMessage(Colors.AQUA + "Всего банов: " +
+                                Colors.GOLD + Counter.GetAllTimeInfo()[3]);
+                        ChatManager.ClientMessage(Colors.AQUA + "Всего мутов: " +
+                                Colors.GOLD + Counter.GetAllTimeInfo()[4]);
+                        break;
+                    case (".cleartempinfo"):
+                        Counter.SetTempInfo(new int[] {0, 0, 0, 0, 0});
+                        ChatManager.ClientMessage(Colors.GREEN + "Вы успешно очистили всю временную информацию счётчика!");
                         break;
                 }
             }
@@ -108,7 +136,8 @@ public class Settings {
                         ChatManager.ClientMessage(Colors.RED + "Вы удалили текст номер "
                                 + Colors.GREEN + messageSplit[1] + "!");
                         break;
-                    case (".setcolor"):
+                    case (".settimercolor"):
+                    case (".setcountercolor"): {
                         if (messageSplit.length == 1) {
                             ChatManager.ClientMessage(Colors.RED + "Вы не указали айди цвета!");
                         }
@@ -122,9 +151,17 @@ public class Settings {
                                 return;
                             }
                         }
-                        Timer.SetCustomColor(intColor);
+                        switch (messageSplit[0]) {
+                            case (".settimercolor"):
+                                Timer.SetCustomColor(intColor);
+                                break;
+                            case (".setcountercolor"):
+                                Counter.SetCustomColor(intColor);
+                                break;
+                        }
                         ChatManager.ClientMessage(Colors.GREEN + "Успешно применено!");
                         break;
+                    }
                     case (".settoken"):
                         if (messageSplit.length == 1) {
                             ChatManager.ClientMessage(Colors.RED + "Вы не указали токен!");
@@ -166,7 +203,8 @@ public class Settings {
                         Freezer.EditText(index, text);
                         ChatManager.ClientMessage(Colors.YELLOW + "Вы изменили текст номер " + Colors.GREEN + (index + 1));
                         break;
-                    case (".setcords"):
+                    case (".settimercoords"):
+                    case (".setcountercoords"): {
                         if (messageSplit.length == 1) {
                             ChatManager.ClientMessage(Colors.RED + "Вы не указали X и Y координаты!");
                             return;
@@ -190,10 +228,19 @@ public class Settings {
                             return;
                         }
 
-                        Timer.SetxCoords(Integer.parseInt(xText));
-                        Timer.SetyCoords(Integer.parseInt(yText));
+                        switch (messageSplit[0]) {
+                            case (".settimercoords"):
+                                Timer.SetXCoords(Integer.parseInt(xText));
+                                Timer.SetYCoords(Integer.parseInt(yText));
+                                break;
+                            case (".setcountercoords"):
+                                Counter.SetXCoords(Integer.parseInt(xText));
+                                Counter.SetYCoords(Integer.parseInt(yText));
+                                break;
+                        }
                         ChatManager.ClientMessage(Colors.GREEN + "Успешно применено!");
                         break;
+                    }
                 }
             }
         }

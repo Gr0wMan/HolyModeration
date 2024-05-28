@@ -39,16 +39,20 @@ public class Freezer {
                         return;
                     }
                     player = messageSplit[1];
+                    if (player.split(" ")[player.split(" ").length - 1].equals("-r")) {
+                        Counter.IncreaseInfo("reports");
+                    }
+                    player = player.split(" ")[0];
                     Timer.SetPlayer(player);
                     Punishments.SetPlayer(player);
                     Timer.StopWatchStart();
+                    Counter.IncreaseInfo("checkouts");
                     if (dupeIpEnabled)
                         ChatManager.SendMessage("/dupeip " + player);
                     if (texts == null) {
                         ChatManager.ClientMessage(Colors.RED + "У вас нет настроенных текстов для отправки! " +
                                 "Добавить тексты --> " + Colors.GOLD + ".addtext");
                         ChatManager.ClientMessage(Colors.RED + "Просмотреть тексты --> " + Colors.GOLD + ".textlist");
-                        return;
                     }
                     else {
                         for (String text : GetSplitTexts()) {
