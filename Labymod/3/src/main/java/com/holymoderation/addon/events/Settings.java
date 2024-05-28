@@ -85,7 +85,7 @@ public class Settings {
                         }
                         else if (clearStatsMessage) {
                             Counter.SetTempInfo(new int[] {0, 0, 0, 0, 0});
-                            ChatManager.ClientMessage("Вы успешно очистили вашу статистику!");
+                            ChatManager.ClientMessage(Colors.GREEN + "Вы успешно очистили вашу статистику!");
                             clearStatsMessage = !clearStatsMessage;
                         }
                         break;
@@ -98,8 +98,8 @@ public class Settings {
                         }
                         else if (clearAllStatsMessage) {
                             Counter.SetAllTimeInfo(new int[] {0, 0, 0, 0, 0});
-                            ChatManager.ClientMessage(Colors.AQUA + "Вы успешно очистили " + Colors.RED +
-                                    "ВСЮ" + Colors.AQUA + " вашу статистику!");
+                            ChatManager.ClientMessage(Colors.GREEN + "Вы успешно очистили " + Colors.RED +
+                                    "ВСЮ" + Colors.GREEN + " вашу статистику!");
                             clearAllStatsMessage = !clearAllStatsMessage;
                         }
                         break;

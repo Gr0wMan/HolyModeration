@@ -31,7 +31,6 @@ public class PunishmentsManager {
         else
             ChatManager.SendMessage(command + " " + player + " " + reason + " -s");
 
-        ChatManager.ClientMessage(command);
         if (command.equals("/mute") || command.equals("/muteip") || command.equals("/tempmute") || command.equals("/tempmuteip"))
         {
             Counter.IncreaseInfo("mutes");
@@ -51,8 +50,7 @@ public class PunishmentsManager {
             ChatManager.SendMessage(command + " " + player + " " + time + " " + reason + " | Вопросы? " + vkUrl + " -s");
         else
             ChatManager.SendMessage(command + " " + player + " " + time + " " + reason + " -s");
-
-        ChatManager.ClientMessage(command);
+        
         if (command.equals("/mute") || command.equals("/muteip") || command.equals("/tempmute") || command.equals("/tempmuteip"))
         {
             Counter.IncreaseInfo("mutes");
