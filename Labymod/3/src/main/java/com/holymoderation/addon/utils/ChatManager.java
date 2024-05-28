@@ -9,15 +9,21 @@ import java.util.Arrays;
 
 public class ChatManager {
 
+    public static String[] AllCommands = {".hm", ".help", "/sban", "/freezing", "/frz",
+            "/unfreezing", "/unfrz", ".freezing", ".frz", ".textlist", ".textclear", ".textadd",
+            ".textremove", ".textedit", ".setvk", ".getvk", ".dupeip", ".settimercoords",
+            ".setcountercoords", ".settimercolor", ".setcountercolor", ".getstats", ".cleartempinfo",
+            ".counter", "/mute", "/muteip", "/tempmute", "/tempmuteip", "/ban", "/banip", "/tempban"};
+
     public static String[] HelpCommands = {".hm", ".help"};
 
-    public static String[] FreezerCommands = {"/sban", "/freezing", "/frz", "/unfreezing", "/unfrz", ".freezing", ".frz",};
+    public static String[] FreezerCommands = {"/sban", "/freezing", "/frz", "/unfreezing", "/unfrz", ".freezing", ".frz"};
 
     public static String[] SettingsCommands = {".textlist", ".textclear", ".textadd", ".textremove",
-            ".textedit", ".setvk", ".getvk", ".dupeip", ".settimercoords", ".setcountercoords", ".savecfg",
+            ".textedit", ".setvk", ".getvk", ".dupeip", ".settimercoords", ".setcountercoords",
             ".settimercolor", ".setcountercolor", ".getstats", ".cleartempinfo", ".counter"};
     public static String[] SettingsWithoutArguments = {".textlist", ".textclear",
-            ".getvk", ".dupeip", ".savecfg", ".getstats", ".cleartempinfo", ".counter"};
+            ".getvk", ".dupeip", ".getstats", ".cleartempinfo", ".counter"};
     public static String[] SettingsWithOneArgument = {".textadd",
             ".textremove", ".setvk", ".settimercolor", ".setcountercolor"};
     public static String[] SettingsWithTwoArguments = {".textedit", ".settimercoords", ".setcountercoords"};

@@ -71,9 +71,6 @@ public class Help {
                     + Colors.GREEN + " 0");
             ChatManager.ClientMessage(Colors.GOLD + ".cleartempinfo" + Colors.RESET
                     + " - очищает временную информацию счётчика");
-            ChatManager.ClientMessage(Colors.GOLD + ".savecfg" + Colors.RESET + Colors.RESET
-                    + " - сохраняет конфиг (ваши тексты, ссылку на вк, " +
-                    "положение и цвет таймера и счётчика, информацию счётчика, " + "автоматический /dupeip)");
             ChatManager.ClientMessage("");
             ChatManager.ClientMessage(Colors.DARK_RED + "СПИСОК НАКАЗАНИЙ:");
             ChatManager.ClientMessage(Colors.GOLD + "/mute" + Colors.GREEN + " nick reason" + Colors.RESET

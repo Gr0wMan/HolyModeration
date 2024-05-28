@@ -9,8 +9,7 @@ import net.labymod.api.event.events.client.chat.MessageSendEvent;
 import net.labymod.settings.elements.*;
 
 import com.holymoderation.addon.events.*;
-import com.holymoderation.addon.utils.ChatManager;
-import com.holymoderation.addon.utils.Colors;
+import com.holymoderation.addon.utils.*;
 
 public class HolyModeration extends LabyModAddon {
 
@@ -63,7 +62,7 @@ public class HolyModeration extends LabyModAddon {
 
   @Subscribe
   public void SaveCfg(MessageSendEvent event) {
-    if (event.getMessage().equals(".savecfg")) {
+    if (ChatManager.IsArrayContains(ChatManager.AllCommands, event.getMessage().split(" ", 0)[0])) {
       event.setCancelled(true);
       HolyModeration.this.getConfig().addProperty("timer_custom_color", Timer.GetCustomColor());
       HolyModeration.this.getConfig().addProperty("timerx", Timer.GetXCoords());
@@ -93,7 +92,6 @@ public class HolyModeration extends LabyModAddon {
       HolyModeration.this.getConfig().addProperty("tmutes", Counter.GetTempInfo()[4]);
 
       HolyModeration.this.saveConfig();
-      ChatManager.ClientMessage(Colors.GREEN + "Ваш конфиг был успешно сохранён!");
     }
   }
 }
