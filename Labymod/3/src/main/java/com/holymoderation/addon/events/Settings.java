@@ -174,7 +174,7 @@ public class Settings {
                         if (messageSplit.length == 1) {
                             ChatManager.ClientMessage(Colors.RED + "Вы не указали айди цвета!");
                         }
-                        String stringColor = messageSplit[1];
+                        String stringColor = "0x" + messageSplit[1];
                         int intColor; {
                             try {
                                 intColor = Integer.decode(stringColor);

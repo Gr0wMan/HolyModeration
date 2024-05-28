@@ -66,9 +66,7 @@ public class Help {
                     + " - устанавливает свой цвет для таймера");
             ChatManager.ClientMessage(Colors.GOLD + ".setcountercolor" + Colors.GREEN + " colorid" + Colors.RESET
                     + " - устанавливает свой цвет для счётчика");
-            ChatManager.ClientMessage("Пример: " + Colors.GREEN + "ff0000" + Colors.RESET + " - красный, "
-                    + Colors.RESET + "значит надо писать" + Colors.GOLD + " .setcolor" + Colors.RED + " 0x"
-                    + Colors.GREEN + "ff0000");
+            ChatManager.ClientMessage("Пример: " + Colors.GREEN + "ff0000" + Colors.RESET + " - красный");
             ChatManager.ClientMessage("Чтобы вернуть радужный цвет напишите" + Colors.GOLD + " .setcolor"
                     + Colors.GREEN + " 0");
             ChatManager.ClientMessage("");
