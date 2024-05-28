@@ -11,6 +11,9 @@ public class Settings {
 
     private static String[] messageSplit;
 
+    private static boolean clearStatsMessage = false;
+    private static boolean clearAllStatsMessage = false;
+
     @Subscribe
     public void OnUpdate(MessageSendEvent event) {
         String message = event.getMessage();
@@ -75,8 +78,30 @@ public class Settings {
                                 Colors.GOLD + Counter.GetAllTimeInfo()[4]);
                         break;
                     case (".clearstats"):
-                        Counter.SetTempInfo(new int[] {0, 0, 0, 0, 0});
-                        ChatManager.ClientMessage(Colors.GREEN + "Вы успешно очистили всю временную информацию счётчика!");
+                        if (!clearStatsMessage) {
+                            ChatManager.ClientMessage(Colors.AQUA + "Вы " + Colors.RED + "УВЕРЕНЫ" + Colors.AQUA
+                                    + ", что хотите очистить вашу статистику? Если да, то напишите команду ещё раз");
+                            clearStatsMessage = !clearStatsMessage;
+                        }
+                        else if (clearStatsMessage) {
+                            Counter.SetTempInfo(new int[] {0, 0, 0, 0, 0});
+                            ChatManager.ClientMessage("Вы успешно очистили вашу статистику!");
+                            clearStatsMessage = !clearStatsMessage;
+                        }
+                        break;
+                    case (".clearallstats"):
+                        if (!clearAllStatsMessage) {
+                            ChatManager.ClientMessage(Colors.AQUA + "Вы " + Colors.RED + "УВЕРЕНЫ" + Colors.AQUA
+                                    + ", что хотите очистить " + Colors.RED + "ВСЮ" + Colors.AQUA +
+                                    " вашу статистику? Если да, то напишите команду ещё раз");
+                            clearAllStatsMessage = !clearAllStatsMessage;
+                        }
+                        else if (clearAllStatsMessage) {
+                            Counter.SetAllTimeInfo(new int[] {0, 0, 0, 0, 0});
+                            ChatManager.ClientMessage(Colors.AQUA + "Вы успешно очистили " + Colors.RED +
+                                    "ВСЮ" + Colors.AQUA + " вашу статистику!");
+                            clearAllStatsMessage = !clearAllStatsMessage;
+                        }
                         break;
                 }
             }

@@ -9,11 +9,13 @@ import java.util.Arrays;
 
 public class ChatManager {
 
-    public static String[] AllCommands = {".hm", ".help", "/sban", "/freezing", "/frz",
-            "/unfreezing", "/unfrz", ".freezing", ".frz", ".textlist", ".textclear", ".textadd",
-            ".textremove", ".textedit", ".setvk", ".getvk", ".dupeip", ".settimercoords",
-            ".setcountercoords", ".settimercolor", ".setcountercolor", ".getstats", ".clearstats",
-            ".counter", "/mute", "/muteip", "/tempmute", "/tempmuteip", "/ban", "/banip", "/tempban"};
+    public static String[] AllCommands = {".hm", ".help", "/sban",
+            "/freezing", "/frz", "/unfreezing", "/unfrz", ".freezing",
+            ".frz", ".textlist", ".textclear", ".textadd", ".textremove",
+            ".textedit", ".setvk", ".getvk", ".dupeip", ".settimercoords",
+            "/ban", ".setcountercoords", ".settimercolor", ".setcountercolor",
+            ".getstats", ".clearstats", ".clearallstats", ".counter", "/mute",
+            "/muteip", "/tempmute", "/tempmuteip", "/banip", "/tempban"};
 
     public static String[] HelpCommands = {".hm", ".help"};
 
@@ -21,9 +23,9 @@ public class ChatManager {
 
     public static String[] SettingsCommands = {".textlist", ".textclear", ".textadd", ".textremove",
             ".textedit", ".setvk", ".getvk", ".dupeip", ".settimercoords", ".setcountercoords",
-            ".settimercolor", ".setcountercolor", ".getstats", ".clearstats", ".counter"};
+            ".settimercolor", ".setcountercolor", ".getstats", ".clearstats", ".clearallstats", ".counter"};
     public static String[] SettingsWithoutArguments = {".textlist", ".textclear",
-            ".getvk", ".dupeip", ".getstats", ".clearstats", ".counter"};
+            ".getvk", ".dupeip", ".getstats", ".clearstats", ".clearallstats", ".counter"};
     public static String[] SettingsWithOneArgument = {".textadd",
             ".textremove", ".setvk", ".settimercolor", ".setcountercolor"};
     public static String[] SettingsWithTwoArguments = {".textedit", ".settimercoords", ".setcountercoords"};
