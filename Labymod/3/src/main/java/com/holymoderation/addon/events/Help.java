@@ -53,7 +53,7 @@ public class Help {
                     + " - показывает установленный вк");
             ChatManager.ClientMessage(Colors.GOLD + ".dupeip" + Colors.RESET
                     + " - включает/выключает автоматический /dupeip при проверке");
-            ChatManager.ClientMessage(Colors.GOLD + ".counter" + Colors.RESET + " - включает/выключает счётчик");
+            ChatManager.ClientMessage(Colors.GOLD + ".counter" + Colors.RESET + " - включает/выключает отображение счётчика");
             ChatManager.ClientMessage(Colors.GOLD + ".getcounterinfo" + Colors.RESET
                     + " - выводит статистику счётчика за всё время");
             ChatManager.ClientMessage(Colors.GOLD + ".settimercoords" + Colors.GREEN + " x y" + Colors.RESET
@@ -65,11 +65,11 @@ public class Help {
             ChatManager.ClientMessage(Colors.GOLD + ".setcountercolor" + Colors.GREEN + " colorid" + Colors.RESET
                     + " - устанавливает свой цвет для счётчика");
             ChatManager.ClientMessage("Пример: " + Colors.GREEN + "ff0000" + Colors.RESET + " - красный, "
-                    + Colors.RESET + "значит пишите" + Colors.GOLD + " .setcolor" + Colors.RED + " 0x"
+                    + Colors.RESET + "значит надо писать" + Colors.GOLD + " .setcolor" + Colors.RED + " 0x"
                     + Colors.GREEN + "ff0000");
             ChatManager.ClientMessage("Чтобы вернуть радужный цвет напишите" + Colors.GOLD + " .setcolor"
                     + Colors.GREEN + " 0");
-            ChatManager.ClientMessage(Colors.GOLD + ".cleartempinfo" + Colors.GREEN + " colorid" + Colors.RESET
+            ChatManager.ClientMessage(Colors.GOLD + ".cleartempinfo" + Colors.RESET
                     + " - очищает временную информацию счётчика");
             ChatManager.ClientMessage(Colors.GOLD + ".savecfg" + Colors.RESET + Colors.RESET
                     + " - сохраняет конфиг (ваши тексты, ссылку на вк, " +
