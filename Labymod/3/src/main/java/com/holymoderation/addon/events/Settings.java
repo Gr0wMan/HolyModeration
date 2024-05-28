@@ -60,7 +60,7 @@ public class Settings {
                             ChatManager.ClientMessage(Colors.YELLOW + "Счётчик" + Colors.RED + " ВЫКЛЮЧЁН");
                         }
                         break;
-                    case (".getcounterinfo"):
+                    case (".getstats"):
                         ChatManager.ClientMessage(Colors.AQUA + "Всего проверок: " +
                                 Colors.GOLD + Counter.GetAllTimeInfo()[0]);
                         ChatManager.ClientMessage(Colors.AQUA + "Всего репортов: " +
