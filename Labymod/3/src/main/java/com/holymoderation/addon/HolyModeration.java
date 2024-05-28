@@ -46,7 +46,7 @@ public class HolyModeration extends LabyModAddon {
     int reports = (getConfig().has("reports") ? getConfig().get("reports").getAsInt() : 0);
     int punishments = (getConfig().has("punishments") ? getConfig().get("punishments").getAsInt() : 0);
     int bans = (getConfig().has("bans") ? getConfig().get("bans").getAsInt() : 0);
-    int mutes = (getConfig().has("mutes ") ? getConfig().get("mutes ").getAsInt() : 0);
+    int mutes = (getConfig().has("mutes") ? getConfig().get("mutes").getAsInt() : 0);
     Counter.SetAllTimeInfo(new int[] {checkouts, reports, punishments, bans, mutes});
 
     int tcheckouts = (getConfig().has("tcheckouts") ? getConfig().get("tcheckouts").getAsInt() : 0);
