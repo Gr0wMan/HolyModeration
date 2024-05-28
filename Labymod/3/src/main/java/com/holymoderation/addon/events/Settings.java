@@ -74,7 +74,7 @@ public class Settings {
                         ChatManager.ClientMessage(Colors.AQUA + "Всего мутов: " +
                                 Colors.GOLD + Counter.GetAllTimeInfo()[4]);
                         break;
-                    case (".cleartempinfo"):
+                    case (".clearstats"):
                         Counter.SetTempInfo(new int[] {0, 0, 0, 0, 0});
                         ChatManager.ClientMessage(Colors.GREEN + "Вы успешно очистили всю временную информацию счётчика!");
                         break;

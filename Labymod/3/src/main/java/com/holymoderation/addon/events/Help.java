@@ -56,6 +56,8 @@ public class Help {
             ChatManager.ClientMessage(Colors.GOLD + ".counter" + Colors.RESET + " - включает/выключает отображение счётчика");
             ChatManager.ClientMessage(Colors.GOLD + ".getstats" + Colors.RESET
                     + " - выводит статистику за всё время");
+            ChatManager.ClientMessage(Colors.GOLD + ".clearstats" + Colors.RESET
+                    + " - очищает временную информацию счётчика");
             ChatManager.ClientMessage(Colors.GOLD + ".settimercoords" + Colors.GREEN + " x y" + Colors.RESET
                     + " - устанавливает позицию для таймера (считая от левого верхнего угла)");
             ChatManager.ClientMessage(Colors.GOLD + ".setcountercoords" + Colors.GREEN + " x y" + Colors.RESET
@@ -69,8 +71,6 @@ public class Help {
                     + Colors.GREEN + "ff0000");
             ChatManager.ClientMessage("Чтобы вернуть радужный цвет напишите" + Colors.GOLD + " .setcolor"
                     + Colors.GREEN + " 0");
-            ChatManager.ClientMessage(Colors.GOLD + ".cleartempinfo" + Colors.RESET
-                    + " - очищает временную информацию счётчика");
             ChatManager.ClientMessage("");
             ChatManager.ClientMessage(Colors.DARK_RED + "СПИСОК НАКАЗАНИЙ:");
             ChatManager.ClientMessage(Colors.GOLD + "/mute" + Colors.GREEN + " nick reason" + Colors.RESET
