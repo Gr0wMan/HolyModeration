@@ -8,6 +8,7 @@ import com.holymoderation.addon.utils.Colors;
 import com.holymoderation.addon.utils.PunishmentsManager;
 
 public class Punishments {
+
     private static String player = null;
     private static String[] messageSplit;
 

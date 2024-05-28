@@ -3,6 +3,7 @@ package com.holymoderation.addon.utils;
 import com.holymoderation.addon.events.Counter;
 
 public class PunishmentsManager {
+
     private static String vkUrl = null;
 
     public static boolean CheckTimeFormat(String message) {

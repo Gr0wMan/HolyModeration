@@ -1,6 +1,5 @@
 package com.holymoderation.addon.events;
 
-import com.labymedia.connect.api.chat.Chat;
 import net.labymod.api.event.Subscribe;
 import net.labymod.api.event.events.client.chat.MessageSendEvent;
 
@@ -8,6 +7,7 @@ import com.holymoderation.addon.utils.Colors;
 import com.holymoderation.addon.utils.ChatManager;
 
 public class Help {
+
     public static String[] messageSplit;
 
     @Subscribe

@@ -3,6 +3,7 @@ package com.holymoderation.addon.utils;
 import net.minecraft.util.text.TextFormatting;
 
 public class Colors {
+
     public static final TextFormatting RED = TextFormatting.RED;
     public static final TextFormatting GREEN = TextFormatting.GREEN;
     public static final TextFormatting BLUE = TextFormatting.BLUE;

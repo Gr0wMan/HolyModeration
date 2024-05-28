@@ -9,6 +9,7 @@ import net.labymod.api.event.events.client.gui.RenderGameOverlayEvent;
 import org.apache.commons.lang3.time.StopWatch;
 
 public class Timer {
+
     private static StopWatch stopWatch;
 
     private static String player = null;

@@ -5,6 +5,7 @@ import net.labymod.api.event.Subscribe;
 import net.labymod.api.event.events.client.gui.RenderGameOverlayEvent;
 
 public class Counter {
+
     //all time
     private static int checkouts = 0;
     private static int reports = 0;

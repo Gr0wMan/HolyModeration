@@ -15,11 +15,11 @@ public class ChatManager {
 
     public static String[] SettingsCommands = {".textlist", ".textclear", ".textadd", ".textremove",
             ".textedit", ".setvk", ".getvk", ".dupeip", ".settimercoords", ".setcountercoords", ".savecfg",
-            ".settimercolor", ".setcountercolor", ".settoken", ".getstats", ".cleartempinfo", ".counter"};
+            ".settimercolor", ".setcountercolor", ".getstats", ".cleartempinfo", ".counter"};
     public static String[] SettingsWithoutArguments = {".textlist", ".textclear",
             ".getvk", ".dupeip", ".savecfg", ".getstats", ".cleartempinfo", ".counter"};
     public static String[] SettingsWithOneArgument = {".textadd",
-            ".textremove", ".setvk", ".settimercolor", ".setcountercolor", ".settoken"};
+            ".textremove", ".setvk", ".settimercolor", ".setcountercolor"};
     public static String[] SettingsWithTwoArguments = {".textedit", ".settimercoords", ".setcountercoords"};
 
     public static String[] PunishmentsCommands = {"/mute", "/muteip",

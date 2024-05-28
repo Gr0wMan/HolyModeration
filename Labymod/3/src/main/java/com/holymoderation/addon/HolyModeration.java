@@ -2,7 +2,6 @@ package com.holymoderation.addon;
 
 import java.util.List;
 
-import com.holymoderation.addon.Temp.Journal;
 import com.holymoderation.addon.utils.PunishmentsManager;
 import net.labymod.api.LabyModAddon;
 import net.labymod.api.event.Subscribe;
@@ -15,7 +14,6 @@ import com.holymoderation.addon.utils.Colors;
 
 public class HolyModeration extends LabyModAddon {
 
-
   @Override
   public void onEnable() {
     getApi().getEventService().registerListener(this);
@@ -24,7 +22,6 @@ public class HolyModeration extends LabyModAddon {
     getApi().getEventService().registerListener(new Settings());
     getApi().getEventService().registerListener(new Help());
     getApi().getEventService().registerListener(new Punishments());
-    getApi().getEventService().registerListener(new Journal());
     getApi().getEventService().registerListener(new Counter());
   }
 
