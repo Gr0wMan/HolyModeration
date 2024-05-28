@@ -19,6 +19,14 @@ public class Settings {
         String message = event.getMessage();
         String command = message.split(" ")[0];
 
+        if (ChatManager.IsArrayContains(ChatManager.AllCommands, command) && !command.equals(".clearstats")) {
+            clearStatsMessage = false;
+        }
+        
+        if (ChatManager.IsArrayContains(ChatManager.AllCommands, command) && !command.equals(".clearallstats")) {
+            clearAllStatsMessage = false;
+        }
+
         if (ChatManager.IsArrayContains(ChatManager.SettingsCommands, command)) {
             event.setCancelled(true);
             if (ChatManager.IsArrayContains(ChatManager.SettingsWithoutArguments, command)) {

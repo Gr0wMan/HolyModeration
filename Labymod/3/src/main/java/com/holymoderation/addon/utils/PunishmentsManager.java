@@ -50,7 +50,7 @@ public class PunishmentsManager {
             ChatManager.SendMessage(command + " " + player + " " + time + " " + reason + " | Вопросы? " + vkUrl + " -s");
         else
             ChatManager.SendMessage(command + " " + player + " " + time + " " + reason + " -s");
-        
+
         if (command.equals("/mute") || command.equals("/muteip") || command.equals("/tempmute") || command.equals("/tempmuteip"))
         {
             Counter.IncreaseInfo("mutes");
