@@ -22,7 +22,7 @@ public class Settings {
         if (ChatManager.IsArrayContains(ChatManager.AllCommands, command) && !command.equals(".clearstats")) {
             clearStatsMessage = false;
         }
-        
+
         if (ChatManager.IsArrayContains(ChatManager.AllCommands, command) && !command.equals(".clearallstats")) {
             clearAllStatsMessage = false;
         }
